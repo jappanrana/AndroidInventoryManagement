@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragements.AddProductsFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:overScrollMode="always"
+        android:isScrollContainer="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="7dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/linearLayout8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/addProductBackButton"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:padding="@dimen/_5sdp"
+                    android:src="@drawable/backkey2" />
+
+                <TextView
+                    android:id="@+id/addProductTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="1dp"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="Add Product"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13sdp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout8">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:fontFamily="@font/inter_regular"
+                    android:gravity="center_horizontal"
+                    android:text="Please enter details below"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13sdp"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/inter_regular"
+                    android:gravity="center_horizontal"
+                    android:text="to Generate Qr Code."
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13sdp"
+                    android:textStyle="italic" />
+
+            </LinearLayout>
+
+            <ScrollView
+                android:id="@+id/addProductScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:overScrollMode="never"
+                android:paddingTop="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout9">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_75sdp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:fontFamily="@font/inter_bold"
+                        android:text="Product Details"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_15sdp"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:hint="Product Code"
+                        android:inputType="number"
+                        android:textColorHint="@color/MediumGrey"
+                        app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
+                        app:boxCornerRadiusBottomStart="@dimen/_8sdp"
+                        app:boxCornerRadiusTopEnd="@dimen/_8sdp"
+                        app:boxCornerRadiusTopStart="@dimen/_8sdp"
+                        app:boxStrokeColor="@color/black"
+                        app:endIconMode="clear_text"
+                        app:hintTextColor="@color/MediumGrey">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/codeProductCode"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:cursorVisible="true"
+                            android:focusable="true"
+                            android:maxLength="8"
+                            android:focusableInTouchMode="true"
+                            android:fontFamily="@font/inter_regular"
+                            android:inputType="number"
+                            android:nextFocusDown="@id/nameProductName"
+                            android:singleLine="true"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/MediumGrey"
+                            android:textCursorDrawable="@color/black"
+                            android:textSize="@dimen/_12sdp">
+
+
+                        </com.google.android.material.textfield.TextInputEditText>
+
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:hint="Product name"
+                        android:inputType="text"
+                        android:textColorHint="@color/MediumGrey"
+                        app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
+                        app:boxCornerRadiusBottomStart="@dimen/_8sdp"
+                        app:boxCornerRadiusTopEnd="@dimen/_8sdp"
+                        app:boxCornerRadiusTopStart="@dimen/_8sdp"
+                        app:boxStrokeColor="@color/black"
+                        app:endIconMode="clear_text"
+                        app:hintTextColor="@color/MediumGrey">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/nameProductName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:cursorVisible="true"
+                            android:focusable="true"
+                            android:maxLength="64"
+                            android:focusableInTouchMode="true"
+                            android:fontFamily="@font/inter_regular"
+                            android:inputType="textCapSentences"
+                            android:nextFocusDown="@id/mrpAddProduct"
+                            android:singleLine="true"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/MediumGrey"
+                            android:textCursorDrawable="@color/black"
+                            android:textSize="@dimen/_12sdp">
+
+
+                        </com.google.android.material.textfield.TextInputEditText>
+
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:hint="Sale Price"
+                        android:inputType="number"
+                        android:textColorHint="@color/MediumGrey"
+                        app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
+                        app:boxCornerRadiusBottomStart="@dimen/_8sdp"
+                        app:boxCornerRadiusTopEnd="@dimen/_8sdp"
+                        app:boxCornerRadiusTopStart="@dimen/_8sdp"
+                        app:boxStrokeColor="@color/black"
+                        app:endIconMode="clear_text"
+                        app:hintTextColor="@color/MediumGrey">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/mrpAddProduct"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:cursorVisible="true"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            android:fontFamily="@font/inter_regular"
+                            android:inputType="number"
+                            android:maxLength="9"
+                            android:nextFocusDown="@id/gstAddProduct"
+                            android:singleLine="true"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/MediumGrey"
+                            android:textCursorDrawable="@color/black"
+                            android:textSize="@dimen/_12sdp">
+
+
+                        </com.google.android.material.textfield.TextInputEditText>
+
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:hint="GST%"
+                        android:inputType="number"
+                        android:textColorHint="@color/MediumGrey"
+                        app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
+                        app:boxCornerRadiusBottomStart="@dimen/_8sdp"
+                        app:boxCornerRadiusTopEnd="@dimen/_8sdp"
+                        app:boxCornerRadiusTopStart="@dimen/_8sdp"
+                        app:boxStrokeColor="@color/black"
+                        app:endIconMode="clear_text"
+                        app:hintTextColor="@color/MediumGrey">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/gstAddProduct"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:cursorVisible="true"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
+                            android:fontFamily="@font/inter_regular"
+                            android:inputType="number"
+                            android:singleLine="true"
+                            android:textColor="@color/black"
+                            android:textColorHint="@color/MediumGrey"
+                            android:textCursorDrawable="@color/black"
+                            android:textSize="@dimen/_12sdp">
+
+                        </com.google.android.material.textfield.TextInputEditText>
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                </LinearLayout>
+
+            </ScrollView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:padding="@dimen/_5sdp"
+        android:weightSum="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/submitBtn"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_weight="1.2"
+            android:backgroundTint="@color/Blue"
+            android:fontFamily="@font/inter_regular"
+            android:letterSpacing="0"
+            android:text="Submit"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_14sdp"
+            app:cornerRadius="@dimen/_10sdp"
+            app:elevation="0dp">
+
+        </com.google.android.material.button.MaterialButton>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addMoreBtn"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_weight="0.8"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/inter_regular"
+            android:letterSpacing="0"
+            android:text="Add More"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_13sdp"
+            app:cornerRadius="@dimen/_10sdp"
+            app:elevation="0dp">
+
+        </com.google.android.material.button.MaterialButton>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

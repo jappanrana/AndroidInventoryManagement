@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".login.LoginActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_40sdp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/inter_black"
+                android:gravity="center_horizontal"
+                android:text="Welcome"
+                android:textColor="@color/Blue"
+                android:textSize="@dimen/_25sdp"
+                android:textStyle="italic" />
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingTop="@dimen/_25sdp"
+            android:paddingEnd="@dimen/_10sdp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:fontFamily="@font/lato_bold"
+                    android:text="Please enter details below."
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/loginMobileNO"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/edit_text_rounded"
+                    android:fontFamily="@font/inter_regular"
+                    android:hint="Mobile no."
+                    android:inputType="phone"
+                    android:maxLength="10"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:textColor="#0F0A0A"
+                    android:textSize="@dimen/_13sdp" />
+
+                <EditText
+                    android:id="@+id/loginPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/edit_text_rounded"
+                    android:fontFamily="@font/inter_regular"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:textColor="#0F0A0A"
+                    android:textSize="@dimen/_13sdp" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout15"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:padding="@dimen/_10sdp"
+        android:weightSum="12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/loginBtn"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:backgroundTint="#ABE7F5"
+            android:enabled="false"
+            android:fontFamily="@font/inter_regular"
+            android:letterSpacing="0"
+            android:text="Login"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_14sdp"
+            app:cornerRadius="@dimen/_10sdp"
+            app:elevation="0dp">
+
+        </com.google.android.material.button.MaterialButton>
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

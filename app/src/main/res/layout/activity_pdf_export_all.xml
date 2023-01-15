@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ExportScreens.PDFExportAllActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/pdfExpBarcodeCardView"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_230sdp"
+            android:layout_gravity="center">
+
+            <LinearLayout
+                android:id="@+id/pdfExpproductViewLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/pdfExpimageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_50sdp"
+                    app:srcCompat="@drawable/pankaj_nx_logo" />
+
+                <TextView
+                    android:id="@+id/manufacturer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:fontFamily="@font/bebas_regular"
+                    android:letterSpacing="0.03"
+                    android:text="manufacturer / distributor / wholesaler"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp"/>
+
+                <com.google.android.flexbox.FlexboxLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:flexWrap="wrap"
+                    app:alignItems="center"
+                    app:alignContent="flex_end"
+                    app:flexDirection="column"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:padding="@dimen/_2sdp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/pdfExpexportProductCode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/bebas_regular"
+                            android:gravity="end"
+                            android:lines="1"
+                            android:textAllCaps="true"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_20sdp" />
+
+                        <TextView
+                            android:id="@+id/pdfExpexportProductName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/bebas_regular"
+                            android:textAlignment="center"
+                            android:lines="1"
+                            android:text="@string/dummy_text"
+                            android:textAllCaps="true"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_20sdp" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/pdfExpexportProductRate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/bebas_regular"
+                        android:gravity="center"
+                        android:lines="1"
+                        android:text="123456789123456789123456789"
+                        android:textAllCaps="true"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_18sdp"
+                        app:layout_alignSelf="center" />
+
+                </com.google.android.flexbox.FlexboxLayout>
+
+                <ImageView
+                    android:id="@+id/pdfExpexportBarcodeImg"
+                    android:layout_width="@dimen/_500sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp" />
+
+                <TextView
+                    android:id="@+id/pdfExptextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_marginBottom="@dimen/_2sdp"
+                    android:fontFamily="@font/bebas_regular"
+                    android:letterSpacing="0.03"
+                    android:text="(Taxes Transportation Extra As Per Applicable)"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp"  />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="@color/black" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_5sdp"
+                    android:fontFamily="@font/bebas_regular"
+                    android:letterSpacing="0.03"
+                    android:text="Shop No. 6/7, Ankita Chs, Near Dcb Bank,Ambadi Road, Vasai (W)"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="@color/black" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_2sdp"
+                    android:fontFamily="@font/bebas_regular"
+                    android:letterSpacing="0.03"
+                    android:text="MOB. 9028669433 / 9011869610"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_18sdp" />
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/shimmerSubCategoryConstraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:id="@+id/shimmerSubCategoryRelativeLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="@dimen/_30sdp"
+                android:fontFamily="@font/inter_semibold"
+                android:gravity="center"
+                android:text="Exporting All Pdf..."
+                android:textColor="@color/black"
+                android:textSize="@dimen/_25sdp" />
+
+
+        </RelativeLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

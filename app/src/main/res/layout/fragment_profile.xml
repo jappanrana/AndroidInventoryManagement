@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F3F3F3"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Navigation.ProfileFragment">
+
+    <LinearLayout
+        android:id="@+id/linearLaysout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:padding="@dimen/_10sdp"
+        android:background="@drawable/profile_layout"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/profileMainText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/inter_black"
+                android:text="Pankaj nx"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_18sdp" />
+
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1.5dp"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLaysout" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLaysout"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:id="@+id/linearLayout13"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:padding="@dimen/_10sdp"
+                android:background="@drawable/profile_layout">
+
+
+
+                <LinearLayout
+                    android:id="@+id/gstQuote"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal"
+
+                    android:weightSum="3">
+
+                    <ImageView
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/bill" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="3"
+                        android:fontFamily="@font/inter_semibold"
+                        android:text="GST Quotation"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--        <LinearLayout-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="5dp"-->
+            <!--            android:paddingStart="10dp"-->
+            <!--            android:paddingEnd="10dp"-->
+            <!--            android:orientation="vertical">-->
+
+            <!--            <View-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="2dp"-->
+            <!--                android:background="@drawable/vertical_line"-->
+            <!--                android:backgroundTint="@color/RocRed"-->
+            <!--                android:padding="10dp" />-->
+
+            <!--        </LinearLayout>-->
+
+
+            <LinearLayout
+                android:id="@+id/logoutProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/profile_layout"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:padding="@dimen/_10sdp"
+                android:weightSum="3">
+
+                <ImageView
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/log_out" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/inter_semibold"
+                    android:text="Log out"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/sharedQuote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/profile_layout"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:padding="@dimen/_10sdp"
+                android:weightSum="3">
+
+                <ImageView
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/log_out" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/inter_semibold"
+                    android:text="Shared Quote"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/developerName"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_marginBottom="15dp"-->
+    <!--        android:gravity="center"-->
+    <!--        android:visibility="gone"-->
+    <!--        android:text="Developed By Simple Inc"-->
+    <!--        android:textColor="#999997"-->
+    <!--        android:textSize="@dimen/_12sdp"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

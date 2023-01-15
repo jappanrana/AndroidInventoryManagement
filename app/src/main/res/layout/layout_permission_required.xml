@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/_10sdp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/permissionAlertBox"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_14sdp"
+        android:fontFamily="@font/inter_regular"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:paddingStart="@dimen/_5sdp"
+        android:paddingTop="@dimen/_6sdp"
+        android:paddingBottom="@dimen/_6sdp">
+
+        <ImageView
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:src="@drawable/ic_contacts" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:fontFamily="@font/inter_regular"
+            android:text="Contacts"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14sdp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:paddingStart="@dimen/_5sdp"
+        android:paddingTop="@dimen/_6sdp"
+        android:paddingBottom="@dimen/_6sdp">
+
+        <ImageView
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:src="@drawable/ic_storage" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:fontFamily="@font/inter_regular"
+            android:text="Storage"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14sdp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:paddingStart="@dimen/_5sdp"
+        android:paddingTop="@dimen/_6sdp"
+        android:paddingBottom="@dimen/_6sdp">
+
+        <ImageView
+            android:layout_width="@dimen/_25sdp"
+            android:layout_height="@dimen/_25sdp"
+            android:src="@drawable/ic_camera" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:fontFamily="@font/inter_regular"
+            android:text="Camera"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14sdp" />
+
+    </LinearLayout>
+
+</LinearLayout>
