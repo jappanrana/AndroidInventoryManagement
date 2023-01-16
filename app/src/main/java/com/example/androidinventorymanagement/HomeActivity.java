@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.androidinventorymanagement.Activities.ScannerActivity;
 import com.example.androidinventorymanagement.Navigation.EditQuoteFragment;
 import com.example.androidinventorymanagement.Navigation.HomeFragment;
 import com.example.androidinventorymanagement.Navigation.ProfileFragment;
@@ -79,10 +80,9 @@ public class HomeActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.scanner:
-//                        Intent intent = new Intent(MainHomeActivity.this, ScannerActivity.class);
-//                        startActivity(intent);
-//                        finish();
-                        Toast.makeText(mContext, "scanner", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(HomeActivity.this, ScannerActivity.class);
+                        startActivity(intent);
+                        finish();
                         return true;
 
                     case R.id.profile:
@@ -126,18 +126,5 @@ public class HomeActivity extends AppCompatActivity {
         layoutParams.weight = 10;
         btnPositive.setLayoutParams(layoutParams);
         btnNegative.setLayoutParams(layoutParams);
-
-//        new AlertDialog.Builder(this, R.style.AlertDialogTheme)
-//                .setMessage("Do you want to exit the app?")
-//                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
-//                {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        finish();
-//                    }
-//
-//                })
-//                .setNegativeButton("No", null)
-//                .show();
     }
 }

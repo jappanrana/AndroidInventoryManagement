@@ -36,6 +36,7 @@ import com.example.androidinventorymanagement.Adapters.ProductsAdapter;
 import com.example.androidinventorymanagement.ExportScreens.PDFExportActivity;
 import com.example.androidinventorymanagement.ExportScreens.PDFExportAllActivity;
 import com.example.androidinventorymanagement.Fragements.AddProductsFragment;
+import com.example.androidinventorymanagement.Fragements.ShowProductFragment;
 import com.example.androidinventorymanagement.MainActivity;
 import com.example.androidinventorymanagement.Models.ExportModel;
 import com.example.androidinventorymanagement.Models.ProductsModel;
@@ -214,14 +215,16 @@ public class HomeFragment extends Fragment implements EasyPermissions.Permission
                             }
                         }
                     }else{
-//                        Intent intent = new Intent(getContext(), ShowProductActivity.class);
-                        Intent intent = new Intent(getContext(), MainActivity.class);
-                        intent.putExtra("key", snapshot.getKey().toString());
-                        intent.putExtra("code", snapshot.child("code").getValue().toString());
-                        intent.putExtra("name", snapshot.child("name").getValue().toString());
-                        intent.putExtra("mrp", snapshot.child("mrp").getValue().toString());
-                        intent.putExtra("gstAmt", snapshot.child("gstAmt").getValue().toString());
-                        startActivity(intent);
+                        ProductsModel showProduct = new ProductsModel(
+                                snapshot.child("name").getValue().toString(),
+                                snapshot.child("code").getValue().toString(),
+                                snapshot.child("mrp").getValue().toString(),
+                                snapshot.child("gstAmt").getValue().toString(),
+                                snapshot.child("key").getValue().toString()
+                        );
+                        SharedPreferenceMethods.setSharedPrefShowProduct(mContext,showProduct);
+                        ShowProductFragment showProductFragment = new ShowProductFragment();
+                        getParentFragmentManager().beginTransaction().replace(R.id.frame, showProductFragment).commit();
                     }
                 }
             }
