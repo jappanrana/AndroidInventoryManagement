@@ -20,7 +20,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.androidinventorymanagement.Activities.QuoteScannerActivity;
 import com.example.androidinventorymanagement.Fragements.SharedQuoteFragment;
-import com.example.androidinventorymanagement.MainActivity;
 import com.example.androidinventorymanagement.R;
 import com.example.androidinventorymanagement.Utils.Constances;
 import com.example.androidinventorymanagement.Utils.SharedPreferenceMethods;

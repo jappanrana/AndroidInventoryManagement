@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.androidinventorymanagement.Activities.ScannerActivity;
+import com.example.androidinventorymanagement.Fragements.SharedQuoteFragment;
 import com.example.androidinventorymanagement.Navigation.EditQuoteFragment;
 import com.example.androidinventorymanagement.Navigation.HomeFragment;
 import com.example.androidinventorymanagement.Navigation.ProfileFragment;
@@ -51,6 +52,10 @@ public class HomeActivity extends AppCompatActivity {
         }
         else if (navigation.equals(Constances.NAVIGATION_EDIT_QUOTE)) {
             getSupportFragmentManager().beginTransaction().replace(R.id.frame, new EditQuoteFragment()).commit();
+            bottomNavigationView.getMenu().findItem(R.id.profile).setChecked(true);
+        }
+        else if (navigation.equals(Constances.NAVIGATION_SHARED_QUOTE)) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame, new SharedQuoteFragment()).commit();
             bottomNavigationView.getMenu().findItem(R.id.profile).setChecked(true);
         }
         else {

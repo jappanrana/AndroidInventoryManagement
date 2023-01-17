@@ -18,6 +18,7 @@ import com.example.androidinventorymanagement.Models.QuotationModel;
 import com.example.androidinventorymanagement.Navigation.HomeFragment;
 import com.example.androidinventorymanagement.R;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -55,7 +56,7 @@ public class SharedQuoteFragment extends Fragment {
         FirebaseRecyclerOptions<QuotationModel> options = new FirebaseRecyclerOptions.Builder<QuotationModel>()
                 .setQuery(databaseReferenceQuotations,QuotationModel.class).build();
 
-        sharedQuoteAdapter = new SharedQuoteAdapter(options);
+        sharedQuoteAdapter = new SharedQuoteAdapter(options,mContext);
         recyclerView.setAdapter(sharedQuoteAdapter);
         sharedQuoteAdapter.startListening();
 
@@ -78,6 +79,8 @@ public class SharedQuoteFragment extends Fragment {
             public void onClick(View v) {
                 HomeFragment homeFragment = new HomeFragment();
                 getParentFragmentManager().beginTransaction().replace(R.id.frame, homeFragment).commit();
+                BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottomNavigationView);
+                bottomNavigationView.getMenu().findItem(R.id.profile).setChecked(true);
             }
         });
 
@@ -89,7 +92,7 @@ public class SharedQuoteFragment extends Fragment {
         FirebaseRecyclerOptions<QuotationModel> options = new FirebaseRecyclerOptions.Builder<QuotationModel>()
                 .setQuery(databaseReferenceQuotations.orderByChild("name").startAt(query).endAt(query+ "\uf8ff"),QuotationModel.class).build();
 
-        sharedQuoteAdapter = new SharedQuoteAdapter(options);
+        sharedQuoteAdapter = new SharedQuoteAdapter(options,mContext);
         recyclerView.setAdapter(sharedQuoteAdapter);
         sharedQuoteAdapter.startListening();
 

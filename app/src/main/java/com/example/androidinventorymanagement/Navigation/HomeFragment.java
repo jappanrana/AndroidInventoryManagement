@@ -16,7 +16,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SearchView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,7 +23,6 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -37,7 +35,6 @@ import com.example.androidinventorymanagement.ExportScreens.PDFExportActivity;
 import com.example.androidinventorymanagement.ExportScreens.PDFExportAllActivity;
 import com.example.androidinventorymanagement.Fragements.AddProductsFragment;
 import com.example.androidinventorymanagement.Fragements.ShowProductFragment;
-import com.example.androidinventorymanagement.MainActivity;
 import com.example.androidinventorymanagement.Models.ExportModel;
 import com.example.androidinventorymanagement.Models.ProductsModel;
 import com.example.androidinventorymanagement.R;
@@ -361,14 +358,16 @@ public class HomeFragment extends Fragment implements EasyPermissions.Permission
                             }
                         }
                     } else {
-                        //                    Intent intent = new Intent(getContext(), ShowProductActivity.class);
-                        Intent intent = new Intent(getContext(), MainActivity.class);
-                        intent.putExtra("key", snapshot.getKey());
-                        intent.putExtra("code", snapshot.child("code").getValue().toString());
-                        intent.putExtra("name", snapshot.child("name").getValue().toString());
-                        intent.putExtra("mrp", snapshot.child("mrp").getValue().toString());
-                        intent.putExtra("gstAmt", snapshot.child("gstAmt").getValue().toString());
-                        startActivity(intent);
+                        ProductsModel showProduct = new ProductsModel(
+                                snapshot.child("name").getValue().toString(),
+                                snapshot.child("code").getValue().toString(),
+                                snapshot.child("mrp").getValue().toString(),
+                                snapshot.child("gstAmt").getValue().toString(),
+                                snapshot.child("key").getValue().toString()
+                        );
+                        SharedPreferenceMethods.setSharedPrefShowProduct(mContext,showProduct);
+                        ShowProductFragment showProductFragment = new ShowProductFragment();
+                        getParentFragmentManager().beginTransaction().replace(R.id.frame, showProductFragment).commit();
                     }
                 }
             }

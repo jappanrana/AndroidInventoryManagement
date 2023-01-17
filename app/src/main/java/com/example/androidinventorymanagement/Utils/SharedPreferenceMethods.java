@@ -86,4 +86,37 @@ public class SharedPreferenceMethods {
         return customerNumber;
     }
 
+    public static void setSharedPrefCustomerKey(Context context, String value){
+        SharedPreferences sharedPreferenceObject = context.getSharedPreferences("sharedPrefStorage",0);
+        sharedPreferenceObject.edit().putString("CustomerKey",value).apply();
+    }
+
+    public static String getSharedPrefCustomerKey(Context context){
+        SharedPreferences sharedPreferenceObject = context.getSharedPreferences("sharedPrefStorage",0);
+        String customerKey = sharedPreferenceObject.getString("CustomerKey","");
+        return customerKey;
+    }
+
+    public static void setSharedPrefDisAvailable(Context context, String value){
+        SharedPreferences sharedPreferenceObject = context.getSharedPreferences("sharedPrefStorage",0);
+        sharedPreferenceObject.edit().putString("DiscountAvailable",value).apply();
+    }
+
+    public static String getSharedPrefDisAvailable(Context context){
+        SharedPreferences sharedPreferenceObject = context.getSharedPreferences("sharedPrefStorage",0);
+        String customerKey = sharedPreferenceObject.getString("DiscountAvailable","no");
+        return customerKey;
+    }
+
+    public static void setSharedPrefEditable(Context context, Boolean value){
+        SharedPreferences sharedPreferenceObject = context.getSharedPreferences("sharedPrefStorage",0);
+        sharedPreferenceObject.edit().putBoolean("Editable",value).apply();
+    }
+
+    public static Boolean getSharedPrefEditable(Context context) {
+        SharedPreferences sharedPreferenceObject = context.getSharedPreferences("sharedPrefStorage",0);
+        Boolean Editable = sharedPreferenceObject.getBoolean("Editable",false);
+        return Editable;
+    }
+
 }

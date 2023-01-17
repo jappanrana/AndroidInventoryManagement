@@ -1,8 +1,8 @@
 package com.example.androidinventorymanagement.Adapters;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,23 +12,24 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.androidinventorymanagement.MainActivity;
+import com.example.androidinventorymanagement.Activities.QuoteItemsActivity;
 import com.example.androidinventorymanagement.Models.QuotationModel;
 import com.example.androidinventorymanagement.R;
+import com.example.androidinventorymanagement.Utils.SharedPreferenceMethods;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
 public class SharedQuoteAdapter extends FirebaseRecyclerAdapter<QuotationModel,SharedQuoteAdapter.MyViewHolder> {
-    SharedPreferences userDetail;
+    Context context;
 
-    public SharedQuoteAdapter(@NonNull FirebaseRecyclerOptions<QuotationModel> options) {
+
+    public SharedQuoteAdapter(@NonNull FirebaseRecyclerOptions<QuotationModel> options,Context context) {
         super(options);
+        this.context = context;
     }
 
     @Override
     protected void onBindViewHolder(@NonNull MyViewHolder holder, int position, @NonNull QuotationModel model) {
-
-        userDetail = holder.itemView.getContext().getSharedPreferences("userDetail",0);
 
         holder.customeraName.setText(model.getCustomerName());
         String total = String.valueOf(model.getTotal());
@@ -59,10 +60,10 @@ public class SharedQuoteAdapter extends FirebaseRecyclerAdapter<QuotationModel,S
                 @Override
                 public void onClick(View v) {
                     String userInpNumber = getSnapshots().getSnapshot(getAbsoluteAdapterPosition()).child("customerNumber").getValue().toString();
-                    Intent intent = new Intent(itemView.getContext(), MainActivity.class);
-                    userDetail.edit().putString("key",getSnapshots().getSnapshot(getPosition()).getKey()).apply();
-                    userDetail.edit().putString("customerName",customeraName.getText().toString()).apply();
-                    userDetail.edit().putString("customerNo",userInpNumber).apply();
+                    Intent intent = new Intent(itemView.getContext(), QuoteItemsActivity.class);
+                    SharedPreferenceMethods.setSharedPrefCustomerName(context,customeraName.getText().toString());
+                    SharedPreferenceMethods.setSharedPrefCustomerNumber(context,userInpNumber);
+                    SharedPreferenceMethods.setSharedPrefCustomerKey(context,getSnapshots().getSnapshot(getPosition()).getKey());
                     itemView.getContext().startActivity(intent);
                     ((Activity)itemView.getContext()).finish();
                 }

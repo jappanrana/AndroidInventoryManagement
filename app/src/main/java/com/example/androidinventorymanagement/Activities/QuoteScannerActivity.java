@@ -6,10 +6,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -20,6 +22,7 @@ import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
 import com.budiyev.android.codescanner.ScanMode;
+import com.example.androidinventorymanagement.Adapters.ScanItemAdapter;
 import com.example.androidinventorymanagement.Models.QuoteModel;
 import com.example.androidinventorymanagement.R;
 import com.example.androidinventorymanagement.SqlDB.DbManager;
@@ -32,7 +35,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.Result;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class QuoteScannerActivity extends AppCompatActivity {
 
@@ -42,7 +49,7 @@ public class QuoteScannerActivity extends AppCompatActivity {
     EditText quantityScanner;
     ArrayList<String> youNameArray = new ArrayList<>();
     RecyclerView recyclerView;
-//    ScanItemAdapter scanItemAdapter;
+    ScanItemAdapter scanItemAdapter;
     String UserRole;
     MediaPlayer music;
     ArrayList<QuoteModel> dataholder = new ArrayList<>();
@@ -82,17 +89,13 @@ public class QuoteScannerActivity extends AppCompatActivity {
                                 RedLineRouteReference.removeEventListener(this);
                                 if(dataSnapshot.exists())
                                 {
-                                    mCodeScanner.stopPreview();
-//                                    scanItemAdapter.notifyDataSetChanged();
-                                    Toast.makeText(QuoteScannerActivity.this, "Inside", Toast.LENGTH_SHORT).show();
-                                    //quantityScanner.setVisibility(View.VISIBLE);
-                                    //scanProductNameLayout.setVisibility(View.VISIBLE);
-                                    //scanProductName.setText(dataSnapshot.child("name").getValue().toString());
+//                                    mCodeScanner.stopPreview();
+                                    scanItemAdapter.notifyDataSetChanged();
                                     String data = dataSnapshot.getValue().toString();
                                     youNameArray.add(data);
 
-//                                    processInsert(dataSnapshot.child("name").getValue().toString(), dataSnapshot.child("code").getValue().toString(),
-//                                            dataSnapshot.child("mrp").getValue().toString(), dataSnapshot.child("gstAmt").getValue().toString());
+                                    processInsert(dataSnapshot.child("name").getValue().toString(), dataSnapshot.child("code").getValue().toString(),
+                                            dataSnapshot.child("mrp").getValue().toString(), dataSnapshot.child("gstAmt").getValue().toString());
                                     proceedBtn.setBackgroundColor(Color.parseColor("#04B8E2"));
                                     proceedBtn.setEnabled(true);
                                     quantityScanner.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -126,6 +129,53 @@ public class QuoteScannerActivity extends AppCompatActivity {
                 });
             }
         });
+
+        proceedBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Set<String> set=new HashSet<>(youNameArray);
+                List<String> allQuoteItemList = new ArrayList<>();
+
+                allQuoteItemList.addAll(set);
+                proceedBtn.setEnabled(false);
+                Intent intent = new Intent(QuoteScannerActivity.this, QuoteItemsActivity.class);
+                intent.putExtra("mylist", (Serializable) allQuoteItemList);
+                startActivity(intent);
+            }
+        });
+
+        scanItemAdapter = new ScanItemAdapter(dataholder);
+    }
+
+    private void processInsert(String name, String code, String mrp, String agtMrp)
+    {
+
+        String res = new DbManager(QuoteScannerActivity.this).createQuote(code,name,agtMrp, Float.valueOf("1"),mrp,"scan");
+        if (!res.equals("0"))
+        {
+            Toast.makeText(QuoteScannerActivity.this, res, Toast.LENGTH_SHORT).show();
+            dataholder.add(new QuoteModel(name,Float.parseFloat(String.valueOf(1)),code,mrp,agtMrp,"scan"));
+            music.start();
+        }
+        else
+        {
+//                    Cursor cursor = new DbManager(QuoteScannerActivity.this).getQty(name);
+//
+//                    while (cursor.moveToNext())
+//                    {
+//
+//                        Log.e("names",cursor.getString(4));
+//                        int qty = Integer.parseInt(cursor.getString(4));
+//                        qty = qty + 1;
+//                        DbManager dbManager = new DbManager(QuoteScannerActivity.this);
+//                        dbManager.UpdateQty(String.valueOf(qty),name);
+//                        Toast.makeText(QuoteScannerActivity.this, "increased", Toast.LENGTH_SHORT).show();
+//                    }
+//                 //   scanItemAdapter.qtyIncrement();
+        }
+        proceedBtn.setEnabled(true);
+
     }
 
     @Override
@@ -134,4 +184,6 @@ public class QuoteScannerActivity extends AppCompatActivity {
 
         mCodeScanner.startPreview();
     }
+
+
 }
