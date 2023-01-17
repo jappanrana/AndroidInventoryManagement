@@ -297,11 +297,11 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
     }
 
     public void sharePDF(String folderName, String fileName){
-        File dir = new File(Environment.getExternalStorageDirectory() + "/Download/SimpleQr/Quote/"+folderName+"/");
+        File dir = new File(Environment.getExternalStorageDirectory() + "/Download/PankajNX/Quote/"+folderName+"/");
         dir.mkdirs();
         File file = new File(dir,customerName.getText().toString()+"_"+customerNo.getText().toString()+"_"+fileName+".pdf");
 
-        Uri pdfUri = FileProvider.getUriForFile(this, "com.simple.simpleqrcode.fileprovider", file);
+        Uri pdfUri = FileProvider.getUriForFile(this, "com.example.androidinventorymanagement.fileprovider", file);
 
         if (file.exists())
         {
@@ -345,7 +345,7 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
 
 
     private String createNPrintPDF (View v, String folderName, String fileName, int height, int width) throws FileNotFoundException {
-        File dir = new File(Environment.getExternalStorageDirectory() + "/Download/SimpleQr/Quote/"+folderName+"/");
+        File dir = new File(Environment.getExternalStorageDirectory() + "/Download/PankajNX/Quote/"+folderName+"/");
         dir.mkdirs();
         File file = new File(dir,customerName.getText().toString()+"_"+customerNo.getText().toString()+"_"+fileName+".pdf");
 

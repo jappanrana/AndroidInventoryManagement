@@ -7,9 +7,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -26,6 +28,7 @@ import com.example.androidinventorymanagement.Adapters.ScanItemAdapter;
 import com.example.androidinventorymanagement.Models.QuoteModel;
 import com.example.androidinventorymanagement.R;
 import com.example.androidinventorymanagement.SqlDB.DbManager;
+import com.example.androidinventorymanagement.Utils.KeyboardUtils;
 import com.example.androidinventorymanagement.Utils.SharedPreferenceMethods;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.database.DataSnapshot;
@@ -39,6 +42,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public class QuoteScannerActivity extends AppCompatActivity {
@@ -81,15 +85,13 @@ public class QuoteScannerActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mCodeScanner.startPreview();
+                        mCodeScanner.stopPreview();
                         DatabaseReference RedLineRouteReference = FirebaseDatabase.getInstance().getReference().child("Products").child(result.getText());
                         RedLineRouteReference.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 RedLineRouteReference.removeEventListener(this);
-                                if(dataSnapshot.exists())
-                                {
-//                                    mCodeScanner.stopPreview();
+                                if(dataSnapshot.exists()) {
                                     scanItemAdapter.notifyDataSetChanged();
                                     String data = dataSnapshot.getValue().toString();
                                     youNameArray.add(data);
@@ -103,19 +105,33 @@ public class QuoteScannerActivity extends AppCompatActivity {
                                         public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                                             if (actionId == EditorInfo.IME_ACTION_DONE)
                                             {
-                                                String qty = quantityScanner.getText().toString();
-                                                String name = dataSnapshot.child("name").getValue().toString();
-                                                DbManager dbManager = new DbManager(QuoteScannerActivity.this);
-                                                dbManager.UpdateQty(qty,name);
-                                                InputMethodManager imm = (InputMethodManager)getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                                                imm.hideSoftInputFromWindow(quantityScanner.getWindowToken(), 0);
+//                                                String qty = quantityScanner.getText().toString();
+//                                                String name = dataSnapshot.child("name").getValue().toString();
+//                                                int i = 0;
+//                                                while (i<dataholder.size()){
+//                                                    QuoteModel temp = dataholder.get(i);
+//                                                    if(Objects.equals(temp.getName(), name)){
+//                                                        temp.setQty(temp.getQty()+1);
+//                                                        dataholder.remove(i);
+//                                                        dataholder.add(i,temp);
+//                                                        scanItemAdapter.updateList(dataholder);
+//                                                    }
+//                                                    i++;
+//                                                }
+//                                                DbManager dbManager = new DbManager(QuoteScannerActivity.this);
+//                                                dbManager.UpdateQty(qty,name);
+//                                                InputMethodManager imm = (InputMethodManager)getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+//                                                imm.hideSoftInputFromWindow(quantityScanner.getWindowToken(), 0);
                                             }
                                             return false;
                                         }
                                     });
+                                    recyclerView.setAdapter(scanItemAdapter);
 
-                                }else {
+                                }
+                                else {
                                     Toast.makeText(QuoteScannerActivity.this, "Product Does not exist", Toast.LENGTH_SHORT).show();
+                                    mCodeScanner.startPreview();
                                 }
                             }
 
@@ -133,7 +149,6 @@ public class QuoteScannerActivity extends AppCompatActivity {
         proceedBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Set<String> set=new HashSet<>(youNameArray);
                 List<String> allQuoteItemList = new ArrayList<>();
 
@@ -158,22 +173,32 @@ public class QuoteScannerActivity extends AppCompatActivity {
             dataholder.add(new QuoteModel(name,Float.parseFloat(String.valueOf(1)),code,mrp,agtMrp,"scan"));
             music.start();
         }
-        else
-        {
-//                    Cursor cursor = new DbManager(QuoteScannerActivity.this).getQty(name);
-//
-//                    while (cursor.moveToNext())
-//                    {
-//
-//                        Log.e("names",cursor.getString(4));
-//                        int qty = Integer.parseInt(cursor.getString(4));
-//                        qty = qty + 1;
-//                        DbManager dbManager = new DbManager(QuoteScannerActivity.this);
-//                        dbManager.UpdateQty(String.valueOf(qty),name);
-//                        Toast.makeText(QuoteScannerActivity.this, "increased", Toast.LENGTH_SHORT).show();
-//                    }
-//                 //   scanItemAdapter.qtyIncrement();
+        else {
+            Cursor cursor = new DbManager(QuoteScannerActivity.this).getQty(name);
+            while (cursor.moveToNext()) {
+                Float qty = Float.valueOf(cursor.getString(4));
+                qty = qty + 1;
+                DbManager dbManager = new DbManager(QuoteScannerActivity.this);
+                dbManager.UpdateQty(String.valueOf(qty),name);
+            }
+            int i = 0;
+            while (i<dataholder.size()){
+                QuoteModel temp = dataholder.get(i);
+                if(Objects.equals(temp.getName(), name)){
+                    temp.setQty(temp.getQty()+1);
+                    dataholder.remove(i);
+                    dataholder.add(i,temp);
+                    scanItemAdapter.updateList(dataholder);
+                }
+                i++;
+            }
         }
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mCodeScanner.startPreview();
+            }
+        }, 1000);
         proceedBtn.setEnabled(true);
 
     }

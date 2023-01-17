@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -59,13 +60,14 @@ public class SharedQuoteAdapter extends FirebaseRecyclerAdapter<QuotationModel,S
             sharedQuoteViewLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String userInpNumber = getSnapshots().getSnapshot(getAbsoluteAdapterPosition()).child("customerNumber").getValue().toString();
-                    Intent intent = new Intent(itemView.getContext(), QuoteItemsActivity.class);
-                    SharedPreferenceMethods.setSharedPrefCustomerName(context,customeraName.getText().toString());
-                    SharedPreferenceMethods.setSharedPrefCustomerNumber(context,userInpNumber);
-                    SharedPreferenceMethods.setSharedPrefCustomerKey(context,getSnapshots().getSnapshot(getPosition()).getKey());
-                    itemView.getContext().startActivity(intent);
-                    ((Activity)itemView.getContext()).finish();
+//                    String userInpNumber = getSnapshots().getSnapshot(getAbsoluteAdapterPosition()).child("customerNumber").getValue().toString();
+//                    Intent intent = new Intent(itemView.getContext(), QuoteItemsActivity.class);
+//                    SharedPreferenceMethods.setSharedPrefCustomerName(context,customeraName.getText().toString());
+//                    SharedPreferenceMethods.setSharedPrefCustomerNumber(context,userInpNumber);
+//                    SharedPreferenceMethods.setSharedPrefCustomerKey(context,getSnapshots().getSnapshot(getPosition()).getKey());
+//                    itemView.getContext().startActivity(intent);
+//                    ((Activity)itemView.getContext()).finish();
+                    Toast.makeText(context, "coming soon", Toast.LENGTH_SHORT).show();
                 }
             });
         }

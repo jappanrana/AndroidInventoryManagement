@@ -6,9 +6,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.text.InputFilter;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +50,8 @@ public class AddProductsFragment extends Fragment {
         View addProductsView = inflater.inflate(R.layout.fragment_add_products, container, false);
         
         mContext = getContext();
+
+        getActivity().findViewById(R.id.bottomNavigationView).setVisibility(View.GONE);
 
         prodName = addProductsView.findViewById(R.id.nameProductName);
         prodCode = addProductsView.findViewById(R.id.codeProductCode);
@@ -222,5 +226,25 @@ public class AddProductsFragment extends Fragment {
         });
 
         return addProductsView;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        requireView().setFocusableInTouchMode(true);
+        requireView().requestFocus();
+
+        requireView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if(event.getAction() == KeyEvent.ACTION_DOWN){
+                    if(keyCode == KeyEvent.KEYCODE_BACK){
+                        requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, new HomeFragment()).commit();
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+        super.onActivityCreated(savedInstanceState);
     }
 }

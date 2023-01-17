@@ -51,7 +51,6 @@ public class ManuallyAddQuoteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
                 String mProdName = prodName.getText().toString();
                 String mProdCode = prodCode.getText().toString();
                 String MProdMrp = prodMrp.getText().toString();

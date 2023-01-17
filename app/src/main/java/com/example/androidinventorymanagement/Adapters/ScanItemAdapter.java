@@ -70,6 +70,11 @@ public class ScanItemAdapter extends RecyclerView.Adapter<ScanItemAdapter.MyView
                     return false;
                 }
             });
-            }
+        }
+    }
+
+    public void updateList(ArrayList<QuoteModel> newList){
+        this.dataholder = newList;
+        this.notifyDataSetChanged();
     }
 }

@@ -3,11 +3,13 @@ package com.example.androidinventorymanagement.Fragements;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +18,7 @@ import android.widget.ImageView;
 import com.example.androidinventorymanagement.Adapters.SharedQuoteAdapter;
 import com.example.androidinventorymanagement.Models.QuotationModel;
 import com.example.androidinventorymanagement.Navigation.HomeFragment;
+import com.example.androidinventorymanagement.Navigation.ProfileFragment;
 import com.example.androidinventorymanagement.R;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -48,6 +51,8 @@ public class SharedQuoteFragment extends Fragment {
         searchView = sharedQuote.findViewById(R.id.quotationsSearchView);
 
         mContext = getContext();
+
+        getActivity().findViewById(R.id.bottomNavigationView).setVisibility(View.GONE);
 
         databaseReferenceQuotations = FirebaseDatabase.getInstance().getReference("quotations");
 
@@ -96,5 +101,26 @@ public class SharedQuoteFragment extends Fragment {
         recyclerView.setAdapter(sharedQuoteAdapter);
         sharedQuoteAdapter.startListening();
 
+    }
+
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        requireView().setFocusableInTouchMode(true);
+        requireView().requestFocus();
+
+        requireView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if(event.getAction() == KeyEvent.ACTION_DOWN){
+                    if(keyCode == KeyEvent.KEYCODE_BACK){
+                        requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, new ProfileFragment()).commit();
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+        super.onActivityCreated(savedInstanceState);
     }
 }

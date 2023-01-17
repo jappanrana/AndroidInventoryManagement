@@ -81,6 +81,7 @@ public class HomeFragment extends Fragment implements EasyPermissions.Permission
         View home = inflater.inflate(R.layout.fragment_home, container, false);
 
         mContext = getContext();
+        getActivity().findViewById(R.id.bottomNavigationView).setVisibility(View.VISIBLE);
 
         userRole = SharedPreferenceMethods.getSharedPrefUserRole(mContext);
 

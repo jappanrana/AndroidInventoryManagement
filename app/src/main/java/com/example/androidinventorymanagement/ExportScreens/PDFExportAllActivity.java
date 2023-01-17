@@ -143,7 +143,7 @@ public class PDFExportAllActivity extends AppCompatActivity
     }
 
     private void createPDF (View v, String name, String code, int height, int width, String folderName) throws FileNotFoundException {
-        File dir = new File(Environment.getExternalStorageDirectory() + "/Download/SimpleQr/QR/"+folderName+"/");
+        File dir = new File(Environment.getExternalStorageDirectory() + "/Download/PankajNX/QR/"+folderName+"/");
         dir.mkdirs();
         File file = new File(dir,name+"_"+code+".pdf");
 
