@@ -51,6 +51,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import pub.devrel.easypermissions.AppSettingsDialog;
 import pub.devrel.easypermissions.EasyPermissions;
@@ -150,13 +151,13 @@ public class HomeFragment extends Fragment implements EasyPermissions.Permission
         homeFragmentSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                processesSearch(query,homeFragmentSelectMenu);
+                processesSearch(query.toLowerCase(Locale.ROOT),homeFragmentSelectMenu);
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                processesSearch(newText,homeFragmentSelectMenu);
+                processesSearch(newText.toLowerCase(Locale.ROOT),homeFragmentSelectMenu);
                 return false;
             }
         });

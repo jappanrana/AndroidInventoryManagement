@@ -18,7 +18,6 @@ import com.example.androidinventorymanagement.Utils.SharedPreferenceMethods;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class ProductsAdapter extends FirebaseRecyclerAdapter<ProductsModel,ProductsAdapter.MyViewHolder> {
     String name;
@@ -51,6 +50,7 @@ public class ProductsAdapter extends FirebaseRecyclerAdapter<ProductsModel,Produ
     protected void onBindViewHolder(@NonNull MyViewHolder holder, int position, @NonNull ProductsModel model) {
 
         userRole = SharedPreferenceMethods.getSharedPrefUserRole(context);
+
         name = model.getName();
         code = model.getCode();
         mrp = model.getMrp();
@@ -60,7 +60,8 @@ public class ProductsAdapter extends FirebaseRecyclerAdapter<ProductsModel,Produ
             holder.productName.setText("N/A");
         }
         else {
-            holder.productName.setText(model.getName());
+            String finalName = model.getName().substring(0, 1).toUpperCase() + model.getName().substring(1).toLowerCase();
+            holder.productName.setText(finalName);
         }
         if (code.equals("")) {
             holder.productCode.setText("N/A:");

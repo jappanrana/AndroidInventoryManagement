@@ -7,14 +7,18 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import android.os.Environment;
 import android.text.InputFilter;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -25,8 +29,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.androidinventorymanagement.ExportScreens.PDFExportActivity;
+import com.example.androidinventorymanagement.Models.ExportModel;
 import com.example.androidinventorymanagement.Models.ProductsModel;
 import com.example.androidinventorymanagement.Navigation.HomeFragment;
 import com.example.androidinventorymanagement.R;
@@ -42,7 +49,23 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
+import com.itextpdf.io.image.ImageData;
+import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.kernel.geom.PageSize;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Image;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class ShowProductFragment extends Fragment {
 
@@ -115,25 +138,94 @@ public class ShowProductFragment extends Fragment {
 
         }
 
-        exportQRCodeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(mContext, "work in progress", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
         ProductsModel showProduct = SharedPreferenceMethods.getSharedPrefShowProduct(mContext);
         prodCodeStr = showProduct.getCode();
-        prodNameStr = showProduct.getName();
+        prodNameStr = showProduct.getName().toLowerCase(Locale.ROOT);
         prodMrpStr = showProduct.getMrp();
         prodGstStr = showProduct.getGstAmt();
+        String finalname = prodNameStr.substring(0,1).toUpperCase(Locale.ROOT) + prodNameStr.substring(1).toLowerCase(Locale.ROOT);
         key = showProduct.getKey();
 
         prodCode.setText(prodCodeStr);
-        prodName.setText(prodNameStr);
+        prodName.setText(finalname);
         prodMrp.setText(prodMrpStr);
         prodGst.setText(prodGstStr);
+
+        exportQRCodeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Toast.makeText(mContext, "work in progress", Toast.LENGTH_SHORT).show();
+                String mProdName = prodName.getText().toString().toLowerCase(Locale.ROOT);
+                String finalname = mProdName.substring(0,1).toUpperCase(Locale.ROOT) + mProdName.substring(1).toLowerCase(Locale.ROOT);
+                String mProdCode = prodCode.getText().toString();
+                String MProdMrp = prodMrp.getText().toString();
+                String MProdGst = prodGst.getText().toString();
+
+                String hours,minutes,seconds;
+                TextView prodCode,prodName,prodRate;
+                ImageView barcodeImage;
+                CardView barcodeCardview;
+
+                prodCode = getActivity().findViewById(R.id.showProductExportexportProductCode);
+                prodName = getActivity().findViewById(R.id.showProductExportexportProductName);
+                prodRate = getActivity().findViewById(R.id.showProductExportexportProductRate);
+                barcodeImage = getActivity().findViewById(R.id.showProductExportimageView);
+                barcodeCardview = getActivity().findViewById(R.id.showProductExportBarcodeCardView);
+
+                Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+                int currentYear = calendar.get(Calendar.YEAR);
+                int currentMonth = calendar.get(Calendar.MONTH) + 1;
+                int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
+
+                Date dt = Calendar.getInstance().getTime();
+                hours = String.valueOf(dt.getHours());
+                minutes = String.valueOf(dt.getMinutes());
+                seconds = String.valueOf(dt.getSeconds());
+                SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh-mm-ss aa", Locale.getDefault());
+                String formattedDate = df.format(dt);
+                String formattedTime = simpleDateFormat.format(calendar.getTime());
+                String date = String.valueOf(dt.getDate());
+                String month = getMonth(dt.getMonth());
+                String year = String.valueOf(dt.getYear()+1900);
+
+                String folderName = date+"-"+currentMonth+"-"+year+"_"+formattedTime;
+
+                MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
+                BarcodeEncoder encoder = new BarcodeEncoder();
+
+                barcodeCardview.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        String Key;
+                        BitMatrix matrix = null;
+                        Bitmap bitmap;
+//                    prodCode.setText(item.getCode());
+                        prodName.setText(mProdCode+" "+finalname);
+                        prodRate.setText("MRP:₹"+MProdMrp+"/-");
+                        Key = key;
+                        try {
+                            matrix = multiFormatWriter.encode(Key, BarcodeFormat.CODE_39,500,100);
+                        } catch (WriterException e) {
+                            e.printStackTrace();
+                        }
+                        bitmap = encoder.createBitmap(matrix);
+                        barcodeImage.setImageBitmap(bitmap);
+
+                        int width = barcodeCardview.getWidth();
+                        int height = barcodeCardview.getHeight();
+                        try {
+                            createPDF(barcodeCardview,finalname, mProdCode, height, width, folderName);
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
+                            Toast.makeText(mContext, "Some error occured", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+
+            }
+        });
 
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
 
@@ -151,7 +243,7 @@ public class ShowProductFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                String mProdName = prodName.getText().toString();
+                String mProdName = prodName.getText().toString().toLowerCase(Locale.ROOT);
                 String mProdCode = prodCode.getText().toString();
                 String MProdMrp = prodMrp.getText().toString();
                 String MProdGst = prodGst.getText().toString();
@@ -270,5 +362,81 @@ public class ShowProductFragment extends Fragment {
             }
         });
         super.onActivityCreated(savedInstanceState);
+    }
+
+    public String getMonth(int month){
+        String monthString;
+        switch (month) {
+            case 1:  monthString = "January";
+                break;
+            case 2:  monthString = "February";
+                break;
+            case 3:  monthString = "March";
+                break;
+            case 4:  monthString = "April";
+                break;
+            case 5:  monthString = "May";
+                break;
+            case 6:  monthString = "June";
+                break;
+            case 7:  monthString = "July";
+                break;
+            case 8:  monthString = "August";
+                break;
+            case 9:  monthString = "September";
+                break;
+            case 10: monthString = "October";
+                break;
+            case 11: monthString = "November";
+                break;
+            case 12: monthString = "December";
+                break;
+            default: monthString = "Invalid month";
+                break;
+        }
+        return monthString;
+    }
+
+    private void createPDF (View v, String name, String code, int height, int width, String folderName) throws FileNotFoundException {
+        File dir = new File(Environment.getExternalStorageDirectory() + "/Download/PankajNX/QR/"+folderName+"/");
+        dir.mkdirs();
+        File file = new File(dir,name+"_"+code+".pdf");
+
+        PdfWriter writer = new PdfWriter(file);
+        PdfDocument pdfDocument = new PdfDocument(writer);
+        PageSize pageSize = new PageSize(151, 115);
+        Document document = new Document(pdfDocument,pageSize);
+        document.setMargins(0,0,0,0);
+
+        Bitmap bitmap = getBitmapFromView(v,height,width);
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG,100,stream);
+        byte[] bitmapData = stream.toByteArray();
+
+        ImageData imageData = ImageDataFactory.create(bitmapData);
+        Image image = new Image(imageData);
+
+        document.add(image);
+        document.close();
+    }
+
+    private Bitmap getBitmapFromView(View view, int height, int width) {
+        //Define a bitmap with the same size as the view
+        Bitmap returnedBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        //Bind a canvas to it
+        Canvas canvas = new Canvas(returnedBitmap);
+        //Get the view's background
+        Drawable bgDrawable = view.getBackground();
+        if (bgDrawable != null) {
+            //has background drawable, then draw it on the canvas
+            bgDrawable.draw(canvas);
+        } else {
+            //does not have background drawable, then draw white background on the canvas
+            canvas.drawColor(Color.WHITE);
+        }
+        // draw the view on the canvas
+        view.draw(canvas);
+        //return the bitmap
+        return returnedBitmap;
     }
 }

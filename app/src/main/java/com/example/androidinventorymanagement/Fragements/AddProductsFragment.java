@@ -29,6 +29,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Locale;
+
 public class AddProductsFragment extends Fragment {
 
     EditText prodName,prodCode,prodMrp,prodGst;
@@ -79,7 +81,7 @@ public class AddProductsFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                String mProdName = prodName.getText().toString();
+                String mProdName = prodName.getText().toString().toLowerCase(Locale.ROOT);
                 String mProdCode = prodCode.getText().toString();
                 String MProdMrp = prodMrp.getText().toString();
                 String MProdGst = prodGst.getText().toString();
