@@ -38,6 +38,7 @@ import com.example.androidinventorymanagement.Models.QuotationModel;
 import com.example.androidinventorymanagement.Models.QuoteModel;
 import com.example.androidinventorymanagement.R;
 import com.example.androidinventorymanagement.SqlDB.DbManager;
+import com.example.androidinventorymanagement.Utils.CommonMethods;
 import com.example.androidinventorymanagement.Utils.SharedPreferenceMethods;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.database.DatabaseReference;
@@ -356,7 +357,7 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
         Document document = new Document(pdfDocument,pageSize);
         document.setMargins(0,0,0,0);
 
-        Bitmap bitmap = getBitmapFromView(v,height,width);
+        Bitmap bitmap = CommonMethods.getBitmapFromView(v,height,width);
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG,100,stream);
         byte[] bitmapData = stream.toByteArray();
@@ -389,27 +390,6 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
         quotationDatabase.child(uniqueKey).setValue(quotation);
         Toast.makeText(this, "Quotation Generated Successfully!", Toast.LENGTH_SHORT).show();
         return dir.getPath()+"/"+customerName.getText().toString()+"_"+customerNo.getText().toString()+"_"+fileName+".pdf";
-    }
-
-
-    private Bitmap getBitmapFromView(View view, int height, int width) {
-        //Define a bitmap with the same size as the view
-        Bitmap returnedBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        //Bind a canvas to it
-        Canvas canvas = new Canvas(returnedBitmap);
-        //Get the view's background
-        Drawable bgDrawable = view.getBackground();
-        if (bgDrawable != null) {
-            //has background drawable, then draw it on the canvas
-            bgDrawable.draw(canvas);
-        } else {
-            //does not have background drawable, then draw white background on the canvas
-            canvas.drawColor(Color.WHITE);
-        }
-        // draw the view on the canvas
-        view.draw(canvas);
-        //return the bitmap
-        return returnedBitmap;
     }
 
     public boolean contactExists(Context context, String number) {

@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SearchView;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -19,6 +20,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -433,5 +435,56 @@ public class HomeFragment extends Fragment implements EasyPermissions.Permission
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
 
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        requireView().setFocusableInTouchMode(true);
+        requireView().requestFocus();
+
+        requireView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if(event.getAction() == KeyEvent.ACTION_DOWN){
+                    if(keyCode == KeyEvent.KEYCODE_BACK){
+                        if(SelectedList.size()!=0){
+                            SelectedList = new ArrayList<>();
+                            adapter.setSelectable(false);
+                            adapter.notifyDataSetChanged();
+                        }else{
+                            AlertDialog.Builder builder = new AlertDialog.Builder(mContext, R.style.AlertDialogTheme);
+                            builder.setTitle("Exit App")
+                                    .setMessage("Are you sure you want to leave the app?")
+                                    .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                                    {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            getActivity().finish();
+                                        }
+
+                                    })
+                                    .setNegativeButton("No", null);
+
+                            AlertDialog alertDialog = builder.create();
+                            alertDialog.show();
+
+                            alertDialog.getButton(android.app.AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+                            alertDialog.getButton(android.app.AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+
+                            Button btnPositive = alertDialog.getButton(android.app.AlertDialog.BUTTON_POSITIVE);
+                            Button btnNegative = alertDialog.getButton(android.app.AlertDialog.BUTTON_NEGATIVE);
+
+                            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) btnPositive.getLayoutParams();
+                            layoutParams.weight = 10;
+                            btnPositive.setLayoutParams(layoutParams);
+                            btnNegative.setLayoutParams(layoutParams);
+                        }
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+        super.onActivityCreated(savedInstanceState);
     }
 }

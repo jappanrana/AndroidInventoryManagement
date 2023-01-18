@@ -18,6 +18,7 @@ import androidx.cardview.widget.CardView;
 import com.example.androidinventorymanagement.HomeActivity;
 import com.example.androidinventorymanagement.Models.ExportModel;
 import com.example.androidinventorymanagement.R;
+import com.example.androidinventorymanagement.Utils.CommonMethods;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
@@ -134,7 +135,7 @@ public class PDFExportActivity extends AppCompatActivity {
         Document document = new Document(pdfDocument,pageSize);
         document.setMargins(0,0,0,0);
 
-        Bitmap bitmap = getBitmapFromView(v,height,width);
+        Bitmap bitmap = CommonMethods.getBitmapFromView(v,height,width);
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG,100,stream);
         byte[] bitmapData = stream.toByteArray();
@@ -146,25 +147,6 @@ public class PDFExportActivity extends AppCompatActivity {
         document.close();
     }
 
-    private Bitmap getBitmapFromView(View view, int height, int width) {
-        //Define a bitmap with the same size as the view
-        Bitmap returnedBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        //Bind a canvas to it
-        Canvas canvas = new Canvas(returnedBitmap);
-        //Get the view's background
-        Drawable bgDrawable = view.getBackground();
-        if (bgDrawable != null) {
-            //has background drawable, then draw it on the canvas
-            bgDrawable.draw(canvas);
-        } else {
-            //does not have background drawable, then draw white background on the canvas
-            canvas.drawColor(Color.WHITE);
-        }
-        // draw the view on the canvas
-        view.draw(canvas);
-        //return the bitmap
-        return returnedBitmap;
-    }
     public String getMonth(int month){
         String monthString;
         switch (month) {

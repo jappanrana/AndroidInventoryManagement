@@ -37,6 +37,7 @@ import com.example.androidinventorymanagement.Models.ExportModel;
 import com.example.androidinventorymanagement.Models.ProductsModel;
 import com.example.androidinventorymanagement.Navigation.HomeFragment;
 import com.example.androidinventorymanagement.R;
+import com.example.androidinventorymanagement.Utils.CommonMethods;
 import com.example.androidinventorymanagement.Utils.CustomRangeInputFilter;
 import com.example.androidinventorymanagement.Utils.SharedPreferenceMethods;
 import com.google.android.material.button.MaterialButton;
@@ -169,7 +170,7 @@ public class ShowProductFragment extends Fragment {
                 prodCode = getActivity().findViewById(R.id.showProductExportexportProductCode);
                 prodName = getActivity().findViewById(R.id.showProductExportexportProductName);
                 prodRate = getActivity().findViewById(R.id.showProductExportexportProductRate);
-                barcodeImage = getActivity().findViewById(R.id.showProductExportimageView);
+                barcodeImage = getActivity().findViewById(R.id.showProductExportexportBarcodeImg);
                 barcodeCardview = getActivity().findViewById(R.id.showProductExportBarcodeCardView);
 
                 Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
@@ -408,7 +409,7 @@ public class ShowProductFragment extends Fragment {
         Document document = new Document(pdfDocument,pageSize);
         document.setMargins(0,0,0,0);
 
-        Bitmap bitmap = getBitmapFromView(v,height,width);
+        Bitmap bitmap = CommonMethods.getBitmapFromView(v,height,width);
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG,100,stream);
         byte[] bitmapData = stream.toByteArray();
@@ -420,23 +421,5 @@ public class ShowProductFragment extends Fragment {
         document.close();
     }
 
-    private Bitmap getBitmapFromView(View view, int height, int width) {
-        //Define a bitmap with the same size as the view
-        Bitmap returnedBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        //Bind a canvas to it
-        Canvas canvas = new Canvas(returnedBitmap);
-        //Get the view's background
-        Drawable bgDrawable = view.getBackground();
-        if (bgDrawable != null) {
-            //has background drawable, then draw it on the canvas
-            bgDrawable.draw(canvas);
-        } else {
-            //does not have background drawable, then draw white background on the canvas
-            canvas.drawColor(Color.WHITE);
-        }
-        // draw the view on the canvas
-        view.draw(canvas);
-        //return the bitmap
-        return returnedBitmap;
-    }
+
 }

@@ -192,6 +192,7 @@ public class QuoteScannerActivity extends AppCompatActivity {
                 }
                 i++;
             }
+            music.start();
         }
         new Handler().postDelayed(new Runnable() {
             @Override
