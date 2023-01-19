@@ -92,6 +92,7 @@ public class QuoteItemsActivity extends AppCompatActivity
         addQuoteImg = findViewById(R.id.addQuote);
         editedTextView = findViewById(R.id.editTextView);
         discountLayout = findViewById(R.id.discountQuoteLayout);
+        SharedPreferenceMethods.setSharedPrefEditable(mContext,true);
 
         Intent intent = getIntent();
         getCustomerName = SharedPreferenceMethods.getSharedPrefCustomerName(mContext);
@@ -110,7 +111,7 @@ public class QuoteItemsActivity extends AppCompatActivity
 
         //default discount and editable
         SharedPreferenceMethods.setSharedPrefDisAvailable(mContext,"no");
-        SharedPreferenceMethods.setSharedPrefEditable(mContext,false);
+        SharedPreferenceMethods.setSharedPrefEditable(mContext,true);
 
         if (sharedQuote) {
     //        Toast.makeText(this, "in Shared", Toast.LENGTH_SHORT).show();
@@ -137,6 +138,7 @@ public class QuoteItemsActivity extends AppCompatActivity
 
                 }
             });
+            SharedPreferenceMethods.setSharedPrefEditable(mContext,true);
             sqlQuoteAdapter = new SqlQuoteAdapter(shareddataholder,subTotalAmt,totalGstAmt,grandTotal,discountAmt);
         }else
         {

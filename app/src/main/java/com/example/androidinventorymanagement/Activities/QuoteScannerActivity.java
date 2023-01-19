@@ -50,7 +50,6 @@ public class QuoteScannerActivity extends AppCompatActivity {
     Context mContext;
     MaterialButton proceedBtn;
     private CodeScanner mCodeScanner;
-    EditText quantityScanner;
     ArrayList<String> youNameArray = new ArrayList<>();
     RecyclerView recyclerView;
     ScanItemAdapter scanItemAdapter;
@@ -65,12 +64,12 @@ public class QuoteScannerActivity extends AppCompatActivity {
 
         mContext = QuoteScannerActivity.this;
         proceedBtn = findViewById(R.id.proceedBtn);
-        quantityScanner = findViewById(R.id.quantityScanner);
         recyclerView = findViewById(R.id.scanProductRecyclerView);
         UserRole = SharedPreferenceMethods.getSharedPrefUserRole(mContext);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         music = MediaPlayer.create(QuoteScannerActivity.this, R.raw.beep_beep);
+
 
         CodeScannerView scannerView = findViewById(R.id.scanner_view);
         mCodeScanner = new CodeScanner(this, scannerView);
@@ -100,34 +99,33 @@ public class QuoteScannerActivity extends AppCompatActivity {
                                             dataSnapshot.child("mrp").getValue().toString(), dataSnapshot.child("gstAmt").getValue().toString());
                                     proceedBtn.setBackgroundColor(Color.parseColor("#04B8E2"));
                                     proceedBtn.setEnabled(true);
-                                    quantityScanner.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-                                        @Override
-                                        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                                            if (actionId == EditorInfo.IME_ACTION_DONE)
-                                            {
-//                                                String qty = quantityScanner.getText().toString();
-//                                                String name = dataSnapshot.child("name").getValue().toString();
-//                                                int i = 0;
-//                                                while (i<dataholder.size()){
-//                                                    QuoteModel temp = dataholder.get(i);
-//                                                    if(Objects.equals(temp.getName(), name)){
-//                                                        temp.setQty(temp.getQty()+1);
-//                                                        dataholder.remove(i);
-//                                                        dataholder.add(i,temp);
-//                                                        scanItemAdapter.updateList(dataholder);
-//                                                    }
-//                                                    i++;
-//                                                }
-//                                                DbManager dbManager = new DbManager(QuoteScannerActivity.this);
-//                                                dbManager.UpdateQty(qty,name);
-//                                                InputMethodManager imm = (InputMethodManager)getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-//                                                imm.hideSoftInputFromWindow(quantityScanner.getWindowToken(), 0);
-                                            }
-                                            return false;
-                                        }
-                                    });
+//                                    quantityScanner.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//                                        @Override
+//                                        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//                                            if (actionId == EditorInfo.IME_ACTION_DONE)
+//                                            {
+////                                                String qty = quantityScanner.getText().toString();
+////                                                String name = dataSnapshot.child("name").getValue().toString();
+////                                                int i = 0;
+////                                                while (i<dataholder.size()){
+////                                                    QuoteModel temp = dataholder.get(i);
+////                                                    if(Objects.equals(temp.getName(), name)){
+////                                                        temp.setQty(temp.getQty()+1);
+////                                                        dataholder.remove(i);
+////                                                        dataholder.add(i,temp);
+////                                                        scanItemAdapter.updateList(dataholder);
+////                                                    }
+////                                                    i++;
+////                                                }
+////                                                DbManager dbManager = new DbManager(QuoteScannerActivity.this);
+////                                                dbManager.UpdateQty(qty,name);
+////                                                InputMethodManager imm = (InputMethodManager)getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+////                                                imm.hideSoftInputFromWindow(quantityScanner.getWindowToken(), 0);
+//                                            }
+//                                            return false;
+//                                        }
+//                                    });
                                     recyclerView.setAdapter(scanItemAdapter);
-
                                 }
                                 else {
                                     Toast.makeText(QuoteScannerActivity.this, "Product Does not exist", Toast.LENGTH_SHORT).show();
@@ -198,8 +196,9 @@ public class QuoteScannerActivity extends AppCompatActivity {
             @Override
             public void run() {
                 mCodeScanner.startPreview();
+                mCodeScanner.setTouchFocusEnabled(true);
             }
-        }, 1000);
+        }, 300);
         proceedBtn.setEnabled(true);
 
     }

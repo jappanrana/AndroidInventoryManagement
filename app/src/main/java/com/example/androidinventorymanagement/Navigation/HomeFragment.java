@@ -44,6 +44,7 @@ import com.example.androidinventorymanagement.SqlDB.DbManager;
 import com.example.androidinventorymanagement.Utils.Constances;
 import com.example.androidinventorymanagement.Utils.SharedPreferenceMethods;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -87,6 +88,9 @@ public class HomeFragment extends Fragment implements EasyPermissions.Permission
         getActivity().findViewById(R.id.bottomNavigationView).setVisibility(View.VISIBLE);
 
         userRole = SharedPreferenceMethods.getSharedPrefUserRole(mContext);
+
+        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.getMenu().findItem(R.id.home).setChecked(false);
 
         homeFragmentAdd = home.findViewById(R.id.homeFragmentAdd);
         homeFragmentExport = home.findViewById(R.id.homeFragmentExport);

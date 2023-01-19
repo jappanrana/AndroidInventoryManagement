@@ -26,6 +26,7 @@ import com.example.androidinventorymanagement.R;
 import com.example.androidinventorymanagement.Utils.Constances;
 import com.example.androidinventorymanagement.Utils.SharedPreferenceMethods;
 import com.example.androidinventorymanagement.login.LoginActivity;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.textfield.TextInputEditText;
@@ -54,6 +55,9 @@ public class ProfileFragment extends Fragment {
         sharedQuote = view.findViewById(R.id.sharedQuote);
 
         mContext = getContext();
+
+        SharedPreferenceMethods.setSharedPrefNavigation(mContext,Constances.NAVIGATION_HOME);
+
 
         sharedQuote.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,6 +136,7 @@ public class ProfileFragment extends Fragment {
 
                             SharedPreferenceMethods.setSharedPrefSharedQuote(mContext,false);
 
+                            userSheetDialog.dismiss();
                             Intent intent1 = new Intent(getActivity(), QuoteScannerActivity.class);
                             getActivity().startActivity(intent1);
                         }

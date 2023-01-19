@@ -31,9 +31,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text=""
-        android:editable="false"
         android:imeOptions="actionDone"
-        android:inputType="none"
+        android:inputType="numberDecimal"
          android:textSize="@dimen/_12sdp"
         />
     </LinearLayout>

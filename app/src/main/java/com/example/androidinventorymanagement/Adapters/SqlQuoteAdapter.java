@@ -28,6 +28,8 @@ import com.example.androidinventorymanagement.HomeActivity;
 import com.example.androidinventorymanagement.Models.QuoteModel;
 import com.example.androidinventorymanagement.R;
 import com.example.androidinventorymanagement.SqlDB.DbManager;
+import com.example.androidinventorymanagement.Utils.Constances;
+import com.example.androidinventorymanagement.Utils.SharedPreferenceMethods;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -64,7 +66,7 @@ public class SqlQuoteAdapter extends RecyclerView.Adapter<SqlQuoteAdapter.myview
     public void onBindViewHolder(@NonNull myviewholder holder, int position) {
 
         userDetail = holder.itemView.getContext().getSharedPreferences("userDetail",0);
-         editable =userDetail.getBoolean("editable",true);
+         editable = SharedPreferenceMethods.getSharedPrefEditable(holder.itemView.getContext());
         if (editable)
         {
             holder.CartQuantityText.setEnabled(true);
@@ -230,13 +232,12 @@ public class SqlQuoteAdapter extends RecyclerView.Adapter<SqlQuoteAdapter.myview
                 @Override
                 public void onClick(View v) {
 
-                    userDetail.edit().putString("navigation","editQuote").apply();
+                    SharedPreferenceMethods.setSharedPrefNavigation(itemView.getContext(), Constances.NAVIGATION_EDITPROD_QUOTE);
                     userDetail.edit().putString("productNameEdit",cartItemName.getText().toString()).apply();
                     userDetail.edit().putString("productGstEdit",cartItemGst.getText().toString()).apply();
                     userDetail.edit().putString("productRateEdit",cartItemRate.getText().toString()).apply();
                     userDetail.edit().putString("productQtyEdit",CartQuantityText.getText().toString()).apply();
                     Intent intent = new Intent(itemView.getContext(), HomeActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     itemView.getContext().startActivity(intent);
 
                 }

@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.androidinventorymanagement.Activities.ScannerActivity;
+import com.example.androidinventorymanagement.Fragements.EditQuoteFragment;
 import com.example.androidinventorymanagement.Fragements.SharedQuoteFragment;
 import com.example.androidinventorymanagement.Navigation.HomeFragment;
 import com.example.androidinventorymanagement.Navigation.ProfileFragment;
@@ -47,6 +48,9 @@ public class HomeActivity extends AppCompatActivity {
         if (navigation.equals(Constances.NAVIGATION_PROFILE)) {
             getSupportFragmentManager().beginTransaction().replace(R.id.frame, new ProfileFragment()).commit();
             bottomNavigationView.getMenu().findItem(R.id.profile).setChecked(true);
+        }
+        else if (navigation.equals(Constances.NAVIGATION_EDITPROD_QUOTE)) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame, new EditQuoteFragment()).commit();
         }
         else if (navigation.equals(Constances.NAVIGATION_SHARED_QUOTE)) {
             getSupportFragmentManager().beginTransaction().replace(R.id.frame, new SharedQuoteFragment()).commit();
