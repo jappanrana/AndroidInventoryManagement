@@ -1,5 +1,7 @@
 package com.example.androidinventorymanagement.Fragements;
 
+import static android.content.Context.INPUT_METHOD_SERVICE;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,6 +16,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ScrollView;
@@ -121,6 +124,11 @@ public class AddProductsFragment extends Fragment {
                                             databaseReferenceProduct.child(key).child("key").setValue(key).toString();
                                             Toast.makeText(mContext, "Successfully Added product", Toast.LENGTH_SHORT).show();
 
+                                        }
+                                        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(INPUT_METHOD_SERVICE);
+
+                                        if(imm.isAcceptingText()) { // verify if the soft keyboard is open
+                                            imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
                                         }
                                         HomeFragment homeFragment = new HomeFragment();
                                         getParentFragmentManager().beginTransaction().replace(R.id.frame, homeFragment).commit();

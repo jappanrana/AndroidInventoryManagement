@@ -95,19 +95,54 @@ public class ManuallyAddQuoteActivity extends AppCompatActivity {
                 String mProdCode = prodCode.getText().toString();
                 String MProdMrp = prodMrp.getText().toString();
                 String MProdAgtMrp = prodAgtMrp.getText().toString();
+                String mDiscountPrice = discount.getText().toString();
 
-                if (!mProdName.equals("") && !mProdCode.equals("") && !MProdMrp.equals("") && !MProdAgtMrp.equals(""))
+                if (!mProdName.equals("") && !MProdMrp.equals("") && !MProdAgtMrp.equals("") || !mDiscountPrice.equals("") && !(Integer.parseInt(mDiscountPrice) >100))
                 {
-                    processInsert(mProdName,mProdCode,MProdMrp,MProdAgtMrp);
+                    int discountPrice = 0;
+                    int finalDiscountPrice = 0;
+                    if (mDiscountPrice.equals(""))
+                    {
+                        discountPrice = 0;
+                    }
+                    else
+                    {
+                        discountPrice = Integer.parseInt(discount.getText().toString());
+                    }
+                    double amount = Double.parseDouble(MProdMrp);
+                    double res = (amount / 100.0f) * discountPrice;
+                    Log.e("pertage", String.valueOf(res));
+                    Double d = new Double(res);
+                    int i = d.intValue();
+                    finalDiscountPrice = Integer.parseInt(MProdMrp) - i;
+                    processInsert(mProdName,mProdCode,String.valueOf(finalDiscountPrice),MProdAgtMrp);
+                    SharedPreferenceMethods.setSharedPrefSharedQuote(mContext, false);
+                    startActivity(new Intent(ManuallyAddQuoteActivity.this,ManuallyAddQuoteActivity.class));
+                    finish();
+
                 }
                 else
                     Toast.makeText(ManuallyAddQuoteActivity.this, "Please entry valid values", Toast.LENGTH_SHORT).show();
-                prodName.setText(null);
-                prodCode.setText(null);
-                prodMrp.setText(null);
-                prodAgtMrp.setText(null);
-                prodCode.setFocusable(true);
-                prodCode.requestFocus();
+
+//                String mProdName = prodName.getText().toString();
+//                String mProdCode = prodCode.getText().toString();
+//                String MProdMrp = prodMrp.getText().toString();
+//                String MProdAgtMrp = prodAgtMrp.getText().toString();
+//
+//                if (!mProdName.equals("") && !mProdCode.equals("") && !MProdMrp.equals("") && !MProdAgtMrp.equals(""))
+//                {
+//                    processInsert(mProdName,mProdCode,MProdMrp,MProdAgtMrp);
+//                }
+//                else
+//                    Toast.makeText(ManuallyAddQuoteActivity.this, "Please entry valid values", Toast.LENGTH_SHORT).show();
+//                prodName.setText(null);
+//                prodCode.setText(null);
+//                prodMrp.setText(null);
+//                prodAgtMrp.setText(null);
+//                prodCode.setFocusable(true);
+//                prodCode.requestFocus();
+
+
             }
         });
     }

@@ -295,7 +295,7 @@
                             android:layout_marginEnd="@dimen/_10sdp"
                             android:fontFamily="@font/inter_medium"
                             android:gravity="end"
-                            android:text="555"
+                            android:text="0"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />
 
@@ -324,7 +324,7 @@
                             android:layout_marginEnd="@dimen/_10sdp"
                             android:fontFamily="@font/inter_medium"
                             android:gravity="end"
-                            android:text="555"
+                            android:text="0"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />
 
@@ -406,7 +406,7 @@
                             android:layout_marginEnd="@dimen/_10sdp"
                             android:fontFamily="@font/inter_medium"
                             android:gravity="end"
-                            android:text="555"
+                            android:text="0"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />
 

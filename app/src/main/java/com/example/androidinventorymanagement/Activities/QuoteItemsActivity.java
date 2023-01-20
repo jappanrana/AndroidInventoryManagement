@@ -433,16 +433,17 @@ public class QuoteItemsActivity extends AppCompatActivity
                     public void onClick(DialogInterface dialog, int which) {
                         DbManager dbManager = new DbManager(QuoteItemsActivity.this);
                         dbManager.deleteAll();
-                        SharedPreferenceMethods.setSharedPrefNavigation(mContext, Constances.NAVIGATION_PROFILE);
 
-                        if (edited)
+                        if (sharedQuote)
                         {
+                            SharedPreferenceMethods.setSharedPrefNavigation(mContext, Constances.NAVIGATION_SHARED_QUOTE);
                             Intent intent = new Intent(QuoteItemsActivity.this, HomeActivity.class);
                             startActivity(intent);
                             finish();
                         }
                         else
                         {
+                            SharedPreferenceMethods.setSharedPrefNavigation(mContext, Constances.NAVIGATION_PROFILE);
                             SharedPreferenceMethods.setSharedPrefSharedQuote(mContext,false);
                             Intent intent = new Intent(QuoteItemsActivity.this, HomeActivity.class);
                             startActivity(intent);

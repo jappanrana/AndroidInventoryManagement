@@ -97,7 +97,18 @@ public class ScannerActivity extends AppCompatActivity {
                                 intentIntegrator.setCaptureActivity(Capture.class);
                                 intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
                                 intentIntegrator.initiateScan();
-
+                            }
+                        });
+                        builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                            @Override
+                            public void onCancel(DialogInterface dialog) {
+                                IntentIntegrator intentIntegrator = new IntentIntegrator(ScannerActivity.this);
+                                intentIntegrator.setPrompt("For Flash Use Volume Key up");
+                                intentIntegrator.setBeepEnabled(true);
+                                intentIntegrator.setOrientationLocked(true);
+                                intentIntegrator.setCaptureActivity(Capture.class);
+                                intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
+                                intentIntegrator.initiateScan();
                             }
                         });
                         builder.show();

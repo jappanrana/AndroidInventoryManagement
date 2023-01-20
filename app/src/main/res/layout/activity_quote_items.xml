@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".QuoteDetailsActivity.QuoteItemsActivity"
+    tools:context=".Activities.QuoteItemsActivity"
     android:orientation="vertical">
 
 
@@ -295,7 +295,7 @@
                             android:layout_marginEnd="@dimen/_10sdp"
                             android:fontFamily="@font/inter_medium"
                             android:gravity="end"
-                            android:text="555"
+                            android:text="0"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />
 
@@ -324,7 +324,7 @@
                             android:layout_marginEnd="@dimen/_10sdp"
                             android:fontFamily="@font/inter_medium"
                             android:gravity="end"
-                            android:text="555"
+                            android:text="0"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />
 
@@ -414,7 +414,7 @@
                             android:layout_marginEnd="@dimen/_10sdp"
                             android:fontFamily="@font/inter_medium"
                             android:gravity="end"
-                            android:text="555"
+                            android:text="0"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />
 
