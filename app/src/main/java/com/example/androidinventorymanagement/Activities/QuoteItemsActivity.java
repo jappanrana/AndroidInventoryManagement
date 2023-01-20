@@ -100,6 +100,7 @@ public class QuoteItemsActivity extends AppCompatActivity
         String key = SharedPreferenceMethods.getSharedPrefCustomerKey(mContext);
         sharedQuote = SharedPreferenceMethods.getSharedPrefSharedQuote(mContext);
         edited = SharedPreferenceMethods.getSharedPrefEditable(mContext);
+        SharedPreferenceMethods.setSharedPrefSharedQuote(mContext,false);
 
         customerName.setText(getCustomerName);
         customerNo.setText(getCustomerNo);

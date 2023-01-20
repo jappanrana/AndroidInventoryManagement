@@ -60,13 +60,14 @@ public class SharedQuoteAdapter extends FirebaseRecyclerAdapter<QuotationModel,S
             sharedQuoteViewLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    String userInpNumber = getSnapshots().getSnapshot(getAbsoluteAdapterPosition()).child("customerNumber").getValue().toString();
-//                    Intent intent = new Intent(itemView.getContext(), QuoteItemsActivity.class);
-//                    SharedPreferenceMethods.setSharedPrefCustomerName(context,customeraName.getText().toString());
-//                    SharedPreferenceMethods.setSharedPrefCustomerNumber(context,userInpNumber);
-//                    SharedPreferenceMethods.setSharedPrefCustomerKey(context,getSnapshots().getSnapshot(getPosition()).getKey());
-//                    itemView.getContext().startActivity(intent);
-//                    ((Activity)itemView.getContext()).finish();
+                    String userInpNumber = getSnapshots().getSnapshot(getAbsoluteAdapterPosition()).child("customerNumber").getValue().toString();
+                    SharedPreferenceMethods.setSharedPrefSharedQuote(itemView.getContext(),true);
+                    Intent intent = new Intent(itemView.getContext(), QuoteItemsActivity.class);
+                    SharedPreferenceMethods.setSharedPrefCustomerName(context,customeraName.getText().toString());
+                    SharedPreferenceMethods.setSharedPrefCustomerNumber(context,userInpNumber);
+                    SharedPreferenceMethods.setSharedPrefCustomerKey(context,getSnapshots().getSnapshot(getPosition()).getKey());
+                    itemView.getContext().startActivity(intent);
+                    ((Activity)itemView.getContext()).finish();
                     Toast.makeText(context, "coming soon", Toast.LENGTH_SHORT).show();
                 }
             });
