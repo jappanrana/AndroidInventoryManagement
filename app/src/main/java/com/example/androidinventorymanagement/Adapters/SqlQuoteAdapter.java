@@ -129,18 +129,22 @@ public class SqlQuoteAdapter extends RecyclerView.Adapter<SqlQuoteAdapter.myview
                             {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    String name = holder.cartItemName.getText().toString();
-                                    DbManager dbManager = new DbManager(holder.itemView.getContext());
-                                    dbManager.deleteItem(name);
-                                    totalOfSubTotal = 0;
-                                    totalOfGst = 0;
-                                    dataholder.remove(holder.getAbsoluteAdapterPosition());
-                                    if(dataholder.size() == 0){
-                                        subTotalAmt.setText(String.valueOf(0));
-                                        totalGstAmt.setText(String.valueOf(0));
-                                        grandTotal.setText(String.valueOf(0));
+                                    if(dataholder.size()!=1){
+                                        String name = holder.cartItemName.getText().toString();
+                                        DbManager dbManager = new DbManager(holder.itemView.getContext());
+                                        dbManager.deleteItem(name);
+                                        totalOfSubTotal = 0;
+                                        totalOfGst = 0;
+                                        dataholder.remove(holder.getAbsoluteAdapterPosition());
+                                        if (dataholder.size() == 0) {
+                                            subTotalAmt.setText(String.valueOf(0));
+                                            totalGstAmt.setText(String.valueOf(0));
+                                            grandTotal.setText(String.valueOf(0));
+                                        }
+                                        notifyDataSetChanged();
+                                    }else{
+                                        Toast.makeText(holder.cardView.getContext(), "Last Item cannot be deleted", Toast.LENGTH_SHORT).show();
                                     }
-                                    notifyDataSetChanged();
                                 }
 
                             })
