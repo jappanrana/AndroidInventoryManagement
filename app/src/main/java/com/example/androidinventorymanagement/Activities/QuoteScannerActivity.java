@@ -91,6 +91,7 @@ public class QuoteScannerActivity extends AppCompatActivity {
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 RedLineRouteReference.removeEventListener(this);
                                 if(dataSnapshot.exists()) {
+                                    recyclerView.scrollToPosition(scanItemAdapter.getItemCount()-1);
                                     scanItemAdapter.notifyDataSetChanged();
                                     String data = dataSnapshot.getValue().toString();
                                     youNameArray.add(data);

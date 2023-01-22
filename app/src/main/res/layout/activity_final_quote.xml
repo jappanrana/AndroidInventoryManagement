@@ -61,12 +61,12 @@
         android:id="@+id/nestedScrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/finalQuotesharePDF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintBottom_toTopOf="@+id/buttonLayoutFinalQuote"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
-        app:layout_constraintVertical_bias="1.0">
+        >
 
 
         <LinearLayout
@@ -424,65 +424,84 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/finalQuoteDownloadPDF"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_50sdp"
-        android:layout_margin="@dimen/_10sdp"
-        android:backgroundTint="@color/Blue"
-        android:enabled="true"
-        android:fontFamily="@font/inter_regular"
-        android:letterSpacing="0"
-        android:text="Download PDF"
-        android:textAllCaps="false"
-        android:textSize="@dimen/_14sdp"
-        app:cornerRadius="@dimen/_10sdp"
-        app:elevation="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/nestedScrollView"
-        app:layout_constraintEnd_toStartOf="@+id/nestedScrollView"
-        app:layout_constraintStart_toEndOf="@+id/nestedScrollView" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/finalQuotePrintPDF"
-        _toBottomOf="@+id/finalQuoteDownloadPDF"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/buttonLayoutFinalQuote"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_50sdp"
-        android:layout_margin="@dimen/_10sdp"
-        android:backgroundTint="@color/Blue"
-        android:enabled="true"
-        android:fontFamily="@font/inter_regular"
-        android:letterSpacing="0"
-        android:text="Print Bill"
-        android:textAllCaps="false"
-        android:textSize="@dimen/_14sdp"
-        app:cornerRadius="@dimen/_10sdp"
-        app:elevation="0dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/nestedScrollView"
-        app:layout_constraintEnd_toStartOf="@+id/finalQuoteDownloadPDF"
-        app:layout_constraintStart_toEndOf="@+id/finalQuoteDownloadPDF"/>
-
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/finalQuotesharePDF"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_50sdp"
-        android:layout_margin="@dimen/_10sdp"
-        android:layout_marginStart="13dp"
-        android:layout_marginEnd="13dp"
-        android:backgroundTint="@color/Blue"
-        android:enabled="true"
-        android:fontFamily="@font/inter_regular"
-        android:letterSpacing="0"
-        android:text="Share PDF"
-        android:visibility="gone"
-        android:textAllCaps="false"
-        android:textSize="@dimen/_14sdp"
-        app:cornerRadius="@dimen/_10sdp"
-        app:elevation="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/finalQuoteDownloadPDF"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_margin="@dimen/_10sdp"
+            android:backgroundTint="@color/Blue"
+            android:enabled="true"
+            android:fontFamily="@font/inter_regular"
+            android:letterSpacing="0"
+            android:text="Download PDF"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_14sdp"
+            app:cornerRadius="@dimen/_10sdp"
+            android:visibility="visible"
+            app:elevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/finalQuotePrintPDF"
+            _toBottomOf="@+id/finalQuoteDownloadPDF"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_margin="@dimen/_10sdp"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="12dp"
+            android:backgroundTint="@color/Blue"
+            android:enabled="true"
+            android:fontFamily="@font/inter_regular"
+            android:letterSpacing="0"
+            android:text="Print Bill"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_14sdp"
+            android:visibility="gone"
+            app:cornerRadius="@dimen/_10sdp"
+            app:elevation="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/finalQuotesharePDF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/finalQuotesharePDF"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_margin="@dimen/_10sdp"
+            android:layout_marginStart="13dp"
+            android:layout_marginEnd="13dp"
+            android:backgroundTint="@color/Blue"
+            android:enabled="true"
+            android:fontFamily="@font/inter_regular"
+            android:letterSpacing="0"
+            android:text="Share PDF"
+            android:visibility="gone"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_14sdp"
+            app:cornerRadius="@dimen/_10sdp"
+            app:elevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

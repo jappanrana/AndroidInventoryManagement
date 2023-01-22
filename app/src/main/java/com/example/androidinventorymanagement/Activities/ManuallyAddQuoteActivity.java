@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.androidinventorymanagement.R;
 import com.example.androidinventorymanagement.SqlDB.DbManager;
+import com.example.androidinventorymanagement.Utils.CustomRangeInputFilter;
 import com.example.androidinventorymanagement.Utils.SharedPreferenceMethods;
 import com.google.android.material.button.MaterialButton;
 
@@ -37,6 +39,9 @@ public class ManuallyAddQuoteActivity extends AppCompatActivity {
         addMoreBtn = findViewById(R.id.addQuoteMoreBtn);
         backBtn = findViewById(R.id.addQuoteProductBackButton);
         discount = findViewById(R.id.discountQuoteAddProduct);
+
+        prodAgtMrp.setFilters(new InputFilter[]{new CustomRangeInputFilter(0f,28f)});
+        discount.setFilters(new InputFilter[]{new CustomRangeInputFilter(0f,100f)});
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override

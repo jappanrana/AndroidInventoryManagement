@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.QuoteItemsActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".Activities.QuoteItemsActivity">
 
 
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:paddingTop="@dimen/_5sdp"
         android:background="#FFFFFF"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,11 +61,12 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/finalQuotePDF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintBottom_toTopOf="@+id/finalQuotePDF"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-        app:layout_constraintVertical_bias="0.0">
+        >
 
 
         <LinearLayout
