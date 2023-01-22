@@ -71,6 +71,7 @@ public class AddProductsFragment extends Fragment {
         databaseReferenceProduct = firebaseDatabase.getReference("Products");
 
         prodGst.setFilters(new InputFilter[]{new CustomRangeInputFilter(0f,28.0f)});
+        prodMrp.setFilters(new InputFilter[]{new CustomRangeInputFilter(0f,100000f)});
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override

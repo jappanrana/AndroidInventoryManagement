@@ -3,6 +3,7 @@ package com.example.androidinventorymanagement.Fragements;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import com.example.androidinventorymanagement.Activities.QuoteItemsActivity;
 import com.example.androidinventorymanagement.R;
 import com.example.androidinventorymanagement.SqlDB.DbManager;
+import com.example.androidinventorymanagement.Utils.CustomRangeInputFilter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
 
@@ -45,6 +47,9 @@ public class EditQuoteFragment extends Fragment {
         prodMrpEditText = view.findViewById(R.id.editRate);
         prodQtyEditText = view.findViewById(R.id.editQty);
         editSubmitBtn = view.findViewById(R.id.editSubmitBtn);
+
+        prodQtyEditText.setFilters(new InputFilter[]{new CustomRangeInputFilter(0f,999f)});
+        prodMrpEditText.setFilters(new InputFilter[]{new CustomRangeInputFilter(0f,100000f)});
 
         BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottomNavigationView);
         bottomNavigationView.getMenu().findItem(R.id.home).setEnabled(false).setVisible(false);

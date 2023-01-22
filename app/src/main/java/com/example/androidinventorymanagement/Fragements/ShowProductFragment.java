@@ -106,6 +106,8 @@ public class ShowProductFragment extends Fragment {
         submitBtn = ShowProductView.findViewById(R.id.submitShowBtn);
         userRole = SharedPreferenceMethods.getSharedPrefUserRole(mContext);
 
+        prodMrp.setFilters(new InputFilter[]{new CustomRangeInputFilter(0f,100000f)});
+
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

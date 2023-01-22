@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.text.InputFilter;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -29,6 +30,7 @@ import com.example.androidinventorymanagement.Models.QuoteModel;
 import com.example.androidinventorymanagement.R;
 import com.example.androidinventorymanagement.SqlDB.DbManager;
 import com.example.androidinventorymanagement.Utils.Constances;
+import com.example.androidinventorymanagement.Utils.CustomRangeInputFilter;
 import com.example.androidinventorymanagement.Utils.SharedPreferenceMethods;
 
 import java.math.BigDecimal;
@@ -66,7 +68,8 @@ public class SqlQuoteAdapter extends RecyclerView.Adapter<SqlQuoteAdapter.myview
     public void onBindViewHolder(@NonNull myviewholder holder, int position) {
 
         userDetail = holder.itemView.getContext().getSharedPreferences("userDetail",0);
-         editable = SharedPreferenceMethods.getSharedPrefEditable(holder.itemView.getContext());
+        holder.CartQuantityText.setFilters(new InputFilter[]{new CustomRangeInputFilter(0f,999f)});
+        editable = SharedPreferenceMethods.getSharedPrefEditable(holder.itemView.getContext());
         if (editable)
         {
             holder.CartQuantityText.setEnabled(true);
