@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".QuoteDetailsActivity.ManuallyAddQuoteActivity">
+    tools:context=".Activities.ManuallyAddQuoteActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -119,6 +119,7 @@
                         android:cursorVisible="true"
                         android:focusable="true"
                         android:focusableInTouchMode="true"
+                        android:nextFocusDown="@id/name"
                         android:fontFamily="@font/inter_regular"
                         android:inputType="number"
                         android:singleLine="true"
@@ -158,6 +159,7 @@
                         android:cursorVisible="true"
                         android:focusable="true"
                         android:focusableInTouchMode="true"
+                        android:nextFocusDown="@id/mrpQuoteAddProduct"
                         android:fontFamily="@font/inter_regular"
                         android:inputType="text"
                         android:singleLine="true"
@@ -197,6 +199,8 @@
                         android:cursorVisible="true"
                         android:focusable="true"
                         android:focusableInTouchMode="true"
+                        android:maxLength="9"
+                        android:nextFocusDown="@id/agentQuoteMrpAddProduct"
                         android:fontFamily="@font/inter_regular"
                         android:inputType="number"
                         android:singleLine="true"
@@ -236,6 +240,8 @@
                         android:cursorVisible="true"
                         android:focusable="true"
                         android:focusableInTouchMode="true"
+                        android:maxLength="3"
+                        android:nextFocusDown="@id/discountQuoteAddProduct"
                         android:fontFamily="@font/inter_regular"
                         android:inputType="number"
                         android:singleLine="true"
@@ -272,6 +278,7 @@
                         android:cursorVisible="true"
                         android:focusable="true"
                         android:focusableInTouchMode="true"
+                        android:maxLength="3"
                         android:fontFamily="@font/inter_regular"
                         android:inputType="number"
                         android:singleLine="true"

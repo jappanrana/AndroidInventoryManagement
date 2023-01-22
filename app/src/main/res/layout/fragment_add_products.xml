@@ -266,6 +266,7 @@
                             android:cursorVisible="true"
                             android:focusable="true"
                             android:focusableInTouchMode="true"
+                            android:maxLength="3"
                             android:fontFamily="@font/inter_regular"
                             android:inputType="number"
                             android:singleLine="true"
