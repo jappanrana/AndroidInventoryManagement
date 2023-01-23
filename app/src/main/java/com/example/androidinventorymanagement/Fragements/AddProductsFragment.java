@@ -164,7 +164,7 @@ public class AddProductsFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                String mProdName = prodName.getText().toString();
+                String mProdName = prodName.getText().toString().toLowerCase(Locale.ROOT);
                 String mProdCode = prodCode.getText().toString();
                 String MProdMrp = prodMrp.getText().toString();
                 String MProdGst = prodGst.getText().toString();

@@ -20,12 +20,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
@@ -67,7 +70,7 @@ public class HomeFragment extends Fragment implements EasyPermissions.Permission
     ProductsAdapter adapter;
     ImageView homeFragmentAdd, homeFragmentExport, homeLoadingAnimationImage;
     LinearLayout homeFragmentSelectMenu;
-    SearchView homeFragmentSearchView;
+    EditText homeFragmentSearchView;
     TextView homeFragmentEmpty;
     RecyclerView homeFragmentRecyclerView;
     ConstraintLayout homeFragmentLoader;
@@ -154,17 +157,34 @@ public class HomeFragment extends Fragment implements EasyPermissions.Permission
         });
 
         adapter.startListening();
-        homeFragmentSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//        homeFragmentSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                processesSearch(query.toLowerCase(Locale.ROOT),homeFragmentSelectMenu);
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                processesSearch(newText.toLowerCase(Locale.ROOT),homeFragmentSelectMenu);
+//                return false;
+//            }
+//        });
+
+        homeFragmentSearchView.addTextChangedListener(new TextWatcher() {
             @Override
-            public boolean onQueryTextSubmit(String query) {
-                processesSearch(query.toLowerCase(Locale.ROOT),homeFragmentSelectMenu);
-                return false;
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
             }
 
             @Override
-            public boolean onQueryTextChange(String newText) {
-                processesSearch(newText.toLowerCase(Locale.ROOT),homeFragmentSelectMenu);
-                return false;
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                processesSearch(s.toString().toLowerCase(Locale.ROOT),homeFragmentSelectMenu);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                processesSearch(s.toString().toLowerCase(Locale.ROOT),homeFragmentSelectMenu);
             }
         });
 

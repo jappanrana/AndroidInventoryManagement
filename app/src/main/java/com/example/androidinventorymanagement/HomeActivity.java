@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.androidinventorymanagement.Activities.ScannerActivity;
 import com.example.androidinventorymanagement.Fragements.EditQuoteFragment;
@@ -89,8 +90,10 @@ public class HomeActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.profile:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.frame,new ProfileFragment()).commit();
-                        return true;
+//                        getSupportFragmentManager().beginTransaction().replace(R.id.frame,new ProfileFragment()).commit();
+//                        return true;
+                        Toast.makeText(mContext, "Access Denied", Toast.LENGTH_SHORT).show();
+                        return false;
 
                 }
                 return false;

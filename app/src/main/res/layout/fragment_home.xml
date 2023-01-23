@@ -101,10 +101,12 @@
                 android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginEnd="@dimen/_10sdp">
 
-                <androidx.appcompat.widget.SearchView
+                <EditText
                     android:id="@+id/homeFragmentSearchView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:hint="Product Name"
+                    android:padding="@dimen/_8sdp"
                     android:background="@drawable/edit_text_rounded"
                     android:iconifiedByDefault="false"
                     android:inputType="textCapSentences"
