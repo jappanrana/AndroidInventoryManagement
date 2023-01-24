@@ -49,7 +49,7 @@ public class EditQuoteFragment extends Fragment {
         editSubmitBtn = view.findViewById(R.id.editSubmitBtn);
 
         prodQtyEditText.setFilters(new InputFilter[]{new CustomRangeInputFilter(0f,999f)});
-        prodMrpEditText.setFilters(new InputFilter[]{new CustomRangeInputFilter(0f,100000f)});
+        prodMrpEditText.setFilters(new InputFilter[]{new CustomRangeInputFilter(0f,1000000f)});
 
         BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottomNavigationView);
         bottomNavigationView.getMenu().findItem(R.id.home).setEnabled(false).setVisible(false);

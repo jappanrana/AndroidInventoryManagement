@@ -42,7 +42,7 @@ public class ManuallyAddQuoteActivity extends AppCompatActivity {
 
         prodAgtMrp.setFilters(new InputFilter[]{new CustomRangeInputFilter(0f,28f)});
         discount.setFilters(new InputFilter[]{new CustomRangeInputFilter(0f,100f)});
-        prodMrp.setFilters(new InputFilter[]{new CustomRangeInputFilter(0f,100000f)});
+        prodMrp.setFilters(new InputFilter[]{new CustomRangeInputFilter(0f,1000000f)});
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override

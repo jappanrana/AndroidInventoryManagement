@@ -106,7 +106,7 @@ public class ShowProductFragment extends Fragment {
         submitBtn = ShowProductView.findViewById(R.id.submitShowBtn);
         userRole = SharedPreferenceMethods.getSharedPrefUserRole(mContext);
 
-        prodMrp.setFilters(new InputFilter[]{new CustomRangeInputFilter(0f,100000f)});
+        prodMrp.setFilters(new InputFilter[]{new CustomRangeInputFilter(0f,1000000f)});
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,6 +150,9 @@ public class ShowProductFragment extends Fragment {
         key = showProduct.getKey();
 
         prodCode.setText(prodCodeStr);
+        prodCode.setFocusable(false);
+        prodCode.setFocusableInTouchMode(false);
+        prodCode.setClickable(false);
         prodName.setText(finalname);
         prodMrp.setText(prodMrpStr);
         prodGst.setText(prodGstStr);
