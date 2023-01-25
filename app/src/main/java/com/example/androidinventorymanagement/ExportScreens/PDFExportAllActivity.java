@@ -105,9 +105,8 @@ public class PDFExportAllActivity extends AppCompatActivity
                     Bitmap bitmap;
 
                     for(DataSnapshot product: snapshot.getChildren()){
-//                        prodCode.setText(product.child("code").getValue().toString());
-
-                        prodName.setText(product.child("code").getValue().toString()+" "+product.child("name").getValue().toString());
+                        prodCode.setText(product.child("code").getValue().toString());
+                        prodName.setText(product.child("name").getValue().toString());
                         prodRate.setText("MRP:"+product.child("mrp").getValue().toString()+"/-");
                         Key = product.child("key").getValue().toString();
                         try {
