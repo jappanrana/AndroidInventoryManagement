@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.androidinventorymanagement.HomeActivity;
 import com.example.androidinventorymanagement.R;
@@ -55,7 +56,7 @@ public class PDFExportAllActivity extends AppCompatActivity
 
     TextView prodCode,prodName,prodRate;
     ImageView barcodeImage;
-    CardView barcodeCardview;
+    ConstraintLayout barcodeCardview;
 //rename to export all
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -107,7 +108,7 @@ public class PDFExportAllActivity extends AppCompatActivity
 //                        prodCode.setText(product.child("code").getValue().toString());
 
                         prodName.setText(product.child("code").getValue().toString()+" "+product.child("name").getValue().toString());
-                        prodRate.setText("MRP:₹"+product.child("mrp").getValue().toString()+"/-");
+                        prodRate.setText("MRP:"+product.child("mrp").getValue().toString()+"/-");
                         Key = product.child("key").getValue().toString();
                         try {
                             matrix = multiFormatWriter.encode(Key, BarcodeFormat.CODE_39,500,100);

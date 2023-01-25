@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 
 import com.example.androidinventorymanagement.HomeActivity;
 import com.example.androidinventorymanagement.Models.ExportModel;
@@ -47,7 +49,7 @@ public class PDFExportActivity extends AppCompatActivity {
     String hours,minutes,seconds;
     TextView prodCode,prodName,prodRate;
     ImageView barcodeImage;
-    CardView barcodeCardview;
+    ConstraintLayout barcodeCardview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,9 +97,9 @@ public class PDFExportActivity extends AppCompatActivity {
                 BitMatrix matrix = null;
                 Bitmap bitmap;
                 for (ExportModel item:SelectedList) {
-//                    prodCode.setText(item.getCode());
-                    prodName.setText(item.getCode()+" "+item.getName());
-                    prodRate.setText("MRP:₹"+item.getMrp()+"/-");
+                    prodCode.setText(item.getCode());
+                    prodName.setText(item.getName());
+                    prodRate.setText("MRP:"+item.getMrp()+"/-");
                     Key = item.getKey();
                     try {
                         matrix = multiFormatWriter.encode(Key, BarcodeFormat.CODE_39,500,100);
