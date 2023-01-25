@@ -1,45 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragements.EditQuoteFragment">
 
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/editQuoteProductBackButton"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/backkey2" />
+
+        <TextView
+            android:id="@+id/editProductTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="1dp"
+            android:fontFamily="@font/inter_bold"
+            android:text="Edit Product"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_13sdp" />
+    </LinearLayout>
+
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/_5sdp"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
+        app:layout_constraintVertical_bias="0.0">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/editQuoteProductBackButton"
-                android:layout_width="@dimen/_35sdp"
-                android:layout_height="@dimen/_35sdp"
-                android:padding="@dimen/_5sdp"
-                android:src="@drawable/backkey2"/>
-
-            <TextView
-                android:id="@+id/editProductTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="1dp"
-                android:fontFamily="@font/inter_bold"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_13sdp"
-                android:text="Edit Product"/>
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -72,18 +78,19 @@
                 android:textStyle="italic" />
 
         </LinearLayout>
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/_10sdp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="@dimen/_10sdp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_8sdp"
-                android:layout_marginEnd="@dimen/_8sdp"
                 android:layout_marginTop="@dimen/_25sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
                 android:orientation="vertical">
 
                 <TextView
@@ -121,9 +128,9 @@
                         android:cursorVisible="true"
                         android:focusable="true"
                         android:focusableInTouchMode="true"
-                        android:nextFocusDown="@id/editRate"
                         android:fontFamily="@font/inter_regular"
                         android:inputType="text"
+                        android:nextFocusDown="@id/editRate"
                         android:singleLine="true"
                         android:textColor="@color/black"
                         android:textColorHint="@color/MediumGrey"
@@ -161,10 +168,10 @@
                         android:cursorVisible="true"
                         android:focusable="true"
                         android:focusableInTouchMode="true"
-                        android:maxLength="9"
-                        android:nextFocusDown="@id/editQty"
                         android:fontFamily="@font/inter_regular"
                         android:inputType="number"
+                        android:maxLength="9"
+                        android:nextFocusDown="@id/editQty"
                         android:singleLine="true"
                         android:textColor="@color/black"
                         android:textColorHint="@color/MediumGrey"
@@ -176,6 +183,7 @@
 
 
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
@@ -201,10 +209,10 @@
                         android:cursorVisible="true"
                         android:focusable="true"
                         android:focusableInTouchMode="true"
-                        android:maxLength="4"
-                        android:nextFocusDown="@id/editGst"
                         android:fontFamily="@font/inter_regular"
                         android:inputType="numberDecimal"
+                        android:maxLength="4"
+                        android:nextFocusDown="@id/editGst"
                         android:singleLine="true"
                         android:textColor="@color/black"
                         android:textColorHint="@color/MediumGrey"
@@ -243,9 +251,9 @@
                         android:cursorVisible="true"
                         android:focusable="true"
                         android:focusableInTouchMode="true"
-                        android:maxLength="3"
                         android:fontFamily="@font/inter_regular"
                         android:inputType="number"
+                        android:maxLength="3"
                         android:singleLine="true"
                         android:textColor="@color/black"
                         android:textColorHint="@color/MediumGrey"
@@ -286,4 +294,4 @@
 
     </LinearLayout>
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
