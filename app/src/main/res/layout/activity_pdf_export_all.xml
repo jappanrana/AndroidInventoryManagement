@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/bebas_regular"
             android:lines="1"
-            android:text=""
+            android:text="123456789123456"
             android:paddingStart="@dimen/_2sdp"
             android:paddingEnd="@dimen/_2sdp"
             android:textAlignment="center"
@@ -67,7 +67,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/bebas_regular"
             android:lines="1"
-            android:text=""
+            android:maxLength="35"
+            android:text="@string/dummy_text"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@color/black"
@@ -150,28 +151,27 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/staticText4" />
 
-        <LinearLayout
+
+        <TextView
+            android:id="@+id/pdfExpexportProductRate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="@+id/staticText3"
+            android:layout_marginEnd="-30dp"
+            android:fontFamily="@font/bebas_regular"
+            android:gravity="center"
+            android:lines="1"
+            android:rotation="270"
+            android:text="123456789012"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_18sdp"
+            app:layout_alignSelf="center"
+            app:layout_constraintBottom_toBottomOf="@+id/staticText5"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/logoImage">
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/pdfExpexportProductCode"
+            app:layout_constraintTop_toTopOf="parent"  />
 
-            <TextView
-                android:id="@+id/pdfExpexportProductRate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/bebas_regular"
-                android:gravity="center"
-                android:rotation="-90"
-                android:lines="1"
-                android:paddingEnd="@dimen/_10sdp"
-                android:text="150"
-                android:textAllCaps="true"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_18sdp" />
-        </LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -180,7 +180,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">

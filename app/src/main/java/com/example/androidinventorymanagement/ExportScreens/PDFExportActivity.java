@@ -99,7 +99,7 @@ public class PDFExportActivity extends AppCompatActivity {
                 for (ExportModel item:SelectedList) {
                     prodCode.setText(item.getCode());
                     prodName.setText(item.getName());
-                    prodRate.setText("MRP:"+item.getMrp()+"/-");
+                    prodRate.setText(item.getMrp());
                     Key = item.getKey();
                     try {
                         matrix = multiFormatWriter.encode(Key, BarcodeFormat.CODE_39,500,100);

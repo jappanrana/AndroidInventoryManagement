@@ -202,7 +202,7 @@ public class HomeFragment extends Fragment implements EasyPermissions.Permission
 
         adapter.setOnLongClickListner(new ProductsAdapter.onCardLongClickListner() {
             @Override
-            public void onLongCardClick(DataSnapshot snapshot, int position, ImageView checkImage, LinearLayout productViewLayout) {
+            public void onLongCardClick(DataSnapshot snapshot, int position, ImageView checkImage, ConstraintLayout productViewLayout) {
                 ExportModel clickedItem = new ExportModel(snapshot.getKey().toString(),snapshot.child("name").getValue().toString(),snapshot.child("code").getValue().toString(),snapshot.child("mrp").getValue().toString());
                 if(checkImage.getVisibility() == View.GONE){
                     checkImage.setVisibility(View.VISIBLE);
@@ -215,7 +215,7 @@ public class HomeFragment extends Fragment implements EasyPermissions.Permission
 
         ProductsAdapter.onCardClickListner cardClickListner = new ProductsAdapter.onCardClickListner() {
             @Override
-            public void onCardClick(DataSnapshot snapshot, int position, ImageView checkImage, LinearLayout productViewLayout) {
+            public void onCardClick(DataSnapshot snapshot, int position, ImageView checkImage, ConstraintLayout productViewLayout) {
                 if(userRole.equals(Constances.USER_ROLE_ADMIN)){
                     ExportModel clickedItem = new ExportModel(snapshot.getKey().toString(),snapshot.child("name").getValue().toString(),snapshot.child("code").getValue().toString(),snapshot.child("mrp").getValue().toString());
                     if(adapter.getSelectable()){
@@ -360,7 +360,7 @@ public class HomeFragment extends Fragment implements EasyPermissions.Permission
 
         ProductsAdapter.onCardClickListner cardClickListner = new ProductsAdapter.onCardClickListner() {
             @Override
-            public void onCardClick(DataSnapshot snapshot, int position, ImageView checkImage, LinearLayout productViewLayout) {
+            public void onCardClick(DataSnapshot snapshot, int position, ImageView checkImage, ConstraintLayout productViewLayout) {
                 if(userRole.equals(Constances.USER_ROLE_ADMIN)) {
                     ExportModel clickedItem = new ExportModel(snapshot.getKey().toString(), snapshot.child("name").getValue().toString(), snapshot.child("code").getValue().toString(), snapshot.child("mrp").getValue().toString());
 
@@ -405,7 +405,7 @@ public class HomeFragment extends Fragment implements EasyPermissions.Permission
 
         adapter.setOnLongClickListner(new ProductsAdapter.onCardLongClickListner() {
             @Override
-            public void onLongCardClick(DataSnapshot snapshot, int position, ImageView checkImage, LinearLayout productViewLayout) {
+            public void onLongCardClick(DataSnapshot snapshot, int position, ImageView checkImage,ConstraintLayout productViewLayout) {
                 if(userRole.equals(Constances.USER_ROLE_ADMIN)){
                     ExportModel clickedItem = new ExportModel(snapshot.getKey(),snapshot.child("name").getValue().toString(),snapshot.child("code").getValue().toString(),snapshot.child("mrp").getValue().toString());
                     if(checkImage.getVisibility() == View.GONE){

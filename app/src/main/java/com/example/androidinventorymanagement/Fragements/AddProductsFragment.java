@@ -37,7 +37,7 @@ import java.util.Locale;
 
 public class AddProductsFragment extends Fragment {
 
-    EditText prodName,prodCode,prodMrp,prodGst;
+    EditText prodName,prodCode,prodMrp,prodGst,test;
     TextInputEditText productCode, productName;
     MaterialButton submitBtn,addMoreBtn;
     DatabaseReference databaseReferenceProduct;
@@ -60,6 +60,7 @@ public class AddProductsFragment extends Fragment {
 
         getActivity().findViewById(R.id.bottomNavigationView).setVisibility(View.GONE);
 
+//        test = addProductsView.findViewById(R.id.testText);
         prodName = addProductsView.findViewById(R.id.nameProductName);
         prodCode = addProductsView.findViewById(R.id.codeProductCode);
         prodMrp = addProductsView.findViewById(R.id.mrpAddProduct);
@@ -364,6 +365,7 @@ public class AddProductsFragment extends Fragment {
                     if(keyCode == KeyEvent.KEYCODE_BACK)
                     {
                         Toast.makeText(mContext, "Back Pressed", Toast.LENGTH_SHORT).show();
+
                         requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, new HomeFragment()).commit();
                         return true;
                     }
@@ -373,6 +375,10 @@ public class AddProductsFragment extends Fragment {
         });
         super.onActivityCreated(savedInstanceState);
     }
+
+
+
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
@@ -385,7 +391,7 @@ public class AddProductsFragment extends Fragment {
                 if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_BACK) {
                     InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(productCode.getWindowToken(), 0);
-                    productCode.clearFocus();
+//                    test.clearFocus();
                     Toast.makeText(mContext, "Back Pressed", Toast.LENGTH_SHORT).show();
                     return true;
 

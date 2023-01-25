@@ -107,7 +107,7 @@ public class PDFExportAllActivity extends AppCompatActivity
                     for(DataSnapshot product: snapshot.getChildren()){
                         prodCode.setText(product.child("code").getValue().toString());
                         prodName.setText(product.child("name").getValue().toString());
-                        prodRate.setText("MRP:"+product.child("mrp").getValue().toString()+"/-");
+                        prodRate.setText(product.child("mrp").getValue().toString());
                         Key = product.child("key").getValue().toString();
                         try {
                             matrix = multiFormatWriter.encode(Key, BarcodeFormat.CODE_39,500,100);

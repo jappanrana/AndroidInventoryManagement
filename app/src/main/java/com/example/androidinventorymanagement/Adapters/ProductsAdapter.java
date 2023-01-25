@@ -1,7 +1,6 @@
 package com.example.androidinventorymanagement.Adapters;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidinventorymanagement.Models.ProductsModel;
@@ -79,7 +79,8 @@ public class ProductsAdapter extends FirebaseRecyclerAdapter<ProductsModel,Produ
             if (userRole.equals("admin")) {
                 holder.productMrp.setText(model.getMrp());
             }else{
-                holder.listProductMrpLayout.setVisibility(View.GONE);
+                holder.rupeesSymbol.setVisibility(View.GONE);
+                holder.productMrp.setVisibility(View.GONE);
             }
         }
     }
@@ -93,8 +94,8 @@ public class ProductsAdapter extends FirebaseRecyclerAdapter<ProductsModel,Produ
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView productName,productCode,productMrp;
-        LinearLayout productViewLayout,listProductMrpLayout;
+        TextView productName,productCode,productMrp, rupeesSymbol;
+        ConstraintLayout productViewLayout;
         ImageView checkImage;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -102,8 +103,9 @@ public class ProductsAdapter extends FirebaseRecyclerAdapter<ProductsModel,Produ
 
             productName = itemView.findViewById(R.id.listProductName);
             productCode = itemView.findViewById(R.id.listProductCode);
+            rupeesSymbol = itemView.findViewById(R.id.rupees);
             productMrp = itemView.findViewById(R.id.listProductMrp);
-            listProductMrpLayout = itemView.findViewById(R.id.listProductMrpLayout);
+//            listProductMrpLayout = itemView.findViewById(R.id.listProductMrpLayout);
             checkImage = itemView.findViewById(R.id.checkImg);
             productViewLayout = itemView.findViewById(R.id.productViewLayout);
 
@@ -128,10 +130,10 @@ public class ProductsAdapter extends FirebaseRecyclerAdapter<ProductsModel,Produ
     }
 
     public interface onCardClickListner{
-        void onCardClick(DataSnapshot snapshot, int position, ImageView ImageView,LinearLayout linearLayout);
+        void onCardClick(DataSnapshot snapshot, int position, ImageView ImageView, ConstraintLayout linearLayout);
     }
     public interface onCardLongClickListner{
-        void onLongCardClick(DataSnapshot snapshot, int position, ImageView ImageView,LinearLayout linearLayout);
+        void onLongCardClick(DataSnapshot snapshot, int position, ImageView ImageView, ConstraintLayout linearLayout);
     }
     public void setOnClickListner(onCardClickListner cardClickListner){this.cardClickListner = cardClickListner;}
     public void setOnLongClickListner(onCardLongClickListner cardLongClickListner){this.cardLongClickListner = cardLongClickListner;}
