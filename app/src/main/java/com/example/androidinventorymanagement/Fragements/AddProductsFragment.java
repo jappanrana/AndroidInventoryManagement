@@ -26,6 +26,7 @@ import com.example.androidinventorymanagement.Navigation.HomeFragment;
 import com.example.androidinventorymanagement.R;
 import com.example.androidinventorymanagement.Utils.CustomRangeInputFilter;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,6 +38,7 @@ import java.util.Locale;
 public class AddProductsFragment extends Fragment {
 
     EditText prodName,prodCode,prodMrp,prodGst;
+    TextInputEditText productCode, productName;
     MaterialButton submitBtn,addMoreBtn;
     DatabaseReference databaseReferenceProduct;
     FirebaseDatabase firebaseDatabase;
@@ -67,11 +69,27 @@ public class AddProductsFragment extends Fragment {
         productScrollView = addProductsView.findViewById(R.id.addProductScrollView);
         backBtn = addProductsView.findViewById(R.id.addProductBackButton);
 
+        productCode = addProductsView.findViewById(R.id.codeProductCode);
+        prodName = addProductsView.findViewById(R.id.nameProductName);
+
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReferenceProduct = firebaseDatabase.getReference("Products");
 
         prodGst.setFilters(new InputFilter[]{new CustomRangeInputFilter(0f,28.0f)});
         prodMrp.setFilters(new InputFilter[]{new CustomRangeInputFilter(0f,1000000f)});
+
+        productScrollView.setDescendantFocusability(ViewGroup.FOCUS_BEFORE_DESCENDANTS);
+        productScrollView.setFocusable(true);
+        productScrollView.setFocusableInTouchMode(true);
+        productScrollView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                }
+            }
+        });
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -343,7 +361,9 @@ public class AddProductsFragment extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if(event.getAction() == KeyEvent.ACTION_DOWN){
-                    if(keyCode == KeyEvent.KEYCODE_BACK){
+                    if(keyCode == KeyEvent.KEYCODE_BACK)
+                    {
+                        Toast.makeText(mContext, "Back Pressed", Toast.LENGTH_SHORT).show();
                         requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, new HomeFragment()).commit();
                         return true;
                     }
@@ -352,5 +372,27 @@ public class AddProductsFragment extends Fragment {
             }
         });
         super.onActivityCreated(savedInstanceState);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
+    {
+        super.onViewCreated(view, savedInstanceState);
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event)
+            {
+                if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_BACK) {
+                    InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(productCode.getWindowToken(), 0);
+                    productCode.clearFocus();
+                    Toast.makeText(mContext, "Back Pressed", Toast.LENGTH_SHORT).show();
+                    return true;
+
+
+                }
+                return false;
+            }
+        });
     }
 }
