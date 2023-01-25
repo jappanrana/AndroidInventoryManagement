@@ -85,7 +85,9 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:orientation="vertical"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -218,7 +220,7 @@
                             android:focusableInTouchMode="true"
                             android:fontFamily="@font/inter_regular"
                             android:inputType="textCapSentences"
-                            android:maxLength="64"
+                            android:maxLength="35"
                             android:nextFocusDown="@id/mrpAddProduct"
                             android:singleLine="true"
                             android:textColor="@color/black"

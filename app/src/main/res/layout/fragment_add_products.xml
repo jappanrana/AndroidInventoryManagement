@@ -181,7 +181,7 @@
                             android:cursorVisible="true"
                             android:fontFamily="@font/inter_regular"
                             android:inputType="textCapSentences"
-                            android:maxLength="64"
+                            android:maxLength="35"
                             android:nextFocusDown="@id/mrpAddProduct"
                             android:singleLine="true"
                             android:textColor="@color/black"
