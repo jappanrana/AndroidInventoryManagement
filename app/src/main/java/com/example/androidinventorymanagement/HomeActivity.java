@@ -115,7 +115,8 @@ public class HomeActivity extends AppCompatActivity {
         String back = getSharedPrefBackState(mContext);
         if (Constances.BACK_ADD_PRODUCT.equals(back)){
             getSupportFragmentManager().beginTransaction().replace(R.id.frame, new HomeFragment()).commit();
-            setSharedPrefBackState(mContext,Constances.BACK_HOME);
+        }else if(Constances.BACK_SHOW_PRODUCT.equals(back)){
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame, new HomeFragment()).commit();
         }
         else{
             AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogTheme);

@@ -38,6 +38,7 @@ import com.example.androidinventorymanagement.Models.ProductsModel;
 import com.example.androidinventorymanagement.Navigation.HomeFragment;
 import com.example.androidinventorymanagement.R;
 import com.example.androidinventorymanagement.Utils.CommonMethods;
+import com.example.androidinventorymanagement.Utils.Constances;
 import com.example.androidinventorymanagement.Utils.CustomRangeInputFilter;
 import com.example.androidinventorymanagement.Utils.SharedPreferenceMethods;
 import com.google.android.material.button.MaterialButton;
@@ -90,6 +91,8 @@ public class ShowProductFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         mContext = getContext();
+
+        SharedPreferenceMethods.setSharedPrefBackState(mContext, Constances.BACK_SHOW_PRODUCT);
 
         getActivity().findViewById(R.id.bottomNavigationView).setVisibility(View.GONE);
 
@@ -348,26 +351,6 @@ public class ShowProductFragment extends Fragment {
         scanIntent.setData(imageUri);
         context.sendBroadcast(scanIntent);
 
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        requireView().setFocusableInTouchMode(true);
-        requireView().requestFocus();
-
-        requireView().setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if(event.getAction() == KeyEvent.ACTION_DOWN){
-                    if(keyCode == KeyEvent.KEYCODE_BACK){
-                        requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, new HomeFragment()).commit();
-                        return true;
-                    }
-                }
-                return false;
-            }
-        });
-        super.onActivityCreated(savedInstanceState);
     }
 
     public String getMonth(int month){
