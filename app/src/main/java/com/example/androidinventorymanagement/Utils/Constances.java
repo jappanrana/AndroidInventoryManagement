@@ -8,6 +8,11 @@ public class Constances {
     public static String NAVIGATION_EDITPROD_QUOTE = "Edit product Quote";
 
 
+    public static String BACK_HOME = "HOME";
+    public static String BACK_ADD_PRODUCT = "Add Product";
+//    public static String BACK_HOME = "HOME";
+//    public static String BACK_HOME = "HOME";
+
 
     public static String USER_ROLE_ADMIN = "admin";
 

@@ -2,6 +2,8 @@ package com.example.androidinventorymanagement.Fragements;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
 
+import static com.example.androidinventorymanagement.Utils.SharedPreferenceMethods.setSharedPrefBackState;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,6 +26,7 @@ import android.widget.Toast;
 
 import com.example.androidinventorymanagement.Navigation.HomeFragment;
 import com.example.androidinventorymanagement.R;
+import com.example.androidinventorymanagement.Utils.Constances;
 import com.example.androidinventorymanagement.Utils.CustomRangeInputFilter;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
@@ -57,6 +60,8 @@ public class AddProductsFragment extends Fragment {
         View addProductsView = inflater.inflate(R.layout.fragment_add_products, container, false);
         
         mContext = getContext();
+
+        setSharedPrefBackState(mContext, Constances.BACK_ADD_PRODUCT);
 
         getActivity().findViewById(R.id.bottomNavigationView).setVisibility(View.GONE);
 
@@ -353,52 +358,52 @@ public class AddProductsFragment extends Fragment {
         return addProductsView;
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        requireView().setFocusableInTouchMode(true);
-        requireView().requestFocus();
-
-        requireView().setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if(event.getAction() == KeyEvent.ACTION_DOWN){
-                    if(keyCode == KeyEvent.KEYCODE_BACK)
-                    {
-                        Toast.makeText(mContext, "Back Pressed", Toast.LENGTH_SHORT).show();
-
-                        requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, new HomeFragment()).commit();
-                        return true;
-                    }
-                }
-                return false;
-            }
-        });
-        super.onActivityCreated(savedInstanceState);
-    }
-
-
+//    @Override
+//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+//        requireView().setFocusableInTouchMode(true);
+//        requireView().requestFocus();
+//
+//        requireView().setOnKeyListener(new View.OnKeyListener() {
+//            @Override
+//            public boolean onKey(View v, int keyCode, KeyEvent event) {
+//                if(event.getAction() == KeyEvent.ACTION_DOWN){
+//                    if(keyCode == KeyEvent.KEYCODE_BACK)
+//                    {
+//                        Toast.makeText(mContext, "Back Pressed", Toast.LENGTH_SHORT).show();
+//
+//                        requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, new HomeFragment()).commit();
+//                        return true;
+//                    }
+//                }
+//                return false;
+//            }
+//        });
+//        super.onActivityCreated(savedInstanceState);
+//    }
 
 
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
-    {
-        super.onViewCreated(view, savedInstanceState);
-        view.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event)
-            {
-                if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_BACK) {
-                    InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(productCode.getWindowToken(), 0);
-//                    test.clearFocus();
-                    Toast.makeText(mContext, "Back Pressed", Toast.LENGTH_SHORT).show();
-                    return true;
 
 
-                }
-                return false;
-            }
-        });
-    }
+//    @Override
+//    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
+//    {
+//        super.onViewCreated(view, savedInstanceState);
+//        view.setOnKeyListener(new View.OnKeyListener() {
+//            @Override
+//            public boolean onKey(View v, int keyCode, KeyEvent event)
+//            {
+//                if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_BACK) {
+//                    InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+//                    imm.hideSoftInputFromWindow(productCode.getWindowToken(), 0);
+////                    test.clearFocus();
+//                    Toast.makeText(mContext, "Back Pressed", Toast.LENGTH_SHORT).show();
+//                    return true;
+//
+//
+//                }
+//                return false;
+//            }
+//        });
+//    }
 }

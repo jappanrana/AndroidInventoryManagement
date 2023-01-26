@@ -119,4 +119,14 @@ public class SharedPreferenceMethods {
         return Editable;
     }
 
+    public static void setSharedPrefBackState(Context context, String value){
+        SharedPreferences sharedPreferenceObject = context.getSharedPreferences("sharedPrefStorage",0);
+        sharedPreferenceObject.edit().putString("Back",value).apply();
+    }
+
+    public static String getSharedPrefBackState(Context context) {
+        SharedPreferences sharedPreferenceObject = context.getSharedPreferences("sharedPrefStorage",0);
+        String Back = sharedPreferenceObject.getString("Back",Constances.BACK_HOME);
+        return Back;
+    }
 }

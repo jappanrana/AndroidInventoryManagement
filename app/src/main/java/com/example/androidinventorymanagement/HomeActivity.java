@@ -1,6 +1,8 @@
 package com.example.androidinventorymanagement;
 
+import static com.example.androidinventorymanagement.Utils.SharedPreferenceMethods.getSharedPrefBackState;
 import static com.example.androidinventorymanagement.Utils.SharedPreferenceMethods.getSharedPrefNavigation;
+import static com.example.androidinventorymanagement.Utils.SharedPreferenceMethods.setSharedPrefBackState;
 import static com.example.androidinventorymanagement.Utils.SharedPreferenceMethods.setSharedPrefNavigation;
 
 import androidx.annotation.NonNull;
@@ -14,6 +16,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -39,6 +42,8 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         mContext = HomeActivity.this;
+
+        setSharedPrefBackState(mContext,Constances.BACK_HOME);
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         String navigation = getSharedPrefNavigation(mContext);
@@ -107,31 +112,37 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogTheme);
-        builder.setTitle("Exit App")
-                .setMessage("Are you sure you want to leave the app?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
-                {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
+        String back = getSharedPrefBackState(mContext);
+        if (Constances.BACK_ADD_PRODUCT.equals(back)){
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame, new HomeFragment()).commit();
+            setSharedPrefBackState(mContext,Constances.BACK_HOME);
+        }
+        else{
+            AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogTheme);
+            builder.setTitle("Exit App")
+                    .setMessage("Are you sure you want to leave the app?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
 
-                })
-                .setNegativeButton("No", null);
+                    })
+                    .setNegativeButton("No", null);
 
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
 
-        alertDialog.getButton(android.app.AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
-        alertDialog.getButton(android.app.AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+            alertDialog.getButton(android.app.AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+            alertDialog.getButton(android.app.AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
 
-        Button btnPositive = alertDialog.getButton(android.app.AlertDialog.BUTTON_POSITIVE);
-        Button btnNegative = alertDialog.getButton(android.app.AlertDialog.BUTTON_NEGATIVE);
+            Button btnPositive = alertDialog.getButton(android.app.AlertDialog.BUTTON_POSITIVE);
+            Button btnNegative = alertDialog.getButton(android.app.AlertDialog.BUTTON_NEGATIVE);
 
-        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) btnPositive.getLayoutParams();
-        layoutParams.weight = 10;
-        btnPositive.setLayoutParams(layoutParams);
-        btnNegative.setLayoutParams(layoutParams);
+            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) btnPositive.getLayoutParams();
+            layoutParams.weight = 10;
+            btnPositive.setLayoutParams(layoutParams);
+            btnNegative.setLayoutParams(layoutParams);
+        }
     }
 }
