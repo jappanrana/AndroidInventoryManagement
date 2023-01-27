@@ -123,6 +123,7 @@ public class EditQuoteFragment extends Fragment {
                     {
                         prodGstEditText.clearFocus();
                         prodNameEditText.clearFocus();
+                        prodQtyEditText.clearFocus();
                         prodMrpEditText.clearFocus();
                         getActivity().finish();
 //                        HomeFragment homeFragment = new HomeFragment();
@@ -145,11 +146,25 @@ public class EditQuoteFragment extends Fragment {
         if(getView() == null){
             return;
         }
-        prodNameEditText.setOnKeyListener(new View.OnKeyListener() {
+        prodNameEditText.setOnKeyListener(new View.OnKeyListener()
+        {
             @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
+            public boolean onKey(View v, int keyCode, KeyEvent event)
+            {
                 if (keyCode == KeyEvent.KEYCODE_BACK) {
                     prodNameEditText.clearFocus();
+                    getView().requestFocus();
+                }
+                return false;
+            }
+        });
+        prodQtyEditText.setOnKeyListener(new View.OnKeyListener()
+        {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event)
+            {
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
+                    prodQtyEditText.clearFocus();
                     getView().requestFocus();
                 }
                 return false;

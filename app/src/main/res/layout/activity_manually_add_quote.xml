@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,10 +7,17 @@
     tools:context=".Activities.ManuallyAddQuoteActivity">
 
     <LinearLayout
+        android:id="@+id/linearLayout11"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="@dimen/_5sdp"
-        android:orientation="vertical">
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="6dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@+id/nestedScrollView3"
+        app:layout_constraintStart_toEndOf="@+id/nestedScrollView3"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,7 +33,7 @@
                 android:layout_width="@dimen/_35sdp"
                 android:layout_height="@dimen/_35sdp"
                 android:padding="@dimen/_5sdp"
-                android:src="@drawable/backkey2"/>
+                android:src="@drawable/backkey2" />
 
             <TextView
                 android:id="@+id/addProductTextView"
@@ -35,9 +42,9 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="1dp"
                 android:fontFamily="@font/inter_bold"
+                android:text="Add Product"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_13sdp"
-                android:text="Add Product"/>
+                android:textSize="@dimen/_13sdp" />
         </LinearLayout>
 
         <LinearLayout
@@ -71,273 +78,292 @@
                 android:textStyle="italic" />
 
         </LinearLayout>
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="@dimen/_10sdp"
-            android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_8sdp"
-                android:layout_marginEnd="@dimen/_8sdp"
-                android:layout_marginTop="@dimen/_25sdp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_2sdp"
-                    android:fontFamily="@font/inter_bold"
-                    android:text="Product Details"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_15sdp"
-                    android:textStyle="bold" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Product Code"
-                    android:textColorHint="@color/MediumGrey"
-                    app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
-                    app:boxCornerRadiusBottomStart="@dimen/_8sdp"
-                    app:boxCornerRadiusTopEnd="@dimen/_8sdp"
-                    app:boxCornerRadiusTopStart="@dimen/_8sdp"
-                    app:boxStrokeColor="@color/black"
-                    android:inputType="number"
-                    app:endIconMode="clear_text"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    app:hintTextColor="@color/MediumGrey">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/codeQuoteProductCode"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:cursorVisible="true"
-                        android:focusable="true"
-                        android:focusableInTouchMode="true"
-                        android:nextFocusDown="@id/name"
-                        android:fontFamily="@font/inter_regular"
-                        android:inputType="number"
-                        android:singleLine="true"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/MediumGrey"
-                        android:textCursorDrawable="@color/black"
-                        android:textSize="@dimen/_12sdp">
-
-
-                    </com.google.android.material.textfield.TextInputEditText>
-
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_3sdp"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:hint="Product name"
-                    android:inputType="text"
-                    android:textColorHint="@color/MediumGrey"
-                    app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
-                    app:boxCornerRadiusBottomStart="@dimen/_8sdp"
-                    app:boxCornerRadiusTopEnd="@dimen/_8sdp"
-                    app:boxCornerRadiusTopStart="@dimen/_8sdp"
-                    app:boxStrokeColor="@color/black"
-                    app:endIconMode="clear_text"
-                    app:hintTextColor="@color/MediumGrey">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:cursorVisible="true"
-                        android:focusable="true"
-                        android:focusableInTouchMode="true"
-                        android:nextFocusDown="@id/mrpQuoteAddProduct"
-                        android:fontFamily="@font/inter_regular"
-                        android:inputType="text"
-                        android:singleLine="true"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/MediumGrey"
-                        android:textCursorDrawable="@color/black"
-                        android:textSize="@dimen/_12sdp">
-
-
-                    </com.google.android.material.textfield.TextInputEditText>
-
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_3sdp"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:hint="Sale Price"
-                    android:inputType="number"
-                    android:textColorHint="@color/MediumGrey"
-                    app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
-                    app:boxCornerRadiusBottomStart="@dimen/_8sdp"
-                    app:boxCornerRadiusTopEnd="@dimen/_8sdp"
-                    app:boxCornerRadiusTopStart="@dimen/_8sdp"
-                    app:boxStrokeColor="@color/black"
-                    app:endIconMode="clear_text"
-                    app:hintTextColor="@color/MediumGrey">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/mrpQuoteAddProduct"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:cursorVisible="true"
-                        android:focusable="true"
-                        android:focusableInTouchMode="true"
-                        android:maxLength="9"
-                        android:nextFocusDown="@id/agentQuoteMrpAddProduct"
-                        android:fontFamily="@font/inter_regular"
-                        android:inputType="number"
-                        android:singleLine="true"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/MediumGrey"
-                        android:textCursorDrawable="@color/black"
-                        android:textSize="@dimen/_12sdp">
-
-
-                    </com.google.android.material.textfield.TextInputEditText>
-
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_3sdp"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:hint="GST%"
-                    android:inputType="number"
-                    android:textColorHint="@color/MediumGrey"
-                    app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
-                    app:boxCornerRadiusBottomStart="@dimen/_8sdp"
-                    app:boxCornerRadiusTopEnd="@dimen/_8sdp"
-                    app:boxCornerRadiusTopStart="@dimen/_8sdp"
-                    app:boxStrokeColor="@color/black"
-                    app:endIconMode="clear_text"
-                    app:hintTextColor="@color/MediumGrey">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/agentQuoteMrpAddProduct"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:cursorVisible="true"
-                        android:focusable="true"
-                        android:focusableInTouchMode="true"
-                        android:maxLength="3"
-                        android:nextFocusDown="@id/discountQuoteAddProduct"
-                        android:fontFamily="@font/inter_regular"
-                        android:inputType="number"
-                        android:singleLine="true"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/MediumGrey"
-                        android:textCursorDrawable="@color/black"
-                        android:textSize="@dimen/_12sdp">
-
-                    </com.google.android.material.textfield.TextInputEditText>
-
-                </com.google.android.material.textfield.TextInputLayout>
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_3sdp"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:hint="Discount %"
-                    android:inputType="number"
-                    android:textColorHint="@color/MediumGrey"
-                    app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
-                    app:boxCornerRadiusBottomStart="@dimen/_8sdp"
-                    app:boxCornerRadiusTopEnd="@dimen/_8sdp"
-                    app:boxCornerRadiusTopStart="@dimen/_8sdp"
-                    app:boxStrokeColor="@color/black"
-                    app:endIconMode="clear_text"
-                    app:hintTextColor="@color/MediumGrey">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/discountQuoteAddProduct"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:cursorVisible="true"
-                        android:focusable="true"
-                        android:focusableInTouchMode="true"
-                        android:maxLength="3"
-                        android:fontFamily="@font/inter_regular"
-                        android:inputType="number"
-                        android:singleLine="true"
-                        android:textColor="@color/black"
-                        android:textColorHint="@color/MediumGrey"
-                        android:textCursorDrawable="@color/black"
-                        android:textSize="@dimen/_12sdp">
-
-                    </com.google.android.material.textfield.TextInputEditText>
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:orientation="horizontal"
-                    android:weightSum="2">
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/submitQuoteBtn"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_50sdp"
-                        android:layout_marginEnd="@dimen/_5sdp"
-                        android:layout_weight="1.2"
-                        android:backgroundTint="@color/Blue"
-                        android:fontFamily="@font/inter_regular"
-                        android:letterSpacing="0"
-                        android:text="Submit"
-                        android:textAllCaps="false"
-                        android:textSize="@dimen/_14sdp"
-                        app:cornerRadius="@dimen/_10sdp"
-                        app:elevation="0dp">
-
-                    </com.google.android.material.button.MaterialButton>
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/addQuoteMoreBtn"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_50sdp"
-                        android:layout_marginStart="@dimen/_5sdp"
-                        android:layout_weight="0.8"
-                        android:backgroundTint="@color/black"
-                        android:fontFamily="@font/inter_regular"
-                        android:letterSpacing="0"
-                        android:text="Add More"
-                        android:textAllCaps="false"
-                        android:textSize="@dimen/_13sdp"
-                        app:cornerRadius="@dimen/_10sdp"
-                        app:elevation="0dp">
-
-                    </com.google.android.material.button.MaterialButton>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </ScrollView>
 
     </LinearLayout>
 
-</LinearLayout>
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:isScrollContainer="true"
+        android:orientation="vertical"
+        android:overScrollMode="always"
+        android:paddingTop="@dimen/_10sdp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout11">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_25sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:fontFamily="@font/inter_bold"
+                android:text="Product Details"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:hint="Product Code"
+                android:inputType="number"
+                android:textColorHint="@color/MediumGrey"
+                android:visibility="gone"
+                app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
+                app:boxCornerRadiusBottomStart="@dimen/_8sdp"
+                app:boxCornerRadiusTopEnd="@dimen/_8sdp"
+                app:boxCornerRadiusTopStart="@dimen/_8sdp"
+                app:boxStrokeColor="@color/black"
+                app:endIconMode="clear_text"
+                app:hintTextColor="@color/MediumGrey">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/codeQuoteProductCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cursorVisible="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:fontFamily="@font/inter_regular"
+                    android:inputType="number"
+                    android:nextFocusDown="@id/name"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/MediumGrey"
+                    android:textCursorDrawable="@color/black"
+                    android:textSize="@dimen/_12sdp">
+
+
+                </com.google.android.material.textfield.TextInputEditText>
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:hint="Product name"
+                android:inputType="text"
+                android:textColorHint="@color/MediumGrey"
+                app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
+                app:boxCornerRadiusBottomStart="@dimen/_8sdp"
+                app:boxCornerRadiusTopEnd="@dimen/_8sdp"
+                app:boxCornerRadiusTopStart="@dimen/_8sdp"
+                app:boxStrokeColor="@color/black"
+                app:endIconMode="clear_text"
+                app:hintTextColor="@color/MediumGrey">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cursorVisible="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:fontFamily="@font/inter_regular"
+                    android:inputType="text"
+                    android:nextFocusDown="@id/mrpQuoteAddProduct"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/MediumGrey"
+                    android:textCursorDrawable="@color/black"
+                    android:textSize="@dimen/_12sdp">
+
+
+                </com.google.android.material.textfield.TextInputEditText>
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:hint="Sale Price"
+                android:inputType="number"
+                android:textColorHint="@color/MediumGrey"
+                app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
+                app:boxCornerRadiusBottomStart="@dimen/_8sdp"
+                app:boxCornerRadiusTopEnd="@dimen/_8sdp"
+                app:boxCornerRadiusTopStart="@dimen/_8sdp"
+                app:boxStrokeColor="@color/black"
+                app:endIconMode="clear_text"
+                app:hintTextColor="@color/MediumGrey">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/mrpQuoteAddProduct"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cursorVisible="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:fontFamily="@font/inter_regular"
+                    android:inputType="number"
+                    android:maxLength="9"
+                    android:nextFocusDown="@id/agentQuoteMrpAddProduct"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/MediumGrey"
+                    android:textCursorDrawable="@color/black"
+                    android:textSize="@dimen/_12sdp">
+
+
+                </com.google.android.material.textfield.TextInputEditText>
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:hint="GST%"
+                android:inputType="number"
+                android:textColorHint="@color/MediumGrey"
+                app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
+                app:boxCornerRadiusBottomStart="@dimen/_8sdp"
+                app:boxCornerRadiusTopEnd="@dimen/_8sdp"
+                app:boxCornerRadiusTopStart="@dimen/_8sdp"
+                app:boxStrokeColor="@color/black"
+                app:endIconMode="clear_text"
+                app:hintTextColor="@color/MediumGrey">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/agentQuoteMrpAddProduct"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cursorVisible="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:fontFamily="@font/inter_regular"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:nextFocusDown="@id/discountQuoteAddProduct"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/MediumGrey"
+                    android:textCursorDrawable="@color/black"
+                    android:textSize="@dimen/_12sdp">
+
+                </com.google.android.material.textfield.TextInputEditText>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:hint="Discount %"
+                android:inputType="number"
+                android:textColorHint="@color/MediumGrey"
+                app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
+                app:boxCornerRadiusBottomStart="@dimen/_8sdp"
+                app:boxCornerRadiusTopEnd="@dimen/_8sdp"
+                app:boxCornerRadiusTopStart="@dimen/_8sdp"
+                app:boxStrokeColor="@color/black"
+                app:endIconMode="clear_text"
+                app:hintTextColor="@color/MediumGrey">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/discountQuoteAddProduct"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:cursorVisible="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:fontFamily="@font/inter_regular"
+                    android:inputType="number"
+                    android:maxLength="3"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/MediumGrey"
+                    android:textCursorDrawable="@color/black"
+                    android:textSize="@dimen/_12sdp">
+
+                </com.google.android.material.textfield.TextInputEditText>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        android:weightSum="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/submitQuoteBtn"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_weight="1.2"
+            android:backgroundTint="@color/Blue"
+            android:fontFamily="@font/inter_regular"
+            android:letterSpacing="0"
+            android:text="Submit"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_14sdp"
+            app:cornerRadius="@dimen/_10sdp"
+            app:elevation="0dp">
+
+        </com.google.android.material.button.MaterialButton>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/addQuoteMoreBtn"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_weight="0.8"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/inter_regular"
+            android:letterSpacing="0"
+            android:text="Add More"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_13sdp"
+            app:cornerRadius="@dimen/_10sdp"
+            app:elevation="0dp">
+
+        </com.google.android.material.button.MaterialButton>
+
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

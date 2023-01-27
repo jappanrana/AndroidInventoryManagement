@@ -96,10 +96,10 @@ public class HomeActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.profile:
-//                        getSupportFragmentManager().beginTransaction().replace(R.id.frame,new ProfileFragment()).commit();
-//                        return true;
-                        Toast.makeText(mContext, "Access Denied", Toast.LENGTH_SHORT).show();
-                        return false;
+                        getSupportFragmentManager().beginTransaction().replace(R.id.frame,new ProfileFragment()).commit();
+                        return true;
+//                        Toast.makeText(mContext, "Access Denied", Toast.LENGTH_SHORT).show();
+//                        return false;
 
                 }
                 return false;

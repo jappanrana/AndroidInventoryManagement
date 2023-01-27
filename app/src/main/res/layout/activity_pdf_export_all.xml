@@ -25,7 +25,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/pankaj_nx_logo" />
+            app:srcCompat="@drawable/pankaj_nx_logo_dark" />
 
         <TextView
             android:id="@+id/staticText1"
@@ -159,6 +159,7 @@
             android:layout_marginEnd="-30dp"
             android:fontFamily="@font/bebas_regular"
             android:gravity="center"
+            android:letterSpacing="0.08"
             android:lines="1"
             android:rotation="270"
             android:text="123456789012"
@@ -170,7 +171,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/pdfExpexportProductCode"
-            app:layout_constraintTop_toTopOf="parent"  />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
 
