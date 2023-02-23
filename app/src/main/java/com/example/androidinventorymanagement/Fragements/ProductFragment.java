@@ -79,7 +79,9 @@ public class ProductFragment extends Fragment {
 
         userRole = SharedPreferenceMethods.getSharedPrefUserRole(mContext);
 
-        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottomNavigationView);
+        SharedPreferenceMethods.setSharedPrefNavigation(mContext,Constances.NAVIGATION_PRODUCT);
+
+//        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottomNavigationView);
 //        bottomNavigationView.getMenu().findItem(R.id.home).setChecked(false);
 
         homeFragmentAdd = productView.findViewById(R.id.homeFragmentAdd);

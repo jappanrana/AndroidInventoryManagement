@@ -64,7 +64,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 public class HomeFragment extends Fragment implements EasyPermissions.PermissionCallbacks{
 
-
+    Context mContext;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,6 +74,10 @@ public class HomeFragment extends Fragment implements EasyPermissions.Permission
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View home = inflater.inflate(R.layout.fragment_home, container, false);
+
+        mContext = getContext();
+
+        SharedPreferenceMethods.setSharedPrefNavigation(mContext,Constances.NAVIGATION_HOME);
 
         getPermissions();
 

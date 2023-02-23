@@ -58,7 +58,7 @@ public class ProfileFragment extends Fragment {
 
         mContext = getContext();
 
-        SharedPreferenceMethods.setSharedPrefNavigation(mContext,Constances.NAVIGATION_HOME);
+        SharedPreferenceMethods.setSharedPrefNavigation(mContext,Constances.NAVIGATION_PROFILE);
 
         sharedQuote.setOnClickListener(new View.OnClickListener() {
             @Override
