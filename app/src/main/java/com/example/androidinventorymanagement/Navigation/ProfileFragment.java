@@ -21,6 +21,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import com.example.androidinventorymanagement.Activities.QuoteScannerActivity;
+import com.example.androidinventorymanagement.Fragements.ProductFragment;
 import com.example.androidinventorymanagement.Fragements.SharedQuoteFragment;
 import com.example.androidinventorymanagement.R;
 import com.example.androidinventorymanagement.Utils.Constances;
@@ -34,7 +35,7 @@ import com.google.android.material.textfield.TextInputEditText;
 public class ProfileFragment extends Fragment {
 
     LinearLayout createGstQuote;
-    LinearLayout logoutProfile,sharedQuote;
+    LinearLayout logoutProfile,sharedQuote,productPage;
     Context mContext;
 
     @Override
@@ -53,11 +54,11 @@ public class ProfileFragment extends Fragment {
         createGstQuote = view.findViewById(R.id.gstQuote);
         logoutProfile = view.findViewById(R.id.logoutProfile);
         sharedQuote = view.findViewById(R.id.sharedQuote);
+        productPage = view.findViewById(R.id.productPage);
 
         mContext = getContext();
 
         SharedPreferenceMethods.setSharedPrefNavigation(mContext,Constances.NAVIGATION_HOME);
-
 
         sharedQuote.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +66,13 @@ public class ProfileFragment extends Fragment {
                 SharedPreferenceMethods.setSharedPrefSharedQuote(mContext, true);
                 SharedQuoteFragment sharedQuoteFragment = new SharedQuoteFragment();
                 getParentFragmentManager().beginTransaction().replace(R.id.frame, sharedQuoteFragment).commit();
+            }
+        });
+        productPage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ProductFragment productFragment = new ProductFragment();
+                getParentFragmentManager().beginTransaction().replace(R.id.frame, productFragment).commit();
             }
         });
 

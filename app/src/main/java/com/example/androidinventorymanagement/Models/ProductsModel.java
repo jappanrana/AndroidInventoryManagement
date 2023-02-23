@@ -8,6 +8,8 @@ public class ProductsModel {
     String gstAmt;
     String key;
 
+    String measurement;
+
     public String getName() {
         return name;
     }
@@ -48,14 +50,23 @@ public class ProductsModel {
         this.key = key;
     }
 
-    public ProductsModel(String name, String code, String mrp, String gstAmt, String key) {
+    public String getMeasurement() {
+        return measurement;
+    }
+
+    public void setMeasurement(String measurement) {
+        this.measurement = measurement;
+    }
+
+    public ProductsModel() {
+    }
+
+    public ProductsModel(String name, String code, String mrp, String gstAmt, String key, String measurement) {
         this.name = name;
         this.code = code;
         this.mrp = mrp;
         this.gstAmt = gstAmt;
         this.key = key;
-    }
-
-    public ProductsModel() {
+        this.measurement = measurement;
     }
 }
