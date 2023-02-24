@@ -73,7 +73,7 @@ public class ShowProductFragment extends Fragment {
 
     Context mContext;
     ImageView barcodeImage,backBtn;
-    EditText prodCode,prodName,prodMrp,prodGst;
+    EditText prodCode,prodName,prodMrp,prodGst,measuremenShowProduct;
     String prodCodeStr,prodNameStr,prodMrpStr,prodGstStr,key;
     MaterialButton exportQRCodeBtn,submitBtn;
     LinearLayout deleteBtn;
@@ -103,6 +103,7 @@ public class ShowProductFragment extends Fragment {
         prodName = ShowProductView.findViewById(R.id.showProductName);
         prodGst = ShowProductView.findViewById(R.id.gstShowProduct);
         prodMrp = ShowProductView.findViewById(R.id.mrpShowProduct);
+        measuremenShowProduct = ShowProductView.findViewById(R.id.measuremenShowProduct);
         backBtn = ShowProductView.findViewById(R.id.productBackButton);
         exportQRCodeBtn = ShowProductView.findViewById(R.id.ExportBtn);
         deleteBtn = ShowProductView.findViewById(R.id.deleteBtn);
@@ -159,6 +160,7 @@ public class ShowProductFragment extends Fragment {
         prodName.setText(finalname);
         prodMrp.setText(prodMrpStr);
         prodGst.setText(prodGstStr);
+        measuremenShowProduct.setText(showProduct.getMeasurement());
 
         exportQRCodeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -256,6 +258,7 @@ public class ShowProductFragment extends Fragment {
                 String mProdCode = prodCode.getText().toString();
                 String MProdMrp = prodMrp.getText().toString();
                 String MProdGst = prodGst.getText().toString();
+                String measurement = measuremenShowProduct.getText().toString();
 
                 if (!mProdName.equals("") && !mProdCode.equals("") && !MProdMrp.equals("") && !MProdGst.equals(""))
                 {
@@ -265,6 +268,7 @@ public class ShowProductFragment extends Fragment {
                         databaseReferenceProduct.child(key).child("code").setValue(mProdCode).toString();
                         databaseReferenceProduct.child(key).child("mrp").setValue(MProdMrp).toString();
                         databaseReferenceProduct.child(key).child("gstAmt").setValue(MProdGst).toString();
+                        databaseReferenceProduct.child(key).child("measurement").setValue(measurement).toString();
                         hideKeyboard(v);
                         Toast.makeText(mContext, "Successfully Updated", Toast.LENGTH_SHORT).show();
                         HomeFragment homeFragment = new HomeFragment();
@@ -286,6 +290,7 @@ public class ShowProductFragment extends Fragment {
                                     databaseReferenceProduct.child(key).child("mrp").setValue(MProdMrp).toString();
                                     databaseReferenceProduct.child(key).child("code").setValue(mProdCode).toString();
                                     databaseReferenceProduct.child(key).child("gstAmt").setValue(MProdGst).toString();
+                                    databaseReferenceProduct.child(key).child("measurement").setValue(measurement).toString();
                                     hideKeyboard(v);
                                     Toast.makeText(mContext, "Successfully Updated", Toast.LENGTH_SHORT).show();
                                     HomeFragment homeFragment = new HomeFragment();

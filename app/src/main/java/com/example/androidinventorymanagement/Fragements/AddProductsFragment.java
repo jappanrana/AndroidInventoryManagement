@@ -40,7 +40,7 @@ import java.util.Locale;
 
 public class AddProductsFragment extends Fragment {
 
-    EditText prodName,prodCode,prodMrp,prodGst,test;
+    EditText prodName,prodCode,prodMrp,prodGst,prodMeasurement;
     TextInputEditText productCode, productName;
     MaterialButton submitBtn,addMoreBtn;
     DatabaseReference databaseReferenceProduct;
@@ -70,6 +70,7 @@ public class AddProductsFragment extends Fragment {
         prodCode = addProductsView.findViewById(R.id.codeProductCode);
         prodMrp = addProductsView.findViewById(R.id.mrpAddProduct);
         prodGst = addProductsView.findViewById(R.id.gstAddProduct);
+        prodMeasurement = addProductsView.findViewById(R.id.measurementAddProduct);
         submitBtn = addProductsView.findViewById(R.id.submitBtn);
         addMoreBtn = addProductsView.findViewById(R.id.addMoreBtn);
         productScrollView = addProductsView.findViewById(R.id.addProductScrollView);
@@ -136,6 +137,7 @@ public class AddProductsFragment extends Fragment {
                 String mProdCode = prodCode.getText().toString();
                 String MProdMrp = prodMrp.getText().toString();
                 String MProdGst = prodGst.getText().toString();
+                String measurement = prodMeasurement.getText().toString();
 
                 if(!mProdName.equals("") && !MProdMrp.equals("")) {
                     if(MProdGst.equals("")){
@@ -147,6 +149,7 @@ public class AddProductsFragment extends Fragment {
                     databaseReferenceProduct.child(key).child("mrp").setValue(MProdMrp).toString();
                     databaseReferenceProduct.child(key).child("gstAmt").setValue(MProdGst).toString();
                     databaseReferenceProduct.child(key).child("key").setValue(key).toString();
+                    databaseReferenceProduct.child(key).child("measurement").setValue(measurement).toString();
                     Toast.makeText(mContext, "Successfully Added product", Toast.LENGTH_SHORT).show();
 
                     InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(INPUT_METHOD_SERVICE);
@@ -169,6 +172,7 @@ public class AddProductsFragment extends Fragment {
                 String mProdCode = prodCode.getText().toString();
                 String MProdMrp = prodMrp.getText().toString();
                 String MProdGst = prodGst.getText().toString();
+                String measurement = prodMeasurement.getText().toString();
 
                 if(!mProdName.equals("") && !MProdMrp.equals("")) {
                     if(MProdGst.equals("")){
@@ -180,6 +184,7 @@ public class AddProductsFragment extends Fragment {
                     databaseReferenceProduct.child(key).child("mrp").setValue(MProdMrp).toString();
                     databaseReferenceProduct.child(key).child("gstAmt").setValue(MProdGst).toString();
                     databaseReferenceProduct.child(key).child("key").setValue(key).toString();
+                    databaseReferenceProduct.child(key).child("measurement").setValue(measurement).toString();
                     Toast.makeText(mContext, "Successfully Added product", Toast.LENGTH_SHORT).show();
 
                     prodName.setText(null);

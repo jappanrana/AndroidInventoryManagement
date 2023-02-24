@@ -35,7 +35,6 @@ public class HomeActivity extends AppCompatActivity {
     Context mContext;
     BottomNavigationView bottomNavigationView;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
