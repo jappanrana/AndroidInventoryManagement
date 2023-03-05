@@ -13,7 +13,7 @@
         android:layout_marginTop="370dp"
         android:fontFamily="@font/inter_bold"
         android:text="Create you first Party"
-        android:visibility="visible"
+        android:visibility="gone"
         android:textColor="@color/black"
         android:textSize="@dimen/_14sdp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:textAlignment="center"
-        android:visibility="visible"
+        android:visibility="gone"
         app:cardBackgroundColor="@color/Blue"
         app:cardCornerRadius="@dimen/_50sdp"
         app:layout_constraintEnd_toEndOf="@+id/textView5"
@@ -45,4 +45,80 @@
             android:textColor="@color/white"
             android:textSize="@dimen/_16sdp" />
     </androidx.cardview.widget.CardView>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/PartySearch"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:hint="Search for name / No. / Address etc."
+        android:textColorHint="@color/MediumGrey"
+        app:boxCornerRadiusBottomEnd="@dimen/_5sdp"
+        app:boxCornerRadiusBottomStart="@dimen/_5sdp"
+        app:boxCornerRadiusTopEnd="@dimen/_5sdp"
+        app:boxCornerRadiusTopStart="@dimen/_5sdp"
+        app:boxStrokeColor="@color/black"
+        app:hintTextColor="@color/MediumGrey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:startIconDrawable="@drawable/searchicon">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cursorVisible="true"
+            android:fontFamily="@font/inter_semibold"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textColorHint="@color/MediumGrey"
+            android:textCursorDrawable="@color/MediumGrey"
+            android:textSize="@dimen/_12sdp">
+
+        </com.google.android.material.textfield.TextInputEditText>
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/inter_bold"
+        android:text="All Parties"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_16sdp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PartySearch" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" >
+
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/floatingActionButton"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_margin="30dp"
+        android:background="@drawable/add_quote_img_btn"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
