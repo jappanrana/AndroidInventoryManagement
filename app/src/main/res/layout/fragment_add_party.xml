@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragements.AddPartyFragment">
+
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="370dp"
+        android:fontFamily="@font/inter_bold"
+        android:text="Create you first Party"
+        android:visibility="gone"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_14sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textAlignment="center"
+        android:visibility="gone"
+        app:cardBackgroundColor="@color/Blue"
+        app:cardCornerRadius="@dimen/_50sdp"
+        app:layout_constraintEnd_toEndOf="@+id/textView5"
+        app:layout_constraintStart_toStartOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/textView5">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/inter_bold"
+            android:paddingStart="@dimen/_60sdp"
+            android:paddingTop="@dimen/_12sdp"
+            android:paddingEnd="@dimen/_60sdp"
+            android:paddingBottom="@dimen/_13sdp"
+            android:text="Add Party"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_16sdp" />
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/view3"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView5"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40sdp"
+            app:cardBackgroundColor="@color/LightGrey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/inter_bold"
+                android:text="Save &amp; New"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13sdp" />
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="0.1dp"
+        android:layout_height="0.1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view3"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView6"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40sdp"
+            app:cardBackgroundColor="#700477E2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/inter_bold"
+                android:text="Save Party"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_13sdp" />
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="10dp"
+        android:hint="Party Name"
+        android:textColorHint="@color/MediumGrey"
+        app:boxCornerRadiusBottomEnd="@dimen/_5sdp"
+        app:boxCornerRadiusBottomStart="@dimen/_5sdp"
+        app:boxCornerRadiusTopEnd="@dimen/_5sdp"
+        app:boxCornerRadiusTopStart="@dimen/_5sdp"
+        app:boxStrokeColor="@color/black"
+        app:hintTextColor="@color/MediumGrey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout12">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cursorVisible="true"
+            android:fontFamily="@font/inter_semibold"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textColorHint="@color/MediumGrey"
+            android:textCursorDrawable="@color/MediumGrey"
+            android:textSize="@dimen/_12sdp">
+
+        </com.google.android.material.textfield.TextInputEditText>
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout2"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:hint="Contact Number"
+        android:textColorHint="@color/MediumGrey"
+        app:boxCornerRadiusBottomEnd="@dimen/_5sdp"
+        app:boxCornerRadiusBottomStart="@dimen/_5sdp"
+        app:boxCornerRadiusTopEnd="@dimen/_5sdp"
+        app:boxCornerRadiusTopStart="@dimen/_5sdp"
+        app:boxStrokeColor="@color/black"
+        app:hintTextColor="@color/MediumGrey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cursorVisible="true"
+            android:fontFamily="@font/inter_semibold"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textColorHint="@color/MediumGrey"
+            android:textCursorDrawable="@color/MediumGrey"
+            android:textSize="@dimen/_12sdp">
+
+        </com.google.android.material.textfield.TextInputEditText>
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout3"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:hint="GST No."
+        android:textColorHint="@color/MediumGrey"
+        app:boxCornerRadiusBottomEnd="@dimen/_5sdp"
+        app:boxCornerRadiusBottomStart="@dimen/_5sdp"
+        app:boxCornerRadiusTopEnd="@dimen/_5sdp"
+        app:boxCornerRadiusTopStart="@dimen/_5sdp"
+        app:boxStrokeColor="@color/black"
+        app:hintTextColor="@color/MediumGrey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cursorVisible="true"
+            android:fontFamily="@font/inter_semibold"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textColorHint="@color/MediumGrey"
+            android:textCursorDrawable="@color/MediumGrey"
+            android:textSize="@dimen/_12sdp">
+
+        </com.google.android.material.textfield.TextInputEditText>
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:hint="Address"
+        android:textColorHint="@color/MediumGrey"
+        app:boxCornerRadiusBottomEnd="@dimen/_5sdp"
+        app:boxCornerRadiusBottomStart="@dimen/_5sdp"
+        app:boxCornerRadiusTopEnd="@dimen/_5sdp"
+        app:boxCornerRadiusTopStart="@dimen/_5sdp"
+        app:boxStrokeColor="@color/black"
+        app:hintTextColor="@color/MediumGrey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cursorVisible="true"
+            android:fontFamily="@font/inter_semibold"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textColorHint="@color/MediumGrey"
+            android:textCursorDrawable="@color/MediumGrey"
+            android:textSize="@dimen/_12sdp">
+
+        </com.google.android.material.textfield.TextInputEditText>
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/linearLayout12"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/backkey2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="Add New Party"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
