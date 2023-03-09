@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +24,7 @@ import com.example.androidinventorymanagement.Navigation.ProfileFragment;
 import com.example.androidinventorymanagement.R;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -34,7 +37,7 @@ public class SharedQuoteFragment extends Fragment {
     DatabaseReference databaseReferenceQuotations;
     SharedQuoteAdapter sharedQuoteAdapter;
     ImageView sharedQuotionsback;
-    SearchView searchView;
+    TextInputEditText searchView;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,8 +55,6 @@ public class SharedQuoteFragment extends Fragment {
 
         mContext = getContext();
 
-        getActivity().findViewById(R.id.bottomNavigationView).setVisibility(View.GONE);
-
         databaseReferenceQuotations = FirebaseDatabase.getInstance().getReference("quotations");
 
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
@@ -65,17 +66,22 @@ public class SharedQuoteFragment extends Fragment {
         recyclerView.setAdapter(sharedQuoteAdapter);
         sharedQuoteAdapter.startListening();
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        searchView.addTextChangedListener(new TextWatcher() {
             @Override
-            public boolean onQueryTextSubmit(String query) {
-                processesSearch(query.toLowerCase(Locale.ROOT));
-                return false;
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
             }
 
             @Override
-            public boolean onQueryTextChange(String newText) {
-                processesSearch(newText.toLowerCase(Locale.ROOT));
-                return false;
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                processesSearch(s.toString().toLowerCase(Locale.ROOT));
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                processesSearch(s.toString().toLowerCase(Locale.ROOT));
             }
         });
 

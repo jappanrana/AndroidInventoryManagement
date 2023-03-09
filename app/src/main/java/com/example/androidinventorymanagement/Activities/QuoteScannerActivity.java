@@ -12,11 +12,17 @@ import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.InputFilter;
+import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +34,7 @@ import com.example.androidinventorymanagement.Adapters.ScanItemAdapter;
 import com.example.androidinventorymanagement.Models.QuoteModel;
 import com.example.androidinventorymanagement.R;
 import com.example.androidinventorymanagement.SqlDB.DbManager;
+import com.example.androidinventorymanagement.Utils.CustomRangeInputFilter;
 import com.example.androidinventorymanagement.Utils.KeyboardUtils;
 import com.example.androidinventorymanagement.Utils.SharedPreferenceMethods;
 import com.google.android.material.button.MaterialButton;
@@ -70,7 +77,6 @@ public class QuoteScannerActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         music = MediaPlayer.create(QuoteScannerActivity.this, R.raw.beep_beep);
 
-
         CodeScannerView scannerView = findViewById(R.id.scanner_view);
         mCodeScanner = new CodeScanner(this, scannerView);
         mCodeScanner.setCamera(CodeScanner.CAMERA_BACK);
@@ -85,6 +91,7 @@ public class QuoteScannerActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         mCodeScanner.stopPreview();
+                        music.start();
                         DatabaseReference RedLineRouteReference = FirebaseDatabase.getInstance().getReference().child("Products").child(result.getText());
                         RedLineRouteReference.addValueEventListener(new ValueEventListener() {
                             @Override
@@ -94,39 +101,44 @@ public class QuoteScannerActivity extends AppCompatActivity {
                                     recyclerView.scrollToPosition(scanItemAdapter.getItemCount()-1);
                                     scanItemAdapter.notifyDataSetChanged();
                                     String data = dataSnapshot.getValue().toString();
-                                    youNameArray.add(data);
 
-                                    processInsert(dataSnapshot.child("name").getValue().toString(), dataSnapshot.child("code").getValue().toString(),
-                                            dataSnapshot.child("mrp").getValue().toString(), dataSnapshot.child("gstAmt").getValue().toString());
-                                    proceedBtn.setBackgroundColor(Color.parseColor("#04B8E2"));
-                                    proceedBtn.setEnabled(true);
-//                                    quantityScanner.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-//                                        @Override
-//                                        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-//                                            if (actionId == EditorInfo.IME_ACTION_DONE)
-//                                            {
-////                                                String qty = quantityScanner.getText().toString();
-////                                                String name = dataSnapshot.child("name").getValue().toString();
-////                                                int i = 0;
-////                                                while (i<dataholder.size()){
-////                                                    QuoteModel temp = dataholder.get(i);
-////                                                    if(Objects.equals(temp.getName(), name)){
-////                                                        temp.setQty(temp.getQty()+1);
-////                                                        dataholder.remove(i);
-////                                                        dataholder.add(i,temp);
-////                                                        scanItemAdapter.updateList(dataholder);
-////                                                    }
-////                                                    i++;
-////                                                }
-////                                                DbManager dbManager = new DbManager(QuoteScannerActivity.this);
-////                                                dbManager.UpdateQty(qty,name);
-////                                                InputMethodManager imm = (InputMethodManager)getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-////                                                imm.hideSoftInputFromWindow(quantityScanner.getWindowToken(), 0);
-//                                            }
-//                                            return false;
-//                                        }
-//                                    });
-                                    recyclerView.setAdapter(scanItemAdapter);
+                                    PopupWindow popup = new PopupWindow(QuoteScannerActivity.this);
+
+                                    View view = LayoutInflater.from(QuoteScannerActivity.this).inflate(R.layout.scanned_item__popup, null);
+
+                                    // set the dimensions of the popup window
+                                    popup.setContentView(view);
+                                    popup.setFocusable(true);
+                                    popup.setWidth(WindowManager.LayoutParams.MATCH_PARENT);
+                                    popup.setHeight(WindowManager.LayoutParams.MATCH_PARENT);
+
+                                    // find the EditText and Button views in the layout
+                                    TextView nameText = view.findViewById(R.id.scannedItemName);
+                                    EditText Qty = view.findViewById(R.id.scannedItemQty);
+                                    Button submitButton = view.findViewById(R.id.scannedItemSubmit);
+                                    Qty.setFilters(new InputFilter[]{new CustomRangeInputFilter(0f,999f)});
+
+                                    nameText.setText(dataSnapshot.child("name").getValue().toString());
+
+                                    // set an onClickListener for the submit button
+                                    submitButton.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            // do something with the user's input
+                                            String userInput = Qty.getText().toString();
+                                            processInsert(dataSnapshot.child("name").getValue().toString(), dataSnapshot.child("code").getValue().toString(),
+                                                    dataSnapshot.child("mrp").getValue().toString(), dataSnapshot.child("gstAmt").getValue().toString(),userInput);
+                                            proceedBtn.setBackgroundColor(Color.parseColor("#04B8E2"));
+                                            proceedBtn.setEnabled(true);
+                                            recyclerView.setAdapter(scanItemAdapter);
+                                            youNameArray.add(data);
+                                            // dismiss the popup window
+                                            popup.dismiss();
+                                        }
+                                    });
+
+                                    // show the popup window
+                                    popup.showAtLocation(recyclerView, Gravity.CENTER, 0, 0);
                                 }
                                 else {
                                     Toast.makeText(QuoteScannerActivity.this, "Product Does not exist", Toast.LENGTH_SHORT).show();
@@ -159,26 +171,68 @@ public class QuoteScannerActivity extends AppCompatActivity {
             }
         });
 
-        scanItemAdapter = new ScanItemAdapter(dataholder);
+        ScanItemAdapter.scanItemListner listner = new ScanItemAdapter.scanItemListner() {
+            @Override
+            public void click(QuoteModel item) {
+                PopupWindow popup = new PopupWindow(QuoteScannerActivity.this);
+
+                View view = LayoutInflater.from(QuoteScannerActivity.this).inflate(R.layout.scanned_item__popup, null);
+
+                // set the dimensions of the popup window
+                popup.setContentView(view);
+                popup.setFocusable(true);
+                popup.setWidth(WindowManager.LayoutParams.MATCH_PARENT);
+                popup.setHeight(WindowManager.LayoutParams.MATCH_PARENT);
+
+                // find the EditText and Button views in the layout
+                TextView nameText = view.findViewById(R.id.scannedItemName);
+                EditText Qty = view.findViewById(R.id.scannedItemQty);
+                Qty.setFilters(new InputFilter[]{new CustomRangeInputFilter(0f,999f)});
+                Button submitButton = view.findViewById(R.id.scannedItemSubmit);
+
+                nameText.setText(item.getName());
+                Qty.setText(item.getQty().toString());
+
+                // set an onClickListener for the submit button
+                submitButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // do something with the user's input
+                        String userInput = Qty.getText().toString();
+                        processInsert(item.getName(), item.getCode(),
+                                item.getMrp(), item.getGstAmt(), userInput);
+                        proceedBtn.setBackgroundColor(Color.parseColor("#04B8E2"));
+                        proceedBtn.setEnabled(true);
+                        recyclerView.setAdapter(scanItemAdapter);
+//                        youNameArray.add(item);
+                        // dismiss the popup window
+                        popup.dismiss();
+                    }
+                });
+
+                // show the popup window
+                popup.showAtLocation(recyclerView, Gravity.CENTER, 0, 0);
+            }
+        };
+        scanItemAdapter = new ScanItemAdapter(dataholder,listner);
     }
 
-    private void processInsert(String name, String code, String mrp, String agtMrp)
+    private void processInsert(String name, String code, String mrp, String agtMrp, String qtyReceived)
     {
 
-        String res = new DbManager(QuoteScannerActivity.this).createQuote(code,name,agtMrp, Float.valueOf("1"),mrp,"scan");
+        String res = new DbManager(QuoteScannerActivity.this).createQuote(code,name,agtMrp, Float.valueOf(qtyReceived),mrp,"scan");
         if (!res.equals("0"))
         {
             Toast.makeText(QuoteScannerActivity.this, res, Toast.LENGTH_SHORT).show();
-            dataholder.add(new QuoteModel(name,Float.parseFloat(String.valueOf(1)),code,mrp,agtMrp,"scan"));
-            music.start();
+            dataholder.add(new QuoteModel(name,Float.parseFloat(String.valueOf(qtyReceived)),code,mrp,agtMrp,"scan"));
         }
         else {
             Cursor cursor = new DbManager(QuoteScannerActivity.this).getQty(name);
             while (cursor.moveToNext()) {
-                Float qty = Float.valueOf(cursor.getString(4));
-                qty = qty + 1;
+//                Float qty = Float.valueOf(cursor.getString(4));
+//                qty = qty + 1;
                 DbManager dbManager = new DbManager(QuoteScannerActivity.this);
-                dbManager.UpdateQty(String.valueOf(qty),name);
+                dbManager.UpdateQty(String.valueOf(qtyReceived),name);
             }
             int i = 0;
             while (i<dataholder.size()){
@@ -191,8 +245,8 @@ public class QuoteScannerActivity extends AppCompatActivity {
                 }
                 i++;
             }
-            music.start();
         }
+        scanItemAdapter.notifyDataSetChanged();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

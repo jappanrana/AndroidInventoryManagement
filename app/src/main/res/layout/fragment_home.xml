@@ -55,7 +55,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
-        android:hint="Search for name / No. / Address etc."
+        android:hint="Search party"
         android:textColorHint="@color/MediumGrey"
         app:boxCornerRadiusBottomEnd="@dimen/_5sdp"
         app:boxCornerRadiusBottomStart="@dimen/_5sdp"
@@ -69,6 +69,7 @@
         app:startIconDrawable="@drawable/searchicon">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/partySearchHome"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:cursorVisible="true"
@@ -101,6 +102,7 @@
         app:layout_constraintTop_toBottomOf="@+id/PartySearch" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/partyRecycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -111,7 +113,7 @@
     </androidx.recyclerview.widget.RecyclerView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/homeAddPartyBtn"
         android:layout_width="@dimen/_50sdp"
         android:layout_height="@dimen/_50sdp"
         android:layout_margin="30dp"

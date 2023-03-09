@@ -221,7 +221,7 @@ public class SqlQuoteAdapter extends RecyclerView.Adapter<SqlQuoteAdapter.myview
     class myviewholder extends RecyclerView.ViewHolder
     {
         TextView cartItemName,cartItemRate,cartItemGst,itemTotal;
-        EditText CartQuantityText;
+        TextView CartQuantityText;
         CardView cardView;
         ImageView minusQuoteImg;
         public myviewholder(@NonNull View itemView) {
@@ -272,33 +272,33 @@ public class SqlQuoteAdapter extends RecyclerView.Adapter<SqlQuoteAdapter.myview
                 }
             });
 
-            CartQuantityText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-                @Override
-                public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-
-                    if (actionId == EditorInfo.IME_ACTION_DONE || actionId == KeyEvent.KEYCODE_BACK)
-                    {
-                        Toast.makeText(itemView.getContext(), "back key", Toast.LENGTH_SHORT).show();
-
-                        if (CartQuantityText.getText().toString().equals(""))
-                        {
-                            CartQuantityText.setText("1");
-                        }
-                        int position = getBindingAdapterPosition();
-                        dataholder.get(position).setQty(Float.valueOf(CartQuantityText.getText().toString()));
-                        totalOfSubTotal = 0;
-                        totalOfGst = 0;
-                        DbManager dbManager = new DbManager(itemView.getContext());
-                        dbManager.UpdateQty(CartQuantityText.getText().toString(),cartItemName.getText().toString());
-                        CartQuantityText.clearFocus();
-                        InputMethodManager imm = (InputMethodManager)itemView.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                        imm.hideSoftInputFromWindow(CartQuantityText.getWindowToken(), 0);
-                        notifyDataSetChanged();
-                        return true;
-                    }
-                    return false;
-                }
-            });
+//            CartQuantityText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//                @Override
+//                public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//
+//                    if (actionId == EditorInfo.IME_ACTION_DONE || actionId == KeyEvent.KEYCODE_BACK)
+//                    {
+//                        Toast.makeText(itemView.getContext(), "back key", Toast.LENGTH_SHORT).show();
+//
+//                        if (CartQuantityText.getText().toString().equals(""))
+//                        {
+//                            CartQuantityText.setText("1");
+//                        }
+//                        int position = getBindingAdapterPosition();
+//                        dataholder.get(position).setQty(Float.valueOf(CartQuantityText.getText().toString()));
+//                        totalOfSubTotal = 0;
+//                        totalOfGst = 0;
+//                        DbManager dbManager = new DbManager(itemView.getContext());
+//                        dbManager.UpdateQty(CartQuantityText.getText().toString(),cartItemName.getText().toString());
+//                        CartQuantityText.clearFocus();
+//                        InputMethodManager imm = (InputMethodManager)itemView.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+//                        imm.hideSoftInputFromWindow(CartQuantityText.getWindowToken(), 0);
+//                        notifyDataSetChanged();
+//                        return true;
+//                    }
+//                    return false;
+//                }
+//            });
 
         }
     }

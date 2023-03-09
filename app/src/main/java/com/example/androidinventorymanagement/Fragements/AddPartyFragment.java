@@ -2,65 +2,87 @@ package com.example.androidinventorymanagement.Fragements;
 
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.example.androidinventorymanagement.Models.party;
+import com.example.androidinventorymanagement.Navigation.HomeFragment;
 import com.example.androidinventorymanagement.R;
+import com.example.androidinventorymanagement.Utils.Constances;
+import com.example.androidinventorymanagement.Utils.SharedPreferenceMethods;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AddPartyFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class AddPartyFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public AddPartyFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AddPartyFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static AddPartyFragment newInstance(String param1, String param2) {
-        AddPartyFragment fragment = new AddPartyFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    TextInputEditText addPartyName,addPartyNumber,addPartyGST,addPartyAddress;
+    CardView addPartySave,addPartySaveNew;
+    ImageView addPartyBack;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_party, container, false);
+        View view = inflater.inflate(R.layout.fragment_add_party, container, false);
+
+        addPartyName = view.findViewById(R.id.addPartyName);
+        addPartyNumber = view.findViewById(R.id.addPartyNumber);
+        addPartyGST = view.findViewById(R.id.addPartyGST);
+        addPartyAddress = view.findViewById(R.id.addPartyAddress);
+        addPartySave = view.findViewById(R.id.addPartySave);
+        addPartySaveNew = view.findViewById(R.id.addPartySaveNew);
+        addPartyBack = view.findViewById(R.id.addPartyBack);
+
+        SharedPreferenceMethods.setSharedPrefBackState(getContext(), Constances.BACK_ADD_PARTY);
+        DatabaseReference databaseReferenceParty = FirebaseDatabase.getInstance().getReference("party");
+
+        String Key = databaseReferenceParty.push().getKey();
+
+        addPartyBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HomeFragment homeFragment = new HomeFragment();
+                getParentFragmentManager().beginTransaction().replace(R.id.frame, homeFragment).commit();
+            }
+        });
+
+        addPartySave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(addPartyName.getText().toString().equals("")){
+                    Toast.makeText(getContext(), "No Name Found", Toast.LENGTH_SHORT).show();
+                }else if(addPartyNumber.getText().toString().length() != 10){
+                    Toast.makeText(getContext(), "Wrong Number", Toast.LENGTH_SHORT).show();
+                }else {
+                    party newParty = new party(addPartyName.getText().toString(), addPartyNumber.getText().toString(), addPartyGST.getText().toString(), addPartyAddress.getText().toString(), Key);
+                    databaseReferenceParty.child(Key).setValue(newParty);
+                    HomeFragment homeFragment = new HomeFragment();
+                    getParentFragmentManager().beginTransaction().replace(R.id.frame, homeFragment).commit();
+                }
+            }
+        });
+
+        addPartySaveNew.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(addPartyName.getText().toString().equals("")){
+                    Toast.makeText(getContext(), "No Name Found", Toast.LENGTH_SHORT).show();
+                }else if(addPartyNumber.getText().toString().length() != 10){
+                    Toast.makeText(getContext(), "Wrong Number", Toast.LENGTH_SHORT).show();
+                }else {
+                    party newParty = new party(addPartyName.getText().toString(), addPartyNumber.getText().toString(), addPartyGST.getText().toString(), addPartyAddress.getText().toString(), Key);
+                    databaseReferenceParty.child(Key).setValue(newParty);
+                    AddPartyFragment addPartyFragment = new AddPartyFragment();
+                    getParentFragmentManager().beginTransaction().replace(R.id.frame, addPartyFragment).commit();
+                }
+            }
+        });
+        return view;
     }
 }

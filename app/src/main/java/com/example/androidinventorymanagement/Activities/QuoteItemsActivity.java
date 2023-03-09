@@ -150,7 +150,8 @@ public class QuoteItemsActivity extends AppCompatActivity
 
 
         recyclerView.setAdapter(sqlQuoteAdapter);
-        addQuoteImg.setOnClickListener(new View.OnClickListener() {
+
+        findViewById(R.id.addItemsBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -330,7 +331,189 @@ public class QuoteItemsActivity extends AppCompatActivity
                     }
                 });
 
+                //finish();
+            }
+        });
 
+        addQuoteImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final Dialog dialog = new Dialog(QuoteItemsActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                dialog.setCancelable(false);
+                dialog.setContentView(R.layout.add_quote);
+                dialog.show();
+                dialog.setCancelable(true);
+
+                TextView scanToAddTextView,addManuallyTextView,addDiscountRupeesTextView,addDiscountPercentTextView;
+
+                scanToAddTextView = dialog.findViewById(R.id.scanToAdd);
+                addManuallyTextView = dialog.findViewById(R.id.addManually);
+                addDiscountRupeesTextView = dialog.findViewById(R.id.adddiscountRuppes);
+                addDiscountPercentTextView = dialog.findViewById(R.id.adddiscountPercent);
+
+
+                scanToAddTextView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(QuoteItemsActivity.this, QuoteScannerActivity.class);
+                        startActivity(intent);
+                        dialog.dismiss();
+                    }
+                });
+                addManuallyTextView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(QuoteItemsActivity.this,ManuallyAddQuoteActivity.class);
+                        startActivity(intent);
+                        finish();
+                        dialog.dismiss();
+                    }
+                });
+
+//                Discount in Money
+                addDiscountRupeesTextView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        final Dialog disDialog = new Dialog(QuoteItemsActivity.this);
+                        disDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        disDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                        disDialog.setCancelable(false);
+                        disDialog.setContentView(R.layout.discount_quotexml);
+                        disDialog.show();
+                        disDialog.setCancelable(true);
+
+                        EditText inRs,inPer;
+                        MaterialButton applyDis;
+
+                        inPer = disDialog.findViewById(R.id.percentQuoteDis);
+                        inRs = disDialog.findViewById(R.id.mrpQuoteDis);
+                        applyDis = disDialog.findViewById(R.id.disRSApplyBtn);
+
+                        inRs.addTextChangedListener(new TextWatcher() {
+                            @Override
+                            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                            }
+
+                            @Override
+                            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                            }
+
+                            @Override
+                            public void afterTextChanged(Editable s) {
+                                if(s.toString().trim().length()>0 ){
+                                    applyDis.setBackgroundColor(Color.parseColor("#04B8E2"));
+                                    applyDis.setEnabled(true);
+                                }else{
+                                    applyDis.setBackgroundColor(Color.parseColor("#ABE7F5"));
+                                    applyDis.setEnabled(false);
+                                }
+                            }
+                        });
+
+                        applyDis.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                String inRsStrng = inRs.getText().toString();
+                                if (Integer.parseInt(inRsStrng)>Integer.parseInt(grandTotal.getText().toString()))
+                                {
+                                    Toast.makeText(QuoteItemsActivity.this, "Discount can't be more than the Grand Price", Toast.LENGTH_SHORT).show();
+                                }
+                                else
+                                {
+                                    discountAmt.setText(inRsStrng);
+                                    SharedPreferenceMethods.setSharedPrefDisAvailable(mContext,inRsStrng);
+                                    discountLayout.setVisibility(View.VISIBLE);
+                                    sqlQuoteAdapter.notifyDataSetChanged();
+                                    disDialog.dismiss();
+                                }
+                            }
+                        });
+                    }
+                });
+
+//                Discount in Percentage
+                addDiscountPercentTextView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                        final Dialog disDialogPer = new Dialog(QuoteItemsActivity.this);
+                        disDialogPer.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                        disDialogPer.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                        disDialogPer.setCancelable(false);
+                        disDialogPer.setContentView(R.layout.discount_percent_quote);
+                        disDialogPer.show();
+                        disDialogPer.setCancelable(true);
+
+                        EditText inRs,inPer;
+                        MaterialButton applyDis;
+
+
+
+                        inPer = disDialogPer.findViewById(R.id.percentQuoteDis);
+                        inRs = disDialogPer.findViewById(R.id.mrpQuoteDis);
+                        applyDis = disDialogPer.findViewById(R.id.disPercentageApplyBtn);
+
+                        inPer.addTextChangedListener(new TextWatcher() {
+                            @Override
+                            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                            }
+
+                            @Override
+                            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                            }
+
+                            @Override
+                            public void afterTextChanged(Editable s) {
+                                if(s.toString().trim().length()>0 ){
+                                    applyDis.setBackgroundColor(Color.parseColor("#04B8E2"));
+                                    applyDis.setEnabled(true);
+                                }else{
+                                    applyDis.setBackgroundColor(Color.parseColor("#ABE7F5"));
+                                    applyDis.setEnabled(false);
+                                }
+                            }
+                        });
+
+                        applyDis.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                String inPerStrng = inPer.getText().toString();
+                                if (Integer.parseInt(inPerStrng)>100)
+                                {
+                                    Toast.makeText(QuoteItemsActivity.this, "Discount can't be more than 100%", Toast.LENGTH_SHORT).show();
+                                }
+                                else
+                                {
+
+                                    DbManager dbManager = new DbManager(QuoteItemsActivity.this);
+                                    String res2 = String.valueOf(dbManager.readallOnlyDiscountValues());
+                                    double amount = Double.parseDouble(res2);
+                                    double res = (amount / 100.0f) * Integer.parseInt(inPerStrng);
+                                    Log.e("pertage", String.valueOf(res));
+                                    Double d = new Double(res);
+                                    int i = d.intValue();
+                                    discountAmt.setText(String.valueOf(i));
+                                    SharedPreferenceMethods.setSharedPrefDisAvailable(mContext,discountAmt.getText().toString());
+                                    discountLayout.setVisibility(View.VISIBLE);
+                                    dbManager.readallOnlyDiscountValues();
+                                    sqlQuoteAdapter.notifyDataSetChanged();
+                                    disDialogPer.dismiss();
+                                }
+                            }
+                        });
+                    }
+                });
 
                 //finish();
             }

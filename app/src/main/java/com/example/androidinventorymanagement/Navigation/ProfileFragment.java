@@ -19,24 +19,34 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.androidinventorymanagement.Activities.QuoteItemsActivity;
 import com.example.androidinventorymanagement.Activities.QuoteScannerActivity;
+import com.example.androidinventorymanagement.Adapters.PartyAdapter;
+import com.example.androidinventorymanagement.Fragements.AddPartyFragment;
 import com.example.androidinventorymanagement.Fragements.ProductFragment;
 import com.example.androidinventorymanagement.Fragements.SharedQuoteFragment;
+import com.example.androidinventorymanagement.Models.party;
 import com.example.androidinventorymanagement.R;
 import com.example.androidinventorymanagement.Utils.Constances;
 import com.example.androidinventorymanagement.Utils.SharedPreferenceMethods;
 import com.example.androidinventorymanagement.login.LoginActivity;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class ProfileFragment extends Fragment {
 
     LinearLayout createGstQuote;
     LinearLayout logoutProfile,sharedQuote,productPage;
     Context mContext;
+    PartyAdapter partyAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -58,7 +68,7 @@ public class ProfileFragment extends Fragment {
 
         mContext = getContext();
 
-        SharedPreferenceMethods.setSharedPrefNavigation(mContext,Constances.NAVIGATION_PROFILE);
+        SharedPreferenceMethods.setSharedPrefBackState(mContext,Constances.BACK_PROFILE);
 
         sharedQuote.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,27 +139,41 @@ public class ProfileFragment extends Fragment {
                 userSheetDialog.show();
 
                 TextInputEditText customerName = userSheetDialog.findViewById(R.id.customerNameSheetEditText);
-                TextInputEditText customerNo = userSheetDialog.findViewById(R.id.customerNoSheetEditText);
+//                TextInputEditText customerNo = userSheetDialog.findViewById(R.id.customerNoSheetEditText);
                 CardView proceedBtn = userSheetDialog.findViewById(R.id.proceedButton);
+                RecyclerView parties = userSheetDialog.findViewById(R.id.customerRecycler);
+                parties.setLayoutManager(new LinearLayoutManager(getContext()));
+                DatabaseReference databaseReferenceParty = FirebaseDatabase.getInstance().getReference("party");
+
+                FirebaseRecyclerOptions<party> options = new FirebaseRecyclerOptions.
+                        Builder<party>().setQuery(databaseReferenceParty,party.class).build();
+
+                PartyAdapter.Partylistner listner = new PartyAdapter.Partylistner() {
+                    @Override
+                    public void clicked(party pty) {
+                        String userInpNumber = pty.getNumber();
+                        String FinalNumber = "+91 "+userInpNumber.substring(0,5)+" "+userInpNumber.substring(5);
+                        SharedPreferenceMethods.setSharedPrefCustomerName(mContext, pty.getName());
+                        SharedPreferenceMethods.setSharedPrefCustomerNumber(mContext,FinalNumber);
+
+                        SharedPreferenceMethods.setSharedPrefSharedQuote(mContext,false);
+
+                        userSheetDialog.dismiss();
+                        Intent intent1 = new Intent(getActivity(), QuoteItemsActivity.class);
+                        getActivity().startActivity(intent1);
+                    }
+                };
+
+                partyAdapter = new PartyAdapter(options,listner);
+                parties.setAdapter(partyAdapter);
+                partyAdapter.startListening();
 
                 proceedBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (!customerName.getText().toString().equals("") && !customerNo.getText().toString().equals("") && customerNo.getText().toString().length() == 10)
-                        {
-                            String userInpNumber = customerNo.getText().toString();
-                            String FinalNumber = "+91 "+userInpNumber.substring(0,5)+" "+userInpNumber.substring(5);
-                            SharedPreferenceMethods.setSharedPrefCustomerName(mContext,customerName.getText().toString());
-                            SharedPreferenceMethods.setSharedPrefCustomerNumber(mContext,FinalNumber);
-
-                            SharedPreferenceMethods.setSharedPrefSharedQuote(mContext,false);
-
-                            userSheetDialog.dismiss();
-                            Intent intent1 = new Intent(getActivity(), QuoteScannerActivity.class);
-                            getActivity().startActivity(intent1);
-                        }
-                        else
-                            Toast.makeText(getContext(), "Please Provide Details", Toast.LENGTH_SHORT).show();
+                        userSheetDialog.dismiss();
+                        AddPartyFragment addPartyFragment = new AddPartyFragment();
+                        getParentFragmentManager().beginTransaction().replace(R.id.frame, addPartyFragment).commit();
                     }
                 });
 
@@ -161,67 +185,33 @@ public class ProfileFragment extends Fragment {
 
                     @Override
                     public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                        FirebaseRecyclerOptions<party> options = new FirebaseRecyclerOptions.
+                                Builder<party>().setQuery(databaseReferenceParty.orderByChild("name").startAt(s.toString()).endAt(s.toString()+"\uf8ff"),party.class).build();
+                        partyAdapter = new PartyAdapter(options,listner);
+                        parties.setAdapter(partyAdapter);
+                        partyAdapter.startListening();
                     }
 
                     @Override
                     public void afterTextChanged(Editable s) {
-                        if(s.toString().trim().length()>0 && !customerNo.getText().toString().equals("")){
-                            proceedBtn.setCardBackgroundColor(Color.parseColor("#04B8E2"));
-                            proceedBtn.setEnabled(true);
-                        }else{
-                            proceedBtn.setCardBackgroundColor(Color.parseColor("#ABE7F5"));
-                            proceedBtn.setEnabled(false);
-                        }
+                        FirebaseRecyclerOptions<party> options = new FirebaseRecyclerOptions.
+                                Builder<party>().setQuery(databaseReferenceParty.orderByChild("name").startAt(s.toString()).endAt(s.toString()+"\uf8ff"),party.class).build();
+                        partyAdapter = new PartyAdapter(options,listner);
+                        parties.setAdapter(partyAdapter);
+                        partyAdapter.startListening();
+
+//                        if(s.toString().trim().length()>0 && !customerNo.getText().toString().equals("")){
+//                            proceedBtn.setCardBackgroundColor(Color.parseColor("#04B8E2"));
+//                            proceedBtn.setEnabled(true);
+//                        }else{
+//                            proceedBtn.setCardBackgroundColor(Color.parseColor("#ABE7F5"));
+//                            proceedBtn.setEnabled(false);
+//                        }
                     }
                 });
-
-                customerNo.addTextChangedListener(new TextWatcher() {
-                    @Override
-                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                    }
-
-                    @Override
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                    }
-
-                    @Override
-                    public void afterTextChanged(Editable s) {
-                        if(s.toString().trim().length()>0 && !customerName.getText().toString().equals("")){
-                            proceedBtn.setCardBackgroundColor(Color.parseColor("#04B8E2"));
-                            proceedBtn.setEnabled(true);
-                        }else{
-                            proceedBtn.setCardBackgroundColor(Color.parseColor("#ABE7F5"));
-                            proceedBtn.setEnabled(false);
-                        }
-                    }
-                });
-
             }
         });
 
         return view;
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        requireView().setFocusableInTouchMode(true);
-        requireView().requestFocus();
-
-        requireView().setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if(event.getAction() == KeyEvent.ACTION_DOWN){
-                    if(keyCode == KeyEvent.KEYCODE_BACK){
-                        requireActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, new HomeFragment()).commit();
-                        return true;
-                    }
-                }
-                return false;
-            }
-        });
-        super.onActivityCreated(savedInstanceState);
     }
 }

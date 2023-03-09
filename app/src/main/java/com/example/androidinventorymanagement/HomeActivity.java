@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.example.androidinventorymanagement.Activities.ScannerActivity;
 import com.example.androidinventorymanagement.Fragements.EditQuoteFragment;
+import com.example.androidinventorymanagement.Fragements.ProductFragment;
 import com.example.androidinventorymanagement.Fragements.SharedQuoteFragment;
 import com.example.androidinventorymanagement.Navigation.HomeFragment;
 import com.example.androidinventorymanagement.Navigation.ProfileFragment;
@@ -112,12 +113,20 @@ public class HomeActivity extends AppCompatActivity {
     public void onBackPressed()
     {
         String back = getSharedPrefBackState(mContext);
-        if (Constances.BACK_ADD_PRODUCT.equals(back)){
+        if (Constances.BACK_ADD_PARTY.equals(back) || Constances.BACK_EDIT_PARTY.equals(back)|| Constances.BACK_PROFILE.equals(back)){
             getSupportFragmentManager().beginTransaction().replace(R.id.frame, new HomeFragment()).commit();
-        }else if(Constances.BACK_SHOW_PRODUCT.equals(back)){
-            getSupportFragmentManager().beginTransaction().replace(R.id.frame, new HomeFragment()).commit();
+            bottomNavigationView.getMenu().findItem(R.id.home).setChecked(true);
         }
+        else if(Constances.BACK_SHOW_PRODUCT.equals(back)){
+            findViewById(R.id.bottomNavigationView).setVisibility(View.VISIBLE);
+            getSupportFragmentManager().beginTransaction().replace(R.id.frame, new ProductFragment()).commit();
+            bottomNavigationView.getMenu().findItem(R.id.profile).setChecked(true);
+        }
+//        else if(Constances.BACK_EDIT_PARTY.equals(back)){
+//            getSupportFragmentManager().beginTransaction().replace(R.id.frame, new HomeFragment()).commit();
+//        }
         else{
+            Toast.makeText(mContext, back, Toast.LENGTH_SHORT).show();
             AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogTheme);
             builder.setTitle("Exit App")
                     .setMessage("Are you sure you want to leave the app?")

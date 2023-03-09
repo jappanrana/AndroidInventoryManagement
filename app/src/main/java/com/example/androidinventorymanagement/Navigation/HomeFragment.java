@@ -1,5 +1,7 @@
 package com.example.androidinventorymanagement.Navigation;
 
+import static com.example.androidinventorymanagement.Utils.SharedPreferenceMethods.setSharedPrefEditParty;
+
 import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -35,19 +37,25 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.androidinventorymanagement.Adapters.PartyAdapter;
 import com.example.androidinventorymanagement.Adapters.ProductsAdapter;
 import com.example.androidinventorymanagement.ExportScreens.PDFExportActivity;
 import com.example.androidinventorymanagement.ExportScreens.PDFExportAllActivity;
+import com.example.androidinventorymanagement.Fragements.AddPartyFragment;
 import com.example.androidinventorymanagement.Fragements.AddProductsFragment;
+import com.example.androidinventorymanagement.Fragements.EditPartyFragment;
 import com.example.androidinventorymanagement.Fragements.ShowProductFragment;
 import com.example.androidinventorymanagement.Models.ExportModel;
 import com.example.androidinventorymanagement.Models.ProductsModel;
+import com.example.androidinventorymanagement.Models.QuotationModel;
+import com.example.androidinventorymanagement.Models.party;
 import com.example.androidinventorymanagement.R;
 import com.example.androidinventorymanagement.SqlDB.DbManager;
 import com.example.androidinventorymanagement.Utils.Constances;
 import com.example.androidinventorymanagement.Utils.SharedPreferenceMethods;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -66,6 +74,11 @@ public class HomeFragment extends Fragment implements EasyPermissions.Permission
 
     Context mContext;
 
+    RecyclerView partyRecycler;
+    PartyAdapter partyAdapter;
+    ConstraintLayout homeAddPartyBtn;
+    TextInputEditText partySearchHome;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +91,62 @@ public class HomeFragment extends Fragment implements EasyPermissions.Permission
         mContext = getContext();
 
         SharedPreferenceMethods.setSharedPrefNavigation(mContext,Constances.NAVIGATION_HOME);
+
+        partyRecycler = home.findViewById(R.id.partyRecycler);
+        homeAddPartyBtn = home.findViewById(R.id.homeAddPartyBtn);
+        partySearchHome = home.findViewById(R.id.partySearchHome);
+        partyRecycler.setLayoutManager(new LinearLayoutManager(mContext));
+
+        DatabaseReference databaseReferenceParty = FirebaseDatabase.getInstance().getReference("party");
+
+        FirebaseRecyclerOptions<party> options = new FirebaseRecyclerOptions.
+                Builder<party>().setQuery(databaseReferenceParty,party.class).build();
+
+        PartyAdapter.Partylistner listner = new PartyAdapter.Partylistner() {
+            @Override
+            public void clicked(party pty) {
+                setSharedPrefEditParty(getContext(),pty);
+                EditPartyFragment editPartyFragment = new EditPartyFragment();
+                getParentFragmentManager().beginTransaction().replace(R.id.frame, editPartyFragment).commit();
+            }
+        };
+
+        partyAdapter = new PartyAdapter(options,listner);
+        partyRecycler.setAdapter(partyAdapter);
+        partyAdapter.startListening();
+
+        partySearchHome.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                FirebaseRecyclerOptions<party> options = new FirebaseRecyclerOptions.
+                        Builder<party>().setQuery(databaseReferenceParty.orderByChild("name").startAt(s.toString()).endAt(s.toString()+"\uf8ff"),party.class).build();
+                partyAdapter = new PartyAdapter(options,listner);
+                partyRecycler.setAdapter(partyAdapter);
+                partyAdapter.startListening();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                FirebaseRecyclerOptions<party> options = new FirebaseRecyclerOptions.
+                        Builder<party>().setQuery(databaseReferenceParty.orderByChild("name").startAt(s.toString()).endAt(s.toString()+"\uf8ff"),party.class).build();
+                partyAdapter = new PartyAdapter(options,listner);
+                partyRecycler.setAdapter(partyAdapter);
+                partyAdapter.startListening();
+            }
+        });
+
+        homeAddPartyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AddPartyFragment addPartyFragment = new AddPartyFragment();
+                getParentFragmentManager().beginTransaction().replace(R.id.frame, addPartyFragment).commit();
+            }
+        });
 
         getPermissions();
 

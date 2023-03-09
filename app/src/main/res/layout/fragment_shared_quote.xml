@@ -38,20 +38,42 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginEnd="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_15sdp">
+        android:layout_height="wrap_content">
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/quotationsSearchView"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edit_text_rounded"
-            android:iconifiedByDefault="false"
-            android:queryBackground="@null"
-            android:queryHint="Search" />
+            android:layout_height="@dimen/_45sdp"
+            android:layout_margin="10dp"
+            android:hint="Search party"
+            android:textColorHint="@color/MediumGrey"
+            app:boxCornerRadiusBottomEnd="@dimen/_5sdp"
+            app:boxCornerRadiusBottomStart="@dimen/_5sdp"
+            app:boxCornerRadiusTopEnd="@dimen/_5sdp"
+            app:boxCornerRadiusTopStart="@dimen/_5sdp"
+            app:boxStrokeColor="@color/black"
+            app:hintTextColor="@color/MediumGrey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:startIconDrawable="@drawable/searchicon">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/quotationsSearchView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:cursorVisible="true"
+                android:fontFamily="@font/inter_semibold"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textColorHint="@color/MediumGrey"
+                android:textCursorDrawable="@color/MediumGrey"
+                android:textSize="@dimen/_12sdp">
+
+            </com.google.android.material.textfield.TextInputEditText>
+
+
+        </com.google.android.material.textfield.TextInputLayout>
 
     </LinearLayout>
 

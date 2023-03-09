@@ -115,8 +115,7 @@ public class ShowProductFragment extends Fragment {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HomeFragment homeFragment = new HomeFragment();
-                getParentFragmentManager().beginTransaction().replace(R.id.frame, homeFragment).commit();
+                getParentFragmentManager().beginTransaction().replace(R.id.frame, new ProductFragment()).commit();
             }
         });
 

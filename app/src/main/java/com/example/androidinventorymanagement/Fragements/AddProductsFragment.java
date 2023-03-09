@@ -28,6 +28,7 @@ import com.example.androidinventorymanagement.Navigation.HomeFragment;
 import com.example.androidinventorymanagement.R;
 import com.example.androidinventorymanagement.Utils.Constances;
 import com.example.androidinventorymanagement.Utils.CustomRangeInputFilter;
+import com.example.androidinventorymanagement.Utils.SharedPreferenceMethods;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DataSnapshot;
@@ -61,10 +62,11 @@ public class AddProductsFragment extends Fragment {
         
         mContext = getContext();
 
-        setSharedPrefBackState(mContext, Constances.BACK_ADD_PRODUCT);
+//        setSharedPrefBackState(mContext, Constances.BACK_ADD_PRODUCT);
 
         getActivity().findViewById(R.id.bottomNavigationView).setVisibility(View.GONE);
 
+        SharedPreferenceMethods.setSharedPrefBackState(mContext, Constances.BACK_SHOW_PRODUCT);
 //        test = addProductsView.findViewById(R.id.testText);
         prodName = addProductsView.findViewById(R.id.nameProductName);
         prodCode = addProductsView.findViewById(R.id.codeProductCode);
@@ -101,8 +103,8 @@ public class AddProductsFragment extends Fragment {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HomeFragment homeFragment = new HomeFragment();
-                getParentFragmentManager().beginTransaction().replace(R.id.frame, homeFragment).commit();
+                getParentFragmentManager().beginTransaction().replace(R.id.frame, new ProductFragment()).commit();
+                getActivity().findViewById(R.id.bottomNavigationView).setVisibility(View.VISIBLE);
             }
         });
 
@@ -157,8 +159,8 @@ public class AddProductsFragment extends Fragment {
                     if (imm.isAcceptingText()) { // verify if the soft keyboard is open
                         imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
                     }
-                    HomeFragment homeFragment = new HomeFragment();
-                    getParentFragmentManager().beginTransaction().replace(R.id.frame, homeFragment).commit();
+                    getParentFragmentManager().beginTransaction().replace(R.id.frame, new ProductFragment()).commit();
+                    getActivity().findViewById(R.id.bottomNavigationView).setVisibility(View.VISIBLE);
                 }else{
                     Toast.makeText(mContext,"Enter Valid Name And Rate",Toast.LENGTH_SHORT).show();
                 }

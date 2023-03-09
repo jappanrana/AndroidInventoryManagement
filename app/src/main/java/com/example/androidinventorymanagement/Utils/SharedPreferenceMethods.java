@@ -4,9 +4,22 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.example.androidinventorymanagement.Models.ProductsModel;
+import com.example.androidinventorymanagement.Models.party;
 import com.google.gson.Gson;
 
 public class SharedPreferenceMethods {
+
+    public static void setSharedPrefEditParty(Context context, party value){
+        SharedPreferences sharedPreferenceObject = context.getSharedPreferences("sharedPrefStorage",0);
+        String valueString = new Gson().toJson(value);
+        sharedPreferenceObject.edit().putString("EditParty",valueString).apply();
+    }
+
+    public static party getSharedPrefEditParty(Context context){
+        SharedPreferences sharedPreferenceObject = context.getSharedPreferences("sharedPrefStorage",0);
+        party value = new Gson().fromJson(sharedPreferenceObject.getString("EditParty",""),party.class);
+        return value;
+    }
 
     public static void setSharedPrefRegister(Context context, Boolean value){
         SharedPreferences sharedPreferenceObject = context.getSharedPreferences("sharedPrefStorage",0);

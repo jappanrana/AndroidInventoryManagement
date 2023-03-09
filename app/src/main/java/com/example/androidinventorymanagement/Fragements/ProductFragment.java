@@ -37,6 +37,7 @@ import com.example.androidinventorymanagement.ExportScreens.PDFExportActivity;
 import com.example.androidinventorymanagement.ExportScreens.PDFExportAllActivity;
 import com.example.androidinventorymanagement.Models.ExportModel;
 import com.example.androidinventorymanagement.Models.ProductsModel;
+import com.example.androidinventorymanagement.Navigation.ProfileFragment;
 import com.example.androidinventorymanagement.R;
 import com.example.androidinventorymanagement.SqlDB.DbManager;
 import com.example.androidinventorymanagement.Utils.Constances;
@@ -427,32 +428,7 @@ public class ProductFragment extends Fragment {
                             adapter.setSelectable(false);
                             adapter.notifyDataSetChanged();
                         }else{
-                            AlertDialog.Builder builder = new AlertDialog.Builder(mContext, R.style.AlertDialogTheme);
-                            builder.setTitle("Exit App")
-                                    .setMessage("Are you sure you want to leave the app?")
-                                    .setPositiveButton("Yes", new DialogInterface.OnClickListener()
-                                    {
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            getActivity().finish();
-                                        }
-
-                                    })
-                                    .setNegativeButton("No", null);
-
-                            AlertDialog alertDialog = builder.create();
-                            alertDialog.show();
-
-                            alertDialog.getButton(android.app.AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
-                            alertDialog.getButton(android.app.AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
-
-                            Button btnPositive = alertDialog.getButton(android.app.AlertDialog.BUTTON_POSITIVE);
-                            Button btnNegative = alertDialog.getButton(android.app.AlertDialog.BUTTON_NEGATIVE);
-
-                            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) btnPositive.getLayoutParams();
-                            layoutParams.weight = 10;
-                            btnPositive.setLayoutParams(layoutParams);
-                            btnNegative.setLayoutParams(layoutParams);
+                            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.frame, new ProfileFragment()).commit();
                         }
                         return true;
                     }
