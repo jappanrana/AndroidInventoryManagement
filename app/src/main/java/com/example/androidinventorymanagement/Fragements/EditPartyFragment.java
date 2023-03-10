@@ -23,6 +23,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Locale;
+
 public class EditPartyFragment extends Fragment {
 
     TextInputEditText editPartyName,editPartyNumber,editPartyGST,editPartyAddress;
@@ -80,7 +82,7 @@ public class EditPartyFragment extends Fragment {
                 }else if(editPartyNumber.getText().toString().length() != 10){
                     Toast.makeText(getContext(), "Wrong Number", Toast.LENGTH_SHORT).show();
                 }else {
-                    party newParty = new party(editPartyName.getText().toString(),editPartyNumber.getText().toString(),editPartyGST.getText().toString(),editPartyAddress.getText().toString(),currentEditParty.getKey());
+                    party newParty = new party(editPartyName.getText().toString().toLowerCase(Locale.ROOT),editPartyNumber.getText().toString(),editPartyGST.getText().toString(),editPartyAddress.getText().toString(),currentEditParty.getKey());
                     databaseReferenceParty.child(newParty.getKey()).setValue(newParty);
                     HomeFragment homeFragment = new HomeFragment();
                     getParentFragmentManager().beginTransaction().replace(R.id.frame, homeFragment).commit();

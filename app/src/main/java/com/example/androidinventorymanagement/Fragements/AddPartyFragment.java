@@ -20,6 +20,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Locale;
+
 public class AddPartyFragment extends Fragment {
 
     TextInputEditText addPartyName,addPartyNumber,addPartyGST,addPartyAddress;
@@ -60,7 +62,7 @@ public class AddPartyFragment extends Fragment {
                 }else if(addPartyNumber.getText().toString().length() != 10){
                     Toast.makeText(getContext(), "Wrong Number", Toast.LENGTH_SHORT).show();
                 }else {
-                    party newParty = new party(addPartyName.getText().toString(), addPartyNumber.getText().toString(), addPartyGST.getText().toString(), addPartyAddress.getText().toString(), Key);
+                    party newParty = new party(addPartyName.getText().toString().toLowerCase(Locale.ROOT), addPartyNumber.getText().toString(), addPartyGST.getText().toString(), addPartyAddress.getText().toString(), Key);
                     databaseReferenceParty.child(Key).setValue(newParty);
                     HomeFragment homeFragment = new HomeFragment();
                     getParentFragmentManager().beginTransaction().replace(R.id.frame, homeFragment).commit();
@@ -76,7 +78,7 @@ public class AddPartyFragment extends Fragment {
                 }else if(addPartyNumber.getText().toString().length() != 10){
                     Toast.makeText(getContext(), "Wrong Number", Toast.LENGTH_SHORT).show();
                 }else {
-                    party newParty = new party(addPartyName.getText().toString(), addPartyNumber.getText().toString(), addPartyGST.getText().toString(), addPartyAddress.getText().toString(), Key);
+                    party newParty = new party(addPartyName.getText().toString().toLowerCase(Locale.ROOT), addPartyNumber.getText().toString(), addPartyGST.getText().toString(), addPartyAddress.getText().toString(), Key);
                     databaseReferenceParty.child(Key).setValue(newParty);
                     AddPartyFragment addPartyFragment = new AddPartyFragment();
                     getParentFragmentManager().beginTransaction().replace(R.id.frame, addPartyFragment).commit();

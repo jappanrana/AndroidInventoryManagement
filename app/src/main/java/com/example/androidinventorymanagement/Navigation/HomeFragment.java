@@ -1,5 +1,6 @@
 package com.example.androidinventorymanagement.Navigation;
 
+import static com.example.androidinventorymanagement.Utils.CommonMethods.CheckNumbers;
 import static com.example.androidinventorymanagement.Utils.SharedPreferenceMethods.setSharedPrefEditParty;
 
 import android.Manifest;
@@ -123,20 +124,36 @@ public class HomeFragment extends Fragment implements EasyPermissions.Permission
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                FirebaseRecyclerOptions<party> options = new FirebaseRecyclerOptions.
-                        Builder<party>().setQuery(databaseReferenceParty.orderByChild("name").startAt(s.toString()).endAt(s.toString()+"\uf8ff"),party.class).build();
-                partyAdapter = new PartyAdapter(options,listner);
-                partyRecycler.setAdapter(partyAdapter);
-                partyAdapter.startListening();
+                if(CheckNumbers(s.toString())){
+                    FirebaseRecyclerOptions<party> options = new FirebaseRecyclerOptions.
+                            Builder<party>().setQuery(databaseReferenceParty.orderByChild("number").startAt(s.toString().toLowerCase(Locale.ROOT)).endAt(s.toString().toLowerCase(Locale.ROOT)+"\uf8ff"),party.class).build();
+                    partyAdapter = new PartyAdapter(options,listner);
+                    partyRecycler.setAdapter(partyAdapter);
+                    partyAdapter.startListening();
+                }else{
+                    FirebaseRecyclerOptions<party> options = new FirebaseRecyclerOptions.
+                            Builder<party>().setQuery(databaseReferenceParty.orderByChild("name").startAt(s.toString().toLowerCase(Locale.ROOT)).endAt(s.toString().toLowerCase(Locale.ROOT)+"\uf8ff"),party.class).build();
+                    partyAdapter = new PartyAdapter(options,listner);
+                    partyRecycler.setAdapter(partyAdapter);
+                    partyAdapter.startListening();
+                }
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                FirebaseRecyclerOptions<party> options = new FirebaseRecyclerOptions.
-                        Builder<party>().setQuery(databaseReferenceParty.orderByChild("name").startAt(s.toString()).endAt(s.toString()+"\uf8ff"),party.class).build();
-                partyAdapter = new PartyAdapter(options,listner);
-                partyRecycler.setAdapter(partyAdapter);
-                partyAdapter.startListening();
+                if(CheckNumbers(s.toString())){
+                    FirebaseRecyclerOptions<party> options = new FirebaseRecyclerOptions.
+                            Builder<party>().setQuery(databaseReferenceParty.orderByChild("number").startAt(s.toString().toLowerCase(Locale.ROOT)).endAt(s.toString().toLowerCase(Locale.ROOT)+"\uf8ff"),party.class).build();
+                    partyAdapter = new PartyAdapter(options,listner);
+                    partyRecycler.setAdapter(partyAdapter);
+                    partyAdapter.startListening();
+                }else{
+                    FirebaseRecyclerOptions<party> options = new FirebaseRecyclerOptions.
+                            Builder<party>().setQuery(databaseReferenceParty.orderByChild("name").startAt(s.toString().toLowerCase(Locale.ROOT)).endAt(s.toString().toLowerCase(Locale.ROOT)+"\uf8ff"),party.class).build();
+                    partyAdapter = new PartyAdapter(options,listner);
+                    partyRecycler.setAdapter(partyAdapter);
+                    partyAdapter.startListening();
+                }
             }
         });
 
