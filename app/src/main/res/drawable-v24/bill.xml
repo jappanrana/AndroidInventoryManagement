@@ -14,7 +14,7 @@
           android:endY="44"
           android:type="linear">
         <item android:offset="0" android:color="#00C1F2FE"/>
-        <item android:offset="1" android:color="#FFC1F2FE"/>
+        <item android:offset="1" android:color="#F1F1F1"/>
       </gradient>
     </aapt:attr>
   </path>
@@ -23,34 +23,34 @@
       android:strokeLineJoin="round"
       android:strokeWidth="2"
       android:fillColor="#00000000"
-      android:strokeColor="#04B8E2"
+      android:strokeColor="@color/Blue"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M24,12V18H30"
       android:strokeLineJoin="round"
       android:strokeWidth="2"
       android:fillColor="#00000000"
-      android:strokeColor="#04B8E2"
+      android:strokeColor="@color/Blue"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M26,23H18"
       android:strokeLineJoin="round"
       android:strokeWidth="2"
       android:fillColor="#00000000"
-      android:strokeColor="#04B8E2"
+      android:strokeColor="@color/Blue"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M26,27H18"
       android:strokeLineJoin="round"
       android:strokeWidth="2"
       android:fillColor="#00000000"
-      android:strokeColor="#04B8E2"
+      android:strokeColor="@color/Blue"
       android:strokeLineCap="round"/>
   <path
       android:pathData="M20,19H19H18"
       android:strokeLineJoin="round"
       android:strokeWidth="2"
       android:fillColor="#00000000"
-      android:strokeColor="#04B8E2"
+      android:strokeColor="@color/Blue"
       android:strokeLineCap="round"/>
 </vector>

@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".login.LoginActivity">
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/pankaj_nx_logo"
+        android:layout_marginTop="@dimen/_15sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -13,34 +23,14 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/imageView2">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_40sdp"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:fontFamily="@font/inter_black"
-                android:gravity="center_horizontal"
-                android:text="Welcome"
-                android:textColor="@color/Blue"
-                android:textSize="@dimen/_25sdp"
-                android:textStyle="italic" />
-
-        </LinearLayout>
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
+
             android:paddingStart="@dimen/_10sdp"
-            android:paddingTop="@dimen/_25sdp"
             android:paddingEnd="@dimen/_10sdp">
 
             <LinearLayout
@@ -51,26 +41,25 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_2sdp"
-                    android:fontFamily="@font/lato_bold"
-                    android:text="Please enter details below."
+                    android:fontFamily="@font/inter_bold"
+                    android:text="Please enter Logins Details."
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_14sdp"
+                    android:textSize="@dimen/_15sdp"
                     android:textStyle="bold" />
 
                 <EditText
                     android:id="@+id/loginMobileNO"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_2sdp"
                     android:background="@drawable/edit_text_rounded"
-                    android:fontFamily="@font/inter_regular"
+                    android:fontFamily="@font/inter_medium"
                     android:hint="Mobile no."
                     android:inputType="phone"
                     android:maxLength="10"
                     android:paddingStart="@dimen/_10sdp"
                     android:textColor="#0F0A0A"
-                    android:textSize="@dimen/_13sdp" />
+                    android:textSize="@dimen/_11sdp" />
 
                 <EditText
                     android:id="@+id/loginPassword"
@@ -78,12 +67,12 @@
                     android:layout_height="@dimen/_40sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/edit_text_rounded"
-                    android:fontFamily="@font/inter_regular"
+                    android:fontFamily="@font/inter_medium"
                     android:hint="Password"
                     android:inputType="textPassword"
                     android:paddingStart="@dimen/_10sdp"
                     android:textColor="#0F0A0A"
-                    android:textSize="@dimen/_13sdp" />
+                    android:textSize="@dimen/_11sdp" />
 
             </LinearLayout>
 
@@ -91,34 +80,30 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout15"
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/loginBtn"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:padding="@dimen/_10sdp"
-        android:weightSum="12"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:backgroundTint="@color/Blue"
+        android:textColor="@color/white"
+        android:enabled="false"
+        android:fontFamily="@font/inter_semibold"
+        android:text="Login"
+        android:textAllCaps="false"
+        android:textSize="@dimen/_14sdp"
+        app:cornerRadius="@dimen/_5sdp"
+        app:elevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/loginBtn"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
-            android:backgroundTint="#ABE7F5"
-            android:enabled="false"
-            android:fontFamily="@font/inter_regular"
-            android:letterSpacing="0"
-            android:text="Login"
-            android:textAllCaps="false"
-            android:textSize="@dimen/_14sdp"
-            app:cornerRadius="@dimen/_10sdp"
-            app:elevation="0dp">
-
-        </com.google.android.material.button.MaterialButton>
+    </com.google.android.material.button.MaterialButton>
 
 
-    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
