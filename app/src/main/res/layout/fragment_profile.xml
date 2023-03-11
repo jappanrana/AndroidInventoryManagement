@@ -44,14 +44,7 @@
 
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1.5dp"
-        android:layout_marginTop="@dimen/_10sdp"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLaysout" />
+
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView2"
@@ -98,7 +91,7 @@
                         android:layout_width="@dimen/_30sdp"
                         android:layout_height="@dimen/_30sdp"
                         android:layout_gravity="center"
-                        android:src="@drawable/bill" />
+                        android:src="@drawable/quotation" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -107,7 +100,7 @@
                         android:layout_marginStart="10dp"
                         android:layout_weight="3"
                         android:fontFamily="@font/inter_semibold"
-                        android:text="GST Quotation"
+                        android:text="Add Quotation"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_12sdp" />
 
@@ -115,54 +108,49 @@
 
             </LinearLayout>
 
-            <!--        <LinearLayout-->
-            <!--            android:layout_width="match_parent"-->
-            <!--            android:layout_height="5dp"-->
-            <!--            android:paddingStart="10dp"-->
-            <!--            android:paddingEnd="10dp"-->
-            <!--            android:orientation="vertical">-->
-
-            <!--            <View-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="2dp"-->
-            <!--                android:background="@drawable/vertical_line"-->
-            <!--                android:backgroundTint="@color/RocRed"-->
-            <!--                android:padding="10dp" />-->
-
-            <!--        </LinearLayout>-->
-
-
             <LinearLayout
-                android:id="@+id/logoutProfile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/profile_layout"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:padding="@dimen/_10sdp"
-                android:weightSum="3">
+                android:background="@drawable/profile_layout">
 
-                <ImageView
-                    android:layout_width="@dimen/_30sdp"
-                    android:layout_height="@dimen/_30sdp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/log_out" />
 
-                <TextView
-                    android:layout_width="0dp"
+
+                <LinearLayout
+                    android:id="@+id/gstInvoice"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginStart="10dp"
-                    android:layout_weight="3"
-                    android:fontFamily="@font/inter_semibold"
-                    android:text="Log out"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_12sdp" />
+                    android:orientation="horizontal"
+
+                    android:weightSum="3">
+
+                    <ImageView
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/invoice" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="3"
+                        android:fontFamily="@font/inter_semibold"
+                        android:text="Add Sale"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+                </LinearLayout>
 
             </LinearLayout>
+
+
             <LinearLayout
                 android:id="@+id/sharedQuote"
                 android:layout_width="match_parent"
@@ -180,7 +168,7 @@
                     android:layout_width="@dimen/_30sdp"
                     android:layout_height="@dimen/_30sdp"
                     android:layout_gravity="center"
-                    android:src="@drawable/log_out" />
+                    android:src="@drawable/bills" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -189,7 +177,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_weight="3"
                     android:fontFamily="@font/inter_semibold"
-                    android:text="Shared Quote"
+                    android:text="View Transactions"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp" />
 
@@ -212,7 +200,7 @@
                     android:layout_width="@dimen/_30sdp"
                     android:layout_height="@dimen/_30sdp"
                     android:layout_gravity="center"
-                    android:src="@drawable/log_out" />
+                    android:src="@drawable/products" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -221,7 +209,39 @@
                     android:layout_marginStart="10dp"
                     android:layout_weight="3"
                     android:fontFamily="@font/inter_semibold"
-                    android:text="Product"
+                    android:text="View Product"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/logoutProfile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/profile_layout"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:padding="@dimen/_10sdp"
+                android:weightSum="3">
+
+                <ImageView
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/logout" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="3"
+                    android:fontFamily="@font/inter_semibold"
+                    android:text="Log out"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp" />
 

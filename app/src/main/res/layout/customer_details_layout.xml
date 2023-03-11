@@ -34,17 +34,19 @@
                     android:padding="@dimen/_10sdp">
 
                     <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Customer Name"
                         android:textColorHint="@color/black"
-                        app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
-                        app:boxCornerRadiusBottomStart="@dimen/_8sdp"
-                        app:boxCornerRadiusTopEnd="@dimen/_8sdp"
-                        app:boxCornerRadiusTopStart="@dimen/_8sdp"
+                        app:boxCornerRadiusBottomEnd="@dimen/_5sdp"
+                        app:boxCornerRadiusBottomStart="@dimen/_5sdp"
+                        app:boxCornerRadiusTopEnd="@dimen/_5sdp"
+                        app:boxCornerRadiusTopStart="@dimen/_5sdp"
                         app:boxStrokeColor="@color/black"
                         app:endIconMode="clear_text"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="0dp"
                         android:focusable="true"
                         android:focusableInTouchMode="true"
                         app:hintTextColor="@color/black">
@@ -70,7 +72,9 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/customerRecycler"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:clipToPadding="false"
+                        android:paddingTop="@dimen/_10sdp"/>
 
                 </LinearLayout>
 
@@ -92,7 +96,7 @@
                     android:id="@+id/proceedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:cardBackgroundColor="#700477E2"
+                    app:cardBackgroundColor="@color/Blue"
                     android:elevation="0dp"
                     android:visibility="visible"
                     app:cardCornerRadius="@dimen/_5sdp"
@@ -111,7 +115,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:fontFamily="@font/inter_regular"
+                            android:fontFamily="@font/inter_semibold"
                             android:text="Add New Party"
                             android:textColor="@color/white"
                             android:textSize="@dimen/_14sdp" />

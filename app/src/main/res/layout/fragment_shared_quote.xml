@@ -7,11 +7,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragements.SharedQuoteFragment">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,38 +19,57 @@
         <ImageView
             android:id="@+id/sharedQuotionsback"
             android:layout_width="@dimen/_35sdp"
-            android:layout_height="@dimen/_35sdp"
+            android:layout_height="@dimen/_45sdp"
             android:padding="@dimen/_5sdp"
-            android:src="@drawable/backkey2" />
+            android:src="@drawable/backkey2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:layout_width="0dp"
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="1dp"
-            android:layout_weight="1"
+            android:layout_gravity="center|center_vertical"
             android:fontFamily="@font/inter_bold"
-            android:text="Quotation"
+            android:text="Transactions"
             android:textColor="@color/black"
-            android:textSize="@dimen/_13sdp" />
-    </LinearLayout>
+            android:textSize="@dimen/_13sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/sharedQuotionsback"
+            app:layout_constraintStart_toEndOf="@+id/sharedQuotionsback"
+            app:layout_constraintTop_toTopOf="@+id/sharedQuotionsback" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/sharedQuotionsDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_gravity="end"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/date"
+            app:layout_constraintBottom_toBottomOf="@+id/textView12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView12" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_45sdp"
-            android:layout_margin="10dp"
-            android:hint="Search party"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:hint="Search Bill by Name / phone number"
             android:textColorHint="@color/MediumGrey"
             app:boxCornerRadiusBottomEnd="@dimen/_5sdp"
             app:boxCornerRadiusBottomStart="@dimen/_5sdp"
             app:boxCornerRadiusTopEnd="@dimen/_5sdp"
             app:boxCornerRadiusTopStart="@dimen/_5sdp"
             app:boxStrokeColor="@color/black"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
             app:hintTextColor="@color/MediumGrey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -75,13 +93,14 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-    </LinearLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/sharedRecyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_10sdp"/>
+        android:paddingTop="@dimen/_10sdp"
+        android:clipToPadding="false"/>
 
 
 </LinearLayout>

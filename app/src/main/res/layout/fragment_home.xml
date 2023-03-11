@@ -86,28 +86,37 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:src="@drawable/parties"
+        app:layout_constraintBottom_toBottomOf="@+id/textView8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView8" />
+
     <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_15sdp"
         android:fontFamily="@font/inter_bold"
-        android:text="All Parties"
+        android:text="Parties"
         android:textColor="@color/black"
-        android:textSize="@dimen/_16sdp"
+        android:textSize="@dimen/_17sdp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toBottomOf="@+id/PartySearch" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/partyRecycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/_1sdp"
-        android:clipToPadding="true"
+        android:paddingTop="@dimen/_3sdp"
+        android:clipToPadding="false"
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         app:layout_constraintEnd_toEndOf="parent"

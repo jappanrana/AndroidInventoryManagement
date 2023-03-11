@@ -16,7 +16,7 @@
                 <path
                     android:name="path"
                     android:pathData="M 20 2.5 C 15.36 2.5 10.906 4.345 7.626 7.626 C 4.345 10.906 2.5 15.36 2.5 20 C 2.5 24.64 4.345 29.094 7.626 32.374 C 10.906 35.655 15.36 37.5 20 37.5 C 24.64 37.5 29.094 35.655 32.374 32.374 C 35.655 29.094 37.5 24.64 37.5 20 C 37.5 15.36 35.655 10.906 32.374 7.626 C 29.094 4.345 24.64 2.5 20 2.5 Z"
-                    android:strokeColor="#04B8E2"
+                    android:strokeColor="@color/Blue"
                     android:strokeWidth="3.5"
                     android:trimPathEnd="0.9850632982450529"
                     android:strokeLineCap="round"/>
@@ -67,7 +67,7 @@
                     android:propertyName="strokeColor"
                     android:startOffset="1000"
                     android:duration="3000"
-                    android:valueFrom="#04B8E2"
+                    android:valueFrom="@color/Blue"
                     android:valueTo="#FF000000"
                     android:valueType="colorType"
                     android:interpolator="@android:anim/accelerate_decelerate_interpolator"/>
@@ -113,7 +113,7 @@
                     android:startOffset="1000"
                     android:duration="3000"
                     android:valueFrom="#FF000000"
-                    android:valueTo="#04B8E2"
+                    android:valueTo="@color/Blue"
                     android:valueType="colorType"
                     android:interpolator="@android:anim/accelerate_decelerate_interpolator"/>
             </set>
