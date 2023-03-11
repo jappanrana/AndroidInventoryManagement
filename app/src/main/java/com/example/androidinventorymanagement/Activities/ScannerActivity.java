@@ -43,7 +43,7 @@ public class ScannerActivity extends AppCompatActivity {
         intentIntegrator.setPrompt("For Flash Use Volume Key up");
         intentIntegrator.setBeepEnabled(true);
         intentIntegrator.setOrientationLocked(true);
-        intentIntegrator.setCaptureActivity(Capture.class);
+        intentIntegrator.setCaptureActivity(ScannerActivity.class);
         intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
         intentIntegrator.initiateScan();
 
@@ -135,7 +135,7 @@ public class ScannerActivity extends AppCompatActivity {
         else
         {
             onBackPressed();
-            Toast.makeText(this, "Oops didn't find any barcode", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "Oops didn't find any barcode", Toast.LENGTH_SHORT).show();
         }
     }
     @Override

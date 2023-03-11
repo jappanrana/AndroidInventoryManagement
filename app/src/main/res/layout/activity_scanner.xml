@@ -6,6 +6,42 @@
     android:layout_height="match_parent"
     tools:context=".Activities.ScannerActivity">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineTopParent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.025"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineMiddleParent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.12"/>
+
+    <ImageView
+        android:id="@+id/scannerBackButton"
+        android:layout_width="@dimen/_35sdp"
+        android:layout_height="@dimen/_45sdp"
+        android:padding="@dimen/_5sdp"
+        android:src="@drawable/backkey2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.02"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelineTopParent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <com.journeyapps.barcodescanner.DecoratedBarcodeView
+        android:id="@+id/barcode_scanner"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guidelineMiddleParent" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

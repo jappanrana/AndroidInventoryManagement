@@ -12,7 +12,10 @@ import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
 import android.text.InputFilter;
+import android.text.InputType;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -114,8 +117,32 @@ public class QuoteScannerActivity extends AppCompatActivity {
 
                                     // find the EditText and Button views in the layout
                                     TextView nameText = view.findViewById(R.id.scannedItemName);
+                                    TextView unitText = view.findViewById(R.id.unitTextPopup);
                                     EditText Qty = view.findViewById(R.id.scannedItemQty);
+                                    Qty.setRawInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+//                                    Qty.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
                                     Button submitButton = view.findViewById(R.id.scannedItemSubmit);
+                                    Qty.addTextChangedListener(new TextWatcher() {
+                                        @Override
+                                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                                        }
+
+                                        @Override
+                                        public void onTextChanged(CharSequence s, int start, int before, int count) {
+                                            // Check if the entered text is a decimal or a whole number
+                                            if (s.toString().contains(".")) {
+                                                unitText.setText("KG");
+                                            } else {
+                                                unitText.setText("Units");
+                                            }
+                                        }
+
+                                        @Override
+                                        public void afterTextChanged(Editable s) {
+
+                                        }
+                                    });
                                     Qty.setFilters(new InputFilter[]{new CustomRangeInputFilter(0f,999f)});
 
                                     nameText.setText(dataSnapshot.child("name").getValue().toString());

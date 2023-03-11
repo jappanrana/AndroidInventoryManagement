@@ -198,10 +198,10 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable str1) {
                 if(str1.toString().trim().length()>0 && !password.getText().toString().equals("")){
-                    loginBtn.setBackgroundColor(Color.parseColor("#04B8E2"));
+                    loginBtn.setBackgroundColor(Color.parseColor("#0477E2"));
                     loginBtn.setEnabled(true);
                 }else{
-                    loginBtn.setBackgroundColor(Color.parseColor("#ABE7F5"));
+                    loginBtn.setBackgroundColor(Color.parseColor("#CED8E1"));
                     loginBtn.setEnabled(false);
                 }
             }
@@ -221,11 +221,11 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable str) {
                 if(str.toString().trim().length()>0 && !loginNo.getText().toString().equals("")){
-                    loginBtn.setBackgroundColor(Color.parseColor("#04B8E2"));
+                    loginBtn.setBackgroundColor(Color.parseColor("#0477E2"));
                     loginBtn.setEnabled(true);
 
                 }else{
-                    loginBtn.setBackgroundColor(Color.parseColor("#ABE7F5"));
+                    loginBtn.setBackgroundColor(Color.parseColor("#CED8E1"));
                     loginBtn.setEnabled(false);
                 }
             }

@@ -88,7 +88,7 @@
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_20sdp"
-        android:backgroundTint="@color/Blue"
+        android:backgroundTint="#CED8E1"
         android:textColor="@color/white"
         android:enabled="false"
         android:fontFamily="@font/inter_semibold"

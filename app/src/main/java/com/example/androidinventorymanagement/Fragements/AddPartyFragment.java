@@ -5,10 +5,13 @@ import android.os.Bundle;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.androidinventorymanagement.Models.party;
@@ -27,6 +30,7 @@ public class AddPartyFragment extends Fragment {
     TextInputEditText addPartyName,addPartyNumber,addPartyGST,addPartyAddress;
     CardView addPartySave,addPartySaveNew;
     ImageView addPartyBack;
+    TextView validateGST;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,6 +44,30 @@ public class AddPartyFragment extends Fragment {
         addPartySave = view.findViewById(R.id.addPartySave);
         addPartySaveNew = view.findViewById(R.id.addPartySaveNew);
         addPartyBack = view.findViewById(R.id.addPartyBack);
+        validateGST = view.findViewById(R.id.validateGST);
+
+        addPartyGST.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // Check if the entered text is a GST number
+                String regex = "^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[0-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$";
+                if (s.toString().matches(regex)) {
+                    validateGST.setText("Valid GST number");
+                } else {
+                    validateGST.setText("Invalid GST number");
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         SharedPreferenceMethods.setSharedPrefBackState(getContext(), Constances.BACK_ADD_PARTY);
         DatabaseReference databaseReferenceParty = FirebaseDatabase.getInstance().getReference("party");
