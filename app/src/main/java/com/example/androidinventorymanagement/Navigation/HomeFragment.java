@@ -92,6 +92,7 @@ public class HomeFragment extends Fragment implements EasyPermissions.Permission
         mContext = getContext();
 
         SharedPreferenceMethods.setSharedPrefNavigation(mContext,Constances.NAVIGATION_HOME);
+        SharedPreferenceMethods.setSharedPrefBackState(mContext,Constances.BACK_HOME);
 
         partyRecycler = home.findViewById(R.id.partyRecycler);
         homeAddPartyBtn = home.findViewById(R.id.homeAddPartyBtn);

@@ -164,6 +164,13 @@ public class QuoteScannerActivity extends AppCompatActivity {
                                         }
                                     });
 
+                                    popup.setOnDismissListener(new PopupWindow.OnDismissListener() {
+                                        @Override
+                                        public void onDismiss() {
+                                            mCodeScanner.startPreview();
+                                        }
+                                    });
+
                                     // show the popup window
                                     popup.showAtLocation(recyclerView, Gravity.CENTER, 0, 0);
                                 }
@@ -234,6 +241,13 @@ public class QuoteScannerActivity extends AppCompatActivity {
 //                        youNameArray.add(item);
                         // dismiss the popup window
                         popup.dismiss();
+                    }
+                });
+
+                popup.setOnDismissListener(new PopupWindow.OnDismissListener() {
+                    @Override
+                    public void onDismiss() {
+                        mCodeScanner.startPreview();
                     }
                 });
 

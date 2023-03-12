@@ -1,5 +1,7 @@
 package com.example.androidinventorymanagement.Fragements;
 
+import static com.example.androidinventorymanagement.Utils.CommonMethods.CheckNumbers;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -121,7 +123,7 @@ public class ProductFragment extends Fragment {
         homeFragmentRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         FirebaseRecyclerOptions<ProductsModel> options = new FirebaseRecyclerOptions.Builder<ProductsModel>()
-                .setQuery(databaseReferenceProducts.orderByChild("code"), ProductsModel.class).build();
+                .setQuery(databaseReferenceProducts.orderByKey(), ProductsModel.class).build();
 
         adapter = new ProductsAdapter(options, getContext(), homeFragmentSelectMenu);
 
@@ -338,9 +340,11 @@ public class ProductFragment extends Fragment {
         FirebaseRecyclerOptions<ProductsModel> options;
         if(query.isEmpty()){
             options = new FirebaseRecyclerOptions.Builder<ProductsModel>()
-                    .setQuery(databaseReferenceProducts.orderByChild("code"),ProductsModel.class).build();
-        }
-        else{
+                    .setQuery(databaseReferenceProducts.orderByKey(),ProductsModel.class).build();
+        }else if(CheckNumbers(query.toString())){
+            options = new FirebaseRecyclerOptions.Builder<ProductsModel>()
+                    .setQuery(databaseReferenceProducts.orderByChild("code").startAt(query).endAt(query+ "\uf8ff"),ProductsModel.class).build();
+        }else{
             options = new FirebaseRecyclerOptions.Builder<ProductsModel>()
                     .setQuery(databaseReferenceProducts.orderByChild("name").startAt(query).endAt(query+ "\uf8ff"),ProductsModel.class).build();
         }

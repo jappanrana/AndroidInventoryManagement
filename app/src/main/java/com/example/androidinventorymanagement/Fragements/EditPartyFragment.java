@@ -44,6 +44,7 @@ public class EditPartyFragment extends Fragment {
         editPartyDelete = view.findViewById(R.id.editPartyDelete);
         editPartySave = view.findViewById(R.id.editPartySave);
         editPartyBack = view.findViewById(R.id.editPartyBack);
+        String regex = "^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[0-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$";
 
 
         DatabaseReference databaseReferenceParty = FirebaseDatabase.getInstance().getReference("party");
@@ -81,6 +82,8 @@ public class EditPartyFragment extends Fragment {
                     Toast.makeText(getContext(), "No Name Found", Toast.LENGTH_SHORT).show();
                 }else if(editPartyNumber.getText().toString().length() != 10){
                     Toast.makeText(getContext(), "Wrong Number", Toast.LENGTH_SHORT).show();
+                }else if(!editPartyGST.getText().toString().matches(regex)){
+                    Toast.makeText(getContext(), "Wrong Gst", Toast.LENGTH_SHORT).show();
                 }else {
                     party newParty = new party(editPartyName.getText().toString().toLowerCase(Locale.ROOT),editPartyNumber.getText().toString(),editPartyGST.getText().toString(),editPartyAddress.getText().toString(),currentEditParty.getKey());
                     databaseReferenceParty.child(newParty.getKey()).setValue(newParty);

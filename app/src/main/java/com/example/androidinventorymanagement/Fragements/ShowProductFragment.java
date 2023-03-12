@@ -5,22 +5,12 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
-import androidx.fragment.app.Fragment;
-
 import android.os.Environment;
 import android.text.InputFilter;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,10 +22,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.androidinventorymanagement.ExportScreens.PDFExportActivity;
-import com.example.androidinventorymanagement.Models.ExportModel;
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.fragment.app.Fragment;
+
 import com.example.androidinventorymanagement.Models.ProductsModel;
-import com.example.androidinventorymanagement.Navigation.HomeFragment;
 import com.example.androidinventorymanagement.R;
 import com.example.androidinventorymanagement.Utils.CommonMethods;
 import com.example.androidinventorymanagement.Utils.Constances;
@@ -270,8 +261,7 @@ public class ShowProductFragment extends Fragment {
                         databaseReferenceProduct.child(key).child("measurement").setValue(measurement).toString();
                         hideKeyboard(v);
                         Toast.makeText(mContext, "Successfully Updated", Toast.LENGTH_SHORT).show();
-                        HomeFragment homeFragment = new HomeFragment();
-                        getParentFragmentManager().beginTransaction().replace(R.id.frame, homeFragment).commit();
+                        getParentFragmentManager().beginTransaction().replace(R.id.frame, new ProductFragment()).commit();
                     }else
                     {
                         databaseReferenceProduct.orderByChild("code").equalTo(mProdCode).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -292,8 +282,7 @@ public class ShowProductFragment extends Fragment {
                                     databaseReferenceProduct.child(key).child("measurement").setValue(measurement).toString();
                                     hideKeyboard(v);
                                     Toast.makeText(mContext, "Successfully Updated", Toast.LENGTH_SHORT).show();
-                                    HomeFragment homeFragment = new HomeFragment();
-                                    getParentFragmentManager().beginTransaction().replace(R.id.frame, homeFragment).commit();
+                                    getParentFragmentManager().beginTransaction().replace(R.id.frame, new ProductFragment()).commit();
                                 }
                             }
 
@@ -319,8 +308,7 @@ public class ShowProductFragment extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 databaseReferenceProduct.child(key).removeValue();
-                                HomeFragment homeFragment = new HomeFragment();
-                                getParentFragmentManager().beginTransaction().replace(R.id.frame, homeFragment).commit();
+                                getParentFragmentManager().beginTransaction().replace(R.id.frame, new ProductFragment()).commit();
                             }
                         })
                         .setNegativeButton("No", null);

@@ -7,6 +7,8 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -65,6 +67,18 @@ public class PDFExportActivity extends AppCompatActivity {
         prodRate = findViewById(R.id.ExpeachexportProductRate);
         barcodeImage = findViewById(R.id.ExpeachexportBarcodeImg);
         barcodeCardview = findViewById(R.id.ExpeachBarcodeCardView);
+
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+
+//        Toast.makeText(this, String.valueOf(displayMetrics.widthPixels), Toast.LENGTH_SHORT).show();
+
+//        darshan try this just change 60 to desired value according to tablet size mostly will do the trick
+//        if(displayMetrics.widthPixels > 1080){
+//            prodCode.setTextSize(TypedValue.COMPLEX_UNIT_SP,60);
+//            prodName.setTextSize(TypedValue.COMPLEX_UNIT_SP,60);
+//            prodRate.setTextSize(TypedValue.COMPLEX_UNIT_SP,60);
+//        }
 
         Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
 

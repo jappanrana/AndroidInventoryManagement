@@ -30,7 +30,6 @@ public class AddPartyFragment extends Fragment {
     TextInputEditText addPartyName,addPartyNumber,addPartyGST,addPartyAddress;
     CardView addPartySave,addPartySaveNew;
     ImageView addPartyBack;
-    TextView validateGST;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,30 +43,8 @@ public class AddPartyFragment extends Fragment {
         addPartySave = view.findViewById(R.id.addPartySave);
         addPartySaveNew = view.findViewById(R.id.addPartySaveNew);
         addPartyBack = view.findViewById(R.id.addPartyBack);
-        validateGST = view.findViewById(R.id.validateGST);
+        String regex = "^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[0-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$";
 
-        addPartyGST.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // Check if the entered text is a GST number
-                String regex = "^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[0-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$";
-                if (s.toString().matches(regex)) {
-                    validateGST.setText("Valid GST number");
-                } else {
-                    validateGST.setText("Invalid GST number");
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
 
         SharedPreferenceMethods.setSharedPrefBackState(getContext(), Constances.BACK_ADD_PARTY);
         DatabaseReference databaseReferenceParty = FirebaseDatabase.getInstance().getReference("party");
@@ -89,6 +66,8 @@ public class AddPartyFragment extends Fragment {
                     Toast.makeText(getContext(), "No Name Found", Toast.LENGTH_SHORT).show();
                 }else if(addPartyNumber.getText().toString().length() != 10){
                     Toast.makeText(getContext(), "Wrong Number", Toast.LENGTH_SHORT).show();
+                }else if(!addPartyGST.getText().toString().matches(regex)){
+                    Toast.makeText(getContext(), "Wrong Gst", Toast.LENGTH_SHORT).show();
                 }else {
                     party newParty = new party(addPartyName.getText().toString().toLowerCase(Locale.ROOT), addPartyNumber.getText().toString(), addPartyGST.getText().toString(), addPartyAddress.getText().toString(), Key);
                     databaseReferenceParty.child(Key).setValue(newParty);
@@ -105,6 +84,8 @@ public class AddPartyFragment extends Fragment {
                     Toast.makeText(getContext(), "No Name Found", Toast.LENGTH_SHORT).show();
                 }else if(addPartyNumber.getText().toString().length() != 10){
                     Toast.makeText(getContext(), "Wrong Number", Toast.LENGTH_SHORT).show();
+                }else if(!addPartyGST.getText().toString().matches(regex)){
+                    Toast.makeText(getContext(), "Wrong Gst", Toast.LENGTH_SHORT).show();
                 }else {
                     party newParty = new party(addPartyName.getText().toString().toLowerCase(Locale.ROOT), addPartyNumber.getText().toString(), addPartyGST.getText().toString(), addPartyAddress.getText().toString(), Key);
                     databaseReferenceParty.child(Key).setValue(newParty);
