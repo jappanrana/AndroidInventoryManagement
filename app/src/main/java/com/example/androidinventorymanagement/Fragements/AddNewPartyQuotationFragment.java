@@ -1,6 +1,7 @@
 package com.example.androidinventorymanagement.Fragements;
 
 import android.Manifest;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,9 +17,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.androidinventorymanagement.Activities.QuoteItemsActivity;
 import com.example.androidinventorymanagement.Models.party;
 import com.example.androidinventorymanagement.Navigation.HomeFragment;
 import com.example.androidinventorymanagement.Navigation.ProfileFragment;
@@ -38,7 +39,8 @@ import java.util.regex.Pattern;
 import pub.devrel.easypermissions.AppSettingsDialog;
 import pub.devrel.easypermissions.EasyPermissions;
 
-public class AddPartyFragment extends Fragment implements EasyPermissions.PermissionCallbacks{
+
+public class AddNewPartyQuotationFragment extends Fragment implements EasyPermissions.PermissionCallbacks{
 
     TextInputEditText addPartyName,addPartyNumber,addPartyGST,addPartyAddress;
     CardView addPartySave,addPartySaveNew;
@@ -46,16 +48,18 @@ public class AddPartyFragment extends Fragment implements EasyPermissions.Permis
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_add_party, container, false);
+                             Bundle savedInstanceState)
+    {
+        View addNewPartyQuotation = inflater.inflate(R.layout.fragment_add_new_party_quotation, container, false);
 
-        addPartyName = view.findViewById(R.id.addPartyName);
-        addPartyNumber = view.findViewById(R.id.addPartyNumber);
-        addPartyGST = view.findViewById(R.id.addPartyGST);
-        addPartyAddress = view.findViewById(R.id.addPartyAddress);
-        addPartySave = view.findViewById(R.id.addPartySave);
-        addPartySaveNew = view.findViewById(R.id.addPartySaveNew);
-        addPartyBack = view.findViewById(R.id.addPartyBack);
+
+        addPartyName = addNewPartyQuotation.findViewById(R.id.addPartyName);
+        addPartyNumber = addNewPartyQuotation.findViewById(R.id.addPartyNumber);
+        addPartyGST = addNewPartyQuotation.findViewById(R.id.addPartyGST);
+        addPartyAddress = addNewPartyQuotation.findViewById(R.id.addPartyAddress);
+        addPartySave = addNewPartyQuotation.findViewById(R.id.addPartySave);
+
+        addPartyBack = addNewPartyQuotation.findViewById(R.id.addPartyBack);
         String regex = "^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[0-9A-Z]{1}[Z]{1}[0-9A-Z]{1}$";
 
         addPartyName.addTextChangedListener(new TextWatcher() {
@@ -110,9 +114,7 @@ public class AddPartyFragment extends Fragment implements EasyPermissions.Permis
 
         String Key = databaseReferenceParty.push().getKey();
 
-
-
-        TextInputLayout textInputLayout = view.findViewById(R.id.textInputLayout3);
+        TextInputLayout textInputLayout = addNewPartyQuotation.findViewById(R.id.textInputLayout3);
         EditText editText = textInputLayout.getEditText();
         if (editText != null) {
             editText.addTextChangedListener(new TextWatcher() {
@@ -145,8 +147,8 @@ public class AddPartyFragment extends Fragment implements EasyPermissions.Permis
         addPartyBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ProfileFragment profileFragment = new ProfileFragment();
-                getParentFragmentManager().beginTransaction().replace(R.id.frame, profileFragment).commit();
+                HomeFragment homeFragment = new HomeFragment();
+                getParentFragmentManager().beginTransaction().replace(R.id.frame, homeFragment).commit();
             }
         });
 
@@ -160,32 +162,19 @@ public class AddPartyFragment extends Fragment implements EasyPermissions.Permis
                 }else {
                     party newParty = new party(addPartyName.getText().toString().toLowerCase(Locale.ROOT), addPartyNumber.getText().toString(), addPartyGST.getText().toString(), addPartyAddress.getText().toString(), Key);
                     databaseReferenceParty.child(Key).setValue(newParty);
-                    HomeFragment homeFragment = new HomeFragment();
-                    getParentFragmentManager().beginTransaction().replace(R.id.frame, homeFragment).commit();
+                    Intent intent = new Intent(getActivity(), QuoteItemsActivity.class);
+                    startActivity(intent);
+//                    ProfileFragment profileFragment = new ProfileFragment();
+//                    getParentFragmentManager().beginTransaction().replace(R.id.frame, profileFragment).commit();
                 }
             }
         });
 
-        addPartySaveNew.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(addPartyName.getText().toString().equals("")){
-                    Toast.makeText(getContext(), "No Name Found", Toast.LENGTH_SHORT).show();
-                }else if(addPartyNumber.getText().toString().length() != 10){
-                    Toast.makeText(getContext(), "Wrong Number", Toast.LENGTH_SHORT).show();
-                }else if(!addPartyGST.getText().toString().matches(regex)){
-                    Toast.makeText(getContext(), "Wrong Gst", Toast.LENGTH_SHORT).show();
-                }else {
-                    party newParty = new party(addPartyName.getText().toString().toLowerCase(Locale.ROOT), addPartyNumber.getText().toString(), addPartyGST.getText().toString(), addPartyAddress.getText().toString(), Key);
-                    databaseReferenceParty.child(Key).setValue(newParty);
-                    AddPartyFragment addPartyFragment = new AddPartyFragment();
-                    getParentFragmentManager().beginTransaction().replace(R.id.frame, addPartyFragment).commit();
-                }
-            }
-        });
+
 
         getPermissions();
-        return view;
+
+        return addNewPartyQuotation;
     }
 
     public void getPermissions() {

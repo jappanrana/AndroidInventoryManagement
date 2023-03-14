@@ -27,12 +27,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.androidinventorymanagement.Activities.QuoteItemsActivity;
 import com.example.androidinventorymanagement.Activities.QuoteScannerActivity;
 import com.example.androidinventorymanagement.Adapters.PartyAdapter;
+import com.example.androidinventorymanagement.Fragements.AddNewPartyQuotationFragment;
 import com.example.androidinventorymanagement.Fragements.AddPartyFragment;
 import com.example.androidinventorymanagement.Fragements.ProductFragment;
 import com.example.androidinventorymanagement.Fragements.SharedQuoteFragment;
 import com.example.androidinventorymanagement.Models.party;
 import com.example.androidinventorymanagement.R;
 import com.example.androidinventorymanagement.Utils.Constances;
+import com.example.androidinventorymanagement.Utils.CustomBottomSheetDialogFragment;
 import com.example.androidinventorymanagement.Utils.SharedPreferenceMethods;
 import com.example.androidinventorymanagement.login.LoginActivity;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -133,8 +135,14 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+//                CustomBottomSheetDialogFragment bottomSheetDialog = new CustomBottomSheetDialogFragment();
+//                bottomSheetDialog.show(getChildFragmentManager(), bottomSheetDialog.getTag());
+
+
+
                 BottomSheetDialog userSheetDialog = new BottomSheetDialog(getContext(),R.style.CartDialog);
                 userSheetDialog.setContentView(R.layout.customer_details_layout);
+
                 userSheetDialog.getBehavior().setState(BottomSheetBehavior.STATE_EXPANDED);
                 userSheetDialog.getBehavior().setHideable(true);
                 userSheetDialog.getBehavior().setSkipCollapsed(true);
@@ -146,7 +154,9 @@ public class ProfileFragment extends Fragment {
 //                TextInputEditText customerNo = userSheetDialog.findViewById(R.id.customerNoSheetEditText);
                 CardView proceedBtn = userSheetDialog.findViewById(R.id.proceedButton);
                 RecyclerView parties = userSheetDialog.findViewById(R.id.customerRecycler);
+
                 parties.setLayoutManager(new LinearLayoutManager(getContext()));
+
                 DatabaseReference databaseReferenceParty = FirebaseDatabase.getInstance().getReference("party");
 
                 FirebaseRecyclerOptions<party> options = new FirebaseRecyclerOptions.
@@ -162,6 +172,7 @@ public class ProfileFragment extends Fragment {
 
                         SharedPreferenceMethods.setSharedPrefSharedQuote(mContext,false);
 
+//                        bottomSheetDialog.dismiss();
                         userSheetDialog.dismiss();
                         Intent intent1 = new Intent(getActivity(), QuoteItemsActivity.class);
                         getActivity().startActivity(intent1);
@@ -176,8 +187,8 @@ public class ProfileFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         userSheetDialog.dismiss();
-                        AddPartyFragment addPartyFragment = new AddPartyFragment();
-                        getParentFragmentManager().beginTransaction().replace(R.id.frame, addPartyFragment).commit();
+                        AddNewPartyQuotationFragment addNewPartyQuotationFragment = new AddNewPartyQuotationFragment();
+                        getParentFragmentManager().beginTransaction().replace(R.id.frame, addNewPartyQuotationFragment).commit();
                     }
                 });
 

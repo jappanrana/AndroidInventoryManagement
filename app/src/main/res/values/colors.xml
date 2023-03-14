@@ -14,4 +14,14 @@
     <color name="MediumGrey">#858585</color>
     <color name="menu_selected_color_new">#FF000000</color>
     <color name="menu_normal_color_new">#858585</color>
+
+    <color name="tm_blue">#375DEB</color>
+    <color name="tm_dark_grey">#4E4C4A</color>
+    <color name="tm_grey">#F0ECEC</color>
+
+    <color name="tm_highlight_stroke_green">#5BF297</color>
+    <color name="tm_highlight_stroke_red">#F67676</color>
+    <color name="tm_highlight_stroke_blue">#375DEB</color>
+    <color name="tm_highlight_stroke_orange_1">#F6A476</color>
+
 </resources>

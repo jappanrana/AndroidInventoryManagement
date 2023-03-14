@@ -77,8 +77,10 @@ public class HomeFragment extends Fragment implements EasyPermissions.Permission
 
     RecyclerView partyRecycler;
     PartyAdapter partyAdapter;
-    ConstraintLayout homeAddPartyBtn;
+    ConstraintLayout homeAddPartyBtn,homeFragmentLoader;
+    ImageView homeLoadingAnimationImage;
     TextInputEditText partySearchHome;
+    AnimatedVectorDrawable avd;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -97,12 +99,33 @@ public class HomeFragment extends Fragment implements EasyPermissions.Permission
         partyRecycler = home.findViewById(R.id.partyRecycler);
         homeAddPartyBtn = home.findViewById(R.id.homeAddPartyBtn);
         partySearchHome = home.findViewById(R.id.partySearchHome);
+        homeLoadingAnimationImage = home.findViewById(R.id.homeLoadingAnimationImage);
+        homeFragmentLoader = home.findViewById(R.id.homeFragmentLoader);
+
         partyRecycler.setLayoutManager(new LinearLayoutManager(mContext));
+
 
         DatabaseReference databaseReferenceParty = FirebaseDatabase.getInstance().getReference("party");
 
         FirebaseRecyclerOptions<party> options = new FirebaseRecyclerOptions.
                 Builder<party>().setQuery(databaseReferenceParty,party.class).build();
+
+        Drawable drawable = homeLoadingAnimationImage.getDrawable();
+
+        if (drawable instanceof AnimatedVectorDrawable) {
+            avd = (AnimatedVectorDrawable) drawable;
+            avd.start();
+
+            ((AnimatedVectorDrawable) drawable).registerAnimationCallback(new Animatable2.AnimationCallback() {
+
+                @Override
+                public void onAnimationEnd(Drawable drawable) {
+                    super.onAnimationEnd(drawable);
+                    avd.start();
+
+                }
+            });
+        }
 
         PartyAdapter.Partylistner listner = new PartyAdapter.Partylistner() {
             @Override
@@ -116,6 +139,9 @@ public class HomeFragment extends Fragment implements EasyPermissions.Permission
         partyAdapter = new PartyAdapter(options,listner);
         partyRecycler.setAdapter(partyAdapter);
         partyAdapter.startListening();
+//        homeFragmentLoader.setVisibility(View.GONE);
+//        Jappan Loading Image Stop when Recyclerview Loaded
+
 
         partySearchHome.addTextChangedListener(new TextWatcher() {
             @Override
@@ -130,12 +156,14 @@ public class HomeFragment extends Fragment implements EasyPermissions.Permission
                             Builder<party>().setQuery(databaseReferenceParty.orderByChild("number").startAt(s.toString().toLowerCase(Locale.ROOT)).endAt(s.toString().toLowerCase(Locale.ROOT)+"\uf8ff"),party.class).build();
                     partyAdapter = new PartyAdapter(options,listner);
                     partyRecycler.setAdapter(partyAdapter);
+                    homeFragmentLoader.setVisibility(View.GONE);
                     partyAdapter.startListening();
                 }else{
                     FirebaseRecyclerOptions<party> options = new FirebaseRecyclerOptions.
                             Builder<party>().setQuery(databaseReferenceParty.orderByChild("name").startAt(s.toString().toLowerCase(Locale.ROOT)).endAt(s.toString().toLowerCase(Locale.ROOT)+"\uf8ff"),party.class).build();
                     partyAdapter = new PartyAdapter(options,listner);
                     partyRecycler.setAdapter(partyAdapter);
+                    homeFragmentLoader.setVisibility(View.GONE);
                     partyAdapter.startListening();
                 }
             }
@@ -147,12 +175,14 @@ public class HomeFragment extends Fragment implements EasyPermissions.Permission
                             Builder<party>().setQuery(databaseReferenceParty.orderByChild("number").startAt(s.toString().toLowerCase(Locale.ROOT)).endAt(s.toString().toLowerCase(Locale.ROOT)+"\uf8ff"),party.class).build();
                     partyAdapter = new PartyAdapter(options,listner);
                     partyRecycler.setAdapter(partyAdapter);
+                    homeFragmentLoader.setVisibility(View.GONE);
                     partyAdapter.startListening();
                 }else{
                     FirebaseRecyclerOptions<party> options = new FirebaseRecyclerOptions.
                             Builder<party>().setQuery(databaseReferenceParty.orderByChild("name").startAt(s.toString().toLowerCase(Locale.ROOT)).endAt(s.toString().toLowerCase(Locale.ROOT)+"\uf8ff"),party.class).build();
                     partyAdapter = new PartyAdapter(options,listner);
                     partyRecycler.setAdapter(partyAdapter);
+                    homeFragmentLoader.setVisibility(View.GONE);
                     partyAdapter.startListening();
                 }
             }

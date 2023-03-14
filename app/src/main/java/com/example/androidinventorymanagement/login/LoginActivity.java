@@ -165,12 +165,12 @@ public class LoginActivity extends AppCompatActivity {
                             }
                             else
                             {
-                                Toast.makeText(mContext, "wrong password", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(mContext, "Invalid Password", Toast.LENGTH_SHORT).show();
                             }
                         }
                         else
                         {
-                            Toast.makeText(mContext, "no user Found", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, "Invalid UserID", Toast.LENGTH_SHORT).show();
                         }
 
                     }

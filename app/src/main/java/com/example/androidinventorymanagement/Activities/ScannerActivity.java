@@ -10,9 +10,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.androidinventorymanagement.HomeActivity;
+import com.example.androidinventorymanagement.Navigation.HomeFragment;
 import com.example.androidinventorymanagement.R;
 import com.example.androidinventorymanagement.Utils.Capture;
 import com.example.androidinventorymanagement.Utils.SharedPreferenceMethods;
@@ -30,6 +33,7 @@ public class ScannerActivity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     String sourceString, userRole;
     Context mContext;
+    ImageView scannerBackButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,17 @@ public class ScannerActivity extends AppCompatActivity {
 
         mContext = ScannerActivity.this;
         userRole = SharedPreferenceMethods.getSharedPrefUserRole(mContext);
+        scannerBackButton = findViewById(R.id.scannerBackButton);
+
+        scannerBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ScannerActivity.this, HomeActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         IntentIntegrator intentIntegrator = new IntentIntegrator(this);
         intentIntegrator.setPrompt("For Flash Use Volume Key up");
