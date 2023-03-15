@@ -102,7 +102,13 @@ public class HomeFragment extends Fragment implements EasyPermissions.Permission
         homeLoadingAnimationImage = home.findViewById(R.id.homeLoadingAnimationImage);
         homeFragmentLoader = home.findViewById(R.id.homeFragmentLoader);
 
-        partyRecycler.setLayoutManager(new LinearLayoutManager(mContext));
+        partyRecycler.setLayoutManager(new LinearLayoutManager(mContext){
+            @Override
+            public void onLayoutCompleted(RecyclerView.State state) {
+                super.onLayoutCompleted(state);
+                homeFragmentLoader.setVisibility(View.GONE);
+            }
+        });
 
 
         DatabaseReference databaseReferenceParty = FirebaseDatabase.getInstance().getReference("party");
