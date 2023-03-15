@@ -52,7 +52,7 @@ public class SharedQuoteAdapter extends FirebaseRecyclerAdapter<QuotationModel,S
         LinearLayout sharedQuoteViewLayout;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            customeraName = itemView.findViewById(R.id.quoteCustomerName);
+            customeraName = itemView.findViewById(R.id.partySaleView);
             customerTotal = itemView.findViewById(R.id.quoteCustomerNo);
             date = itemView.findViewById(R.id.quoteDate);
             sharedQuoteViewLayout = itemView.findViewById(R.id.sharedQuoteViewLayout);

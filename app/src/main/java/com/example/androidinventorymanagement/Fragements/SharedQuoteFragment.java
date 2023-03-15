@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -50,7 +49,7 @@ public class SharedQuoteFragment extends Fragment {
         View sharedQuote = inflater.inflate(R.layout.fragment_shared_quote, container, false);
 
         recyclerView = sharedQuote.findViewById(R.id.sharedRecyclerview);
-        sharedQuotionsback = sharedQuote.findViewById(R.id.sharedQuotionsback);
+        sharedQuotionsback = sharedQuote.findViewById(R.id.viewPartyTransactionsBack);
         searchView = sharedQuote.findViewById(R.id.quotationsSearchView);
 
         mContext = getContext();

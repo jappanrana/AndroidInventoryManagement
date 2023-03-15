@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/sharedQuotionsback"
+            android:id="@+id/viewPartyTransactionsBack"
             android:layout_width="@dimen/_35sdp"
             android:layout_height="@dimen/_45sdp"
             android:padding="@dimen/_5sdp"
@@ -35,12 +35,12 @@
             android:text="Transactions"
             android:textColor="@color/black"
             android:textSize="@dimen/_13sdp"
-            app:layout_constraintBottom_toBottomOf="@+id/sharedQuotionsback"
-            app:layout_constraintStart_toEndOf="@+id/sharedQuotionsback"
-            app:layout_constraintTop_toTopOf="@+id/sharedQuotionsback" />
+            app:layout_constraintBottom_toBottomOf="@+id/viewPartyTransactionsBack"
+            app:layout_constraintStart_toEndOf="@+id/viewPartyTransactionsBack"
+            app:layout_constraintTop_toTopOf="@+id/viewPartyTransactionsBack" />
 
         <ImageView
-            android:id="@+id/sharedQuotionsDate"
+            android:id="@+id/viewPartyTransactionsEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_10sdp"

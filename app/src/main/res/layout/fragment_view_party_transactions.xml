@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragements.ViewPartyTransactionsFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/viewPartyTransactionsBack"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/backkey2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|center_vertical"
+            android:fontFamily="@font/inter_bold"
+            android:text="Party Name - Ayush"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_13sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/viewPartyTransactionsBack"
+            app:layout_constraintStart_toEndOf="@+id/viewPartyTransactionsBack"
+            app:layout_constraintTop_toTopOf="@+id/viewPartyTransactionsBack" />
+
+        <ImageView
+            android:id="@+id/viewPartyTransactionsEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_gravity="end"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/edit_view_party"
+            app:layout_constraintBottom_toBottomOf="@+id/textView12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView12" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout7"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_45sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_5sdp"
+        android:hint="Search Transactions"
+        android:textColorHint="@color/MediumGrey"
+        app:boxCornerRadiusBottomEnd="@dimen/_5sdp"
+        app:boxCornerRadiusBottomStart="@dimen/_5sdp"
+        app:boxCornerRadiusTopEnd="@dimen/_5sdp"
+        app:boxCornerRadiusTopStart="@dimen/_5sdp"
+        app:boxStrokeColor="@color/black"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:hintTextColor="@color/MediumGrey"
+        app:layout_constraintEnd_toStartOf="@+id/viewPartyTransactionsFilter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        app:startIconDrawable="@drawable/searchicon">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/quotationsSearchView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cursorVisible="true"
+            android:fontFamily="@font/inter_semibold"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textColorHint="@color/MediumGrey"
+            android:textCursorDrawable="@color/MediumGrey"
+            android:textSize="@dimen/_12sdp">
+
+        </com.google.android.material.textfield.TextInputEditText>
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/viewPartyTransactionsFilter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:padding="@dimen/_5sdp"
+        android:src="@drawable/filter"
+        app:layout_constraintBottom_toBottomOf="@+id/textInputLayout7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/partyRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingTop="@dimen/_3sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout7"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
