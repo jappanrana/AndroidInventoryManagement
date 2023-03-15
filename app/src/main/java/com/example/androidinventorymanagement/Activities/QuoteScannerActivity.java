@@ -279,7 +279,7 @@ public class QuoteScannerActivity extends AppCompatActivity {
             while (i<dataholder.size()){
                 QuoteModel temp = dataholder.get(i);
                 if(Objects.equals(temp.getName(), name)){
-                    temp.setQty(temp.getQty()+1);
+                    temp.setQty(Float.valueOf(qtyReceived));
                     dataholder.remove(i);
                     dataholder.add(i,temp);
                     scanItemAdapter.updateList(dataholder);

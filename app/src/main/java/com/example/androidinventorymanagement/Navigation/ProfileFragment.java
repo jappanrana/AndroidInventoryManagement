@@ -28,6 +28,7 @@ import com.example.androidinventorymanagement.Fragements.ProductFragment;
 import com.example.androidinventorymanagement.Fragements.SharedQuoteFragment;
 import com.example.androidinventorymanagement.Models.party;
 import com.example.androidinventorymanagement.R;
+import com.example.androidinventorymanagement.SqlDB.DbManager;
 import com.example.androidinventorymanagement.Utils.Constances;
 import com.example.androidinventorymanagement.Utils.SharedPreferenceMethods;
 import com.example.androidinventorymanagement.login.LoginActivity;
@@ -164,6 +165,8 @@ public class ProfileFragment extends Fragment {
                         SharedPreferenceMethods.setSharedPrefCustomerNumber(mContext,FinalNumber);
 
                         SharedPreferenceMethods.setSharedPrefSharedQuote(mContext,false);
+                        DbManager dbManager = new DbManager(getContext());
+                        dbManager.deleteAll();
 
 //                        bottomSheetDialog.dismiss();
                         userSheetDialog.dismiss();
