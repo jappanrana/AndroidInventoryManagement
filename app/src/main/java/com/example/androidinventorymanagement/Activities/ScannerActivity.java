@@ -58,7 +58,7 @@ public class ScannerActivity extends AppCompatActivity {
         intentIntegrator.setPrompt("For Flash Use Volume Key up");
         intentIntegrator.setBeepEnabled(true);
         intentIntegrator.setOrientationLocked(true);
-        intentIntegrator.setCaptureActivity(ScannerActivity.class);
+        intentIntegrator.setCaptureActivity(Capture.class);
         intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.ALL_CODE_TYPES);
         intentIntegrator.initiateScan();
 
