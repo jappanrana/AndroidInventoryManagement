@@ -5,66 +5,36 @@ import static com.example.androidinventorymanagement.Utils.SharedPreferenceMetho
 
 import android.Manifest;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.Animatable2;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.SearchView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.PopupMenu;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.androidinventorymanagement.Adapters.PartyAdapter;
-import com.example.androidinventorymanagement.Adapters.ProductsAdapter;
-import com.example.androidinventorymanagement.ExportScreens.PDFExportActivity;
-import com.example.androidinventorymanagement.ExportScreens.PDFExportAllActivity;
 import com.example.androidinventorymanagement.Fragements.AddPartyFragment;
-import com.example.androidinventorymanagement.Fragements.AddProductsFragment;
 import com.example.androidinventorymanagement.Fragements.EditPartyFragment;
-import com.example.androidinventorymanagement.Fragements.ShowProductFragment;
-import com.example.androidinventorymanagement.Models.ExportModel;
-import com.example.androidinventorymanagement.Models.ProductsModel;
-import com.example.androidinventorymanagement.Models.QuotationModel;
 import com.example.androidinventorymanagement.Models.party;
 import com.example.androidinventorymanagement.R;
-import com.example.androidinventorymanagement.SqlDB.DbManager;
 import com.example.androidinventorymanagement.Utils.Constances;
 import com.example.androidinventorymanagement.Utils.SharedPreferenceMethods;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 

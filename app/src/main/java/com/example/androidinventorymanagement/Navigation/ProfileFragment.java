@@ -1,6 +1,7 @@
 package com.example.androidinventorymanagement.Navigation;
 
 import static com.example.androidinventorymanagement.Utils.CommonMethods.CheckNumbers;
+import static com.example.androidinventorymanagement.Utils.SharedPreferenceMethods.setSharedPrefGenerateType;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -43,7 +44,7 @@ import java.util.Locale;
 
 public class ProfileFragment extends Fragment {
 
-    LinearLayout createGstQuote;
+    LinearLayout createGstQuote,gstInvoice;
     LinearLayout logoutProfile,sharedQuote,productPage;
     Context mContext;
     PartyAdapter partyAdapter;
@@ -62,6 +63,7 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_profile, container, false);
         createGstQuote = view.findViewById(R.id.gstQuote);
+        gstInvoice = view.findViewById(R.id.gstInvoice);
         logoutProfile = view.findViewById(R.id.logoutProfile);
         sharedQuote = view.findViewById(R.id.sharedQuote);
         productPage = view.findViewById(R.id.productPage);
@@ -128,6 +130,121 @@ public class ProfileFragment extends Fragment {
         createGstQuote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setSharedPrefGenerateType(mContext,"quotation");
+
+//                CustomBottomSheetDialogFragment bottomSheetDialog = new CustomBottomSheetDialogFragment();
+//                bottomSheetDialog.show(getChildFragmentManager(), bottomSheetDialog.getTag());
+
+
+
+                BottomSheetDialog userSheetDialog = new BottomSheetDialog(getContext(),R.style.CartDialog);
+                userSheetDialog.setContentView(R.layout.customer_details_layout);
+
+                userSheetDialog.getBehavior().setState(BottomSheetBehavior.STATE_EXPANDED);
+                userSheetDialog.getBehavior().setHideable(true);
+                userSheetDialog.getBehavior().setSkipCollapsed(true);
+                userSheetDialog.setCanceledOnTouchOutside(true);
+
+                userSheetDialog.show();
+
+                TextInputEditText customerName = userSheetDialog.findViewById(R.id.customerNameSheetEditText);
+//                TextInputEditText customerNo = userSheetDialog.findViewById(R.id.customerNoSheetEditText);
+                CardView proceedBtn = userSheetDialog.findViewById(R.id.proceedButton);
+                RecyclerView parties = userSheetDialog.findViewById(R.id.customerRecycler);
+
+                parties.setLayoutManager(new LinearLayoutManager(getContext()));
+
+                DatabaseReference databaseReferenceParty = FirebaseDatabase.getInstance().getReference("party");
+
+                FirebaseRecyclerOptions<party> options = new FirebaseRecyclerOptions.
+                        Builder<party>().setQuery(databaseReferenceParty,party.class).build();
+
+                PartyAdapter.Partylistner listner = new PartyAdapter.Partylistner() {
+                    @Override
+                    public void clicked(party pty) {
+                        String userInpNumber = pty.getNumber();
+                        String FinalNumber = "+91 "+userInpNumber.substring(0,5)+" "+userInpNumber.substring(5);
+                        SharedPreferenceMethods.setSharedPrefCustomerName(mContext, pty.getName());
+                        SharedPreferenceMethods.setSharedPrefCustomerNumber(mContext,FinalNumber);
+
+                        SharedPreferenceMethods.setSharedPrefSharedQuote(mContext,false);
+                        DbManager dbManager = new DbManager(getContext());
+                        dbManager.deleteAll();
+
+//                        bottomSheetDialog.dismiss();
+                        userSheetDialog.dismiss();
+                        Intent intent1 = new Intent(getActivity(), QuoteItemsActivity.class);
+                        getActivity().startActivity(intent1);
+                    }
+                };
+
+                partyAdapter = new PartyAdapter(options,listner);
+                parties.setAdapter(partyAdapter);
+                partyAdapter.startListening();
+
+                proceedBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        userSheetDialog.dismiss();
+                        AddNewPartyQuotationFragment addNewPartyQuotationFragment = new AddNewPartyQuotationFragment();
+                        getParentFragmentManager().beginTransaction().replace(R.id.frame, addNewPartyQuotationFragment).commit();
+                    }
+                });
+
+                customerName.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        if(CheckNumbers(s.toString())){
+                            FirebaseRecyclerOptions<party> options = new FirebaseRecyclerOptions.
+                                    Builder<party>().setQuery(databaseReferenceParty.orderByChild("number").startAt(s.toString().toLowerCase(Locale.ROOT)).endAt(s.toString().toLowerCase(Locale.ROOT)+"\uf8ff"),party.class).build();
+                            partyAdapter = new PartyAdapter(options,listner);
+                            parties.setAdapter(partyAdapter);
+                            partyAdapter.startListening();
+                        }else{
+                            FirebaseRecyclerOptions<party> options = new FirebaseRecyclerOptions.
+                                    Builder<party>().setQuery(databaseReferenceParty.orderByChild("name").startAt(s.toString().toLowerCase(Locale.ROOT)).endAt(s.toString().toLowerCase(Locale.ROOT)+"\uf8ff"),party.class).build();
+                            partyAdapter = new PartyAdapter(options,listner);
+                            parties.setAdapter(partyAdapter);
+                            partyAdapter.startListening();
+                        }
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                        if(CheckNumbers(s.toString())){
+                            FirebaseRecyclerOptions<party> options = new FirebaseRecyclerOptions.
+                                    Builder<party>().setQuery(databaseReferenceParty.orderByChild("number").startAt(s.toString().toLowerCase(Locale.ROOT)).endAt(s.toString().toLowerCase(Locale.ROOT)+"\uf8ff"),party.class).build();
+                            partyAdapter = new PartyAdapter(options,listner);
+                            parties.setAdapter(partyAdapter);
+                            partyAdapter.startListening();
+                        }else{
+                            FirebaseRecyclerOptions<party> options = new FirebaseRecyclerOptions.
+                                    Builder<party>().setQuery(databaseReferenceParty.orderByChild("name").startAt(s.toString().toLowerCase(Locale.ROOT)).endAt(s.toString().toLowerCase(Locale.ROOT)+"\uf8ff"),party.class).build();
+                            partyAdapter = new PartyAdapter(options,listner);
+                            parties.setAdapter(partyAdapter);
+                            partyAdapter.startListening();
+                        }
+
+//                        if(s.toString().trim().length()>0 && !customerNo.getText().toString().equals("")){
+//                            proceedBtn.setCardBackgroundColor(Color.parseColor("#04B8E2"));
+//                            proceedBtn.setEnabled(true);
+//                        }else{
+//                            proceedBtn.setCardBackgroundColor(Color.parseColor("#ABE7F5"));
+//                            proceedBtn.setEnabled(false);
+//                        }
+                    }
+                });
+            }
+        });
+        gstInvoice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setSharedPrefGenerateType(mContext,"sales");
 
 //                CustomBottomSheetDialogFragment bottomSheetDialog = new CustomBottomSheetDialogFragment();
 //                bottomSheetDialog.show(getChildFragmentManager(), bottomSheetDialog.getTag());

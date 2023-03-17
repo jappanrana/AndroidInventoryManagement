@@ -142,4 +142,17 @@ public class SharedPreferenceMethods {
         String Back = sharedPreferenceObject.getString("Back",Constances.BACK_HOME);
         return Back;
     }
+
+    public static void setSharedPrefGenerateType(Context context, String value){
+        SharedPreferences sharedPreferenceObject = context.getSharedPreferences("sharedPrefStorage",0);
+        sharedPreferenceObject.edit().putString("billtype",value).apply();
+    }
+
+    public static String getSharedPrefGenerateType(Context context) {
+        SharedPreferences sharedPreferenceObject = context.getSharedPreferences("sharedPrefStorage",0);
+        String Value = sharedPreferenceObject.getString("billtype","Quotation");
+        return Value;
+    }
+
+
 }

@@ -1,5 +1,7 @@
 package com.example.androidinventorymanagement.Activities;
 
+import static com.example.androidinventorymanagement.Utils.SharedPreferenceMethods.getSharedPrefGenerateType;
+
 import android.Manifest;
 import android.content.ContentProviderOperation;
 import android.content.Context;
@@ -382,10 +384,13 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
                 folderName+"_"+fileName,
                 uniqueKey,
                 customerName.getText().toString().toLowerCase(Locale.ROOT)+"_"+customerNo.getText().toString()+"_"+folderName,
+                getSharedPrefGenerateType(mContext),
                 Integer.parseInt(discountAmt.getText().toString()),
                 Integer.parseInt(totalGstAmt.getText().toString()),
                 Integer.parseInt(subTotalAmt.getText().toString()),
-                Integer.parseInt(grandTotal.getText().toString()),dataholder);
+                Integer.parseInt(grandTotal.getText().toString()),
+                dataholder
+        );
 
         quotationDatabase.child(uniqueKey).setValue(quotation);
         Toast.makeText(this, "Quotation Generated Successfully!", Toast.LENGTH_SHORT).show();

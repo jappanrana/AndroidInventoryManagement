@@ -3,9 +3,17 @@ package com.example.androidinventorymanagement.Models;
 import java.util.ArrayList;
 
 public class QuotationModel {
-    String customerName,CustomerNumber,dateTime,key,name;
+    String customerName,CustomerNumber,dateTime,key,name,type;
     int discount,gst,subtotal,total;
     ArrayList<QuoteModel> Items = new ArrayList<>();
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public String getCustomerName() {
         return customerName;
@@ -90,12 +98,13 @@ public class QuotationModel {
     public QuotationModel() {
     }
 
-    public QuotationModel(String customerName, String customerNumber, String dateTime, String key, String name, int discount, int gst, int subtotal, int total, ArrayList<QuoteModel> items) {
+    public QuotationModel(String customerName, String customerNumber, String dateTime, String key, String name, String type, int discount, int gst, int subtotal, int total, ArrayList<QuoteModel> items) {
         this.customerName = customerName;
         CustomerNumber = customerNumber;
         this.dateTime = dateTime;
         this.key = key;
         this.name = name;
+        this.type = type;
         this.discount = discount;
         this.gst = gst;
         this.subtotal = subtotal;

@@ -227,6 +227,8 @@ public class QuoteScannerActivity extends AppCompatActivity {
                 nameText.setText(item.getName());
                 Qty.setText(item.getQty().toString());
 
+                Float originalQty = item.getQty();
+
                 // set an onClickListener for the submit button
                 submitButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -234,7 +236,7 @@ public class QuoteScannerActivity extends AppCompatActivity {
                         // do something with the user's input
                         String userInput = Qty.getText().toString();
                         processInsert(item.getName(), item.getCode(),
-                                item.getMrp(), item.getGstAmt(), userInput);
+                                item.getMrp(), item.getGstAmt(), String.valueOf(Float.valueOf(userInput)+originalQty));
                         proceedBtn.setBackgroundColor(Color.parseColor("#04B8E2"));
                         proceedBtn.setEnabled(true);
                         recyclerView.setAdapter(scanItemAdapter);
