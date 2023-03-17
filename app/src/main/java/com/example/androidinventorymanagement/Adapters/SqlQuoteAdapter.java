@@ -1,11 +1,15 @@
 package com.example.androidinventorymanagement.Adapters;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.text.Editable;
 import android.text.InputFilter;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -90,7 +94,17 @@ public class SqlQuoteAdapter extends RecyclerView.Adapter<SqlQuoteAdapter.myview
         }else{
             qtyValue = String.valueOf(dataholder.get(holder.getAbsoluteAdapterPosition()).getQty());
         }
+
+
+
         holder.CartQuantityText.setText(qtyValue);
+
+        double quantity = Double.parseDouble(qtyValue);
+        if (quantity == (int) quantity) {
+            holder.CartQuantityUnitText.setText("Pcs");
+        } else {
+            holder.CartQuantityUnitText.setText("KG");
+        }
 
         String totalValue;
         String total = String.valueOf(Integer.parseInt(dataholder.get(holder.getAbsoluteAdapterPosition()).getMrp())*Float.parseFloat(dataholder.get(holder.getAbsoluteAdapterPosition()).getQty().toString()));
@@ -221,7 +235,7 @@ public class SqlQuoteAdapter extends RecyclerView.Adapter<SqlQuoteAdapter.myview
     class myviewholder extends RecyclerView.ViewHolder
     {
         TextView cartItemName,cartItemRate,cartItemGst,itemTotal;
-        TextView CartQuantityText;
+        TextView CartQuantityText, CartQuantityUnitText;
         CardView cardView;
         ImageView minusQuoteImg;
         public myviewholder(@NonNull View itemView) {
@@ -231,6 +245,7 @@ public class SqlQuoteAdapter extends RecyclerView.Adapter<SqlQuoteAdapter.myview
             cartItemRate = itemView.findViewById(R.id.cartItemRate);
             cartItemGst = itemView.findViewById(R.id.cartItemGst);
             CartQuantityText = itemView.findViewById(R.id.CartQuantityText);
+            CartQuantityUnitText = itemView.findViewById(R.id.CartQuantityUnitText);
             cardView = itemView.findViewById(R.id.cardViewQuoteItems);
             itemTotal = itemView.findViewById(R.id.cartItemTotal);
             minusQuoteImg = itemView.findViewById(R.id.minusQuoteItem);
@@ -301,6 +316,8 @@ public class SqlQuoteAdapter extends RecyclerView.Adapter<SqlQuoteAdapter.myview
 //            });
 
         }
+
+
     }
 
 
