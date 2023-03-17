@@ -70,7 +70,7 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
 
     Context mContext;
     RecyclerView recyclerView;
-    TextView subTotalAmt,totalGstAmt,grandTotal,discountAmt,delete,editedTextView;
+    TextView subTotalAmt,totalGstAmt,grandTotal,discountAmt,delete,editedTextView,quoteSaleTextView;
     ImageView finalQuoteBackBtn;
     MaterialButton sharedPDF, printPDF, DownloadPDF;
     LinearLayout quoteLayout;
@@ -118,8 +118,11 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
         getCustomerNo  = SharedPreferenceMethods.getSharedPrefCustomerNumber(mContext);
         customerName.setText(getCustomerName);
         customerNo.setText(getCustomerNo);
-         key = SharedPreferenceMethods.getSharedPrefCustomerKey(mContext);
+        quoteSaleTextView = findViewById(R.id.quoteSaleTextView);
 
+        quoteSaleTextView.setText(getSharedPrefGenerateType(mContext));
+
+        key = SharedPreferenceMethods.getSharedPrefCustomerKey(mContext);
 
         quotationDatabase = FirebaseDatabase.getInstance().getReference("quotations");
 

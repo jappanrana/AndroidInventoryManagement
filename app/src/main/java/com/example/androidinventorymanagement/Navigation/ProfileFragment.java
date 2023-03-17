@@ -130,7 +130,7 @@ public class ProfileFragment extends Fragment {
         createGstQuote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setSharedPrefGenerateType(mContext,"quotation");
+                setSharedPrefGenerateType(mContext,"Quotation");
 
 //                CustomBottomSheetDialogFragment bottomSheetDialog = new CustomBottomSheetDialogFragment();
 //                bottomSheetDialog.show(getChildFragmentManager(), bottomSheetDialog.getTag());
@@ -244,7 +244,7 @@ public class ProfileFragment extends Fragment {
         gstInvoice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setSharedPrefGenerateType(mContext,"sales");
+                setSharedPrefGenerateType(mContext,"Sales");
 
 //                CustomBottomSheetDialogFragment bottomSheetDialog = new CustomBottomSheetDialogFragment();
 //                bottomSheetDialog.show(getChildFragmentManager(), bottomSheetDialog.getTag());
