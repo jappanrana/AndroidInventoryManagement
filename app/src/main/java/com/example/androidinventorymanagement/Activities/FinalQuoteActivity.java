@@ -193,9 +193,10 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
         final String[] savedPath = new String[1];
         final String[] formattedDate = new String[1];
         final String[] fileName = new String[1];
-        DownloadPDF.setOnClickListener(new View.OnClickListener() {
+
+        DownloadPDF.post(new Runnable() {
             @Override
-            public void onClick(View v) {
+            public void run() {
                 try {
                     Date dt = Calendar.getInstance().getTime();
                     String hours = String.valueOf(dt.getHours());
@@ -213,6 +214,12 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
                     e.printStackTrace();
                     Toast.makeText(FinalQuoteActivity.this, "some error occurs", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+        DownloadPDF.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 
