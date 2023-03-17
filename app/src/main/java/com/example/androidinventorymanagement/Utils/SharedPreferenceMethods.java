@@ -154,5 +154,14 @@ public class SharedPreferenceMethods {
         return Value;
     }
 
+    public static void setSharedPrefSearchParty(Context context, String value){
+        SharedPreferences sharedPreferenceObject = context.getSharedPreferences("sharedPrefStorage",0);
+        sharedPreferenceObject.edit().putString("partynamesearch",value).apply();
+    }
 
+    public static String getSharedPrefSearchParty(Context context) {
+        SharedPreferences sharedPreferenceObject = context.getSharedPreferences("sharedPrefStorage",0);
+        String Value = sharedPreferenceObject.getString("partynamesearch","");
+        return Value;
+    }
 }

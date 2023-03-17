@@ -26,6 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.androidinventorymanagement.Adapters.PartyAdapter;
 import com.example.androidinventorymanagement.Fragements.AddPartyFragment;
 import com.example.androidinventorymanagement.Fragements.EditPartyFragment;
+import com.example.androidinventorymanagement.Fragements.SharedQuoteFragment;
 import com.example.androidinventorymanagement.Models.party;
 import com.example.androidinventorymanagement.R;
 import com.example.androidinventorymanagement.Utils.Constances;
@@ -106,9 +107,13 @@ public class HomeFragment extends Fragment implements EasyPermissions.Permission
         PartyAdapter.Partylistner listner = new PartyAdapter.Partylistner() {
             @Override
             public void clicked(party pty) {
-                setSharedPrefEditParty(getContext(),pty);
-                EditPartyFragment editPartyFragment = new EditPartyFragment();
-                getParentFragmentManager().beginTransaction().replace(R.id.frame, editPartyFragment).commit();
+//                setSharedPrefEditParty(getContext(),pty);
+//                EditPartyFragment editPartyFragment = new EditPartyFragment();
+//                getParentFragmentManager().beginTransaction().replace(R.id.frame, editPartyFragment).commit();
+                SharedPreferenceMethods.setSharedPrefSharedQuote(mContext, true);
+                SharedPreferenceMethods.setSharedPrefSearchParty(mContext,pty.getName());
+                SharedQuoteFragment sharedQuoteFragment = new SharedQuoteFragment();
+                getParentFragmentManager().beginTransaction().replace(R.id.frame, sharedQuoteFragment).commit();
             }
         };
 

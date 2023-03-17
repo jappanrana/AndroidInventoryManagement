@@ -37,6 +37,7 @@ public class SharedQuoteAdapter extends FirebaseRecyclerAdapter<QuotationModel,S
         holder.customerTotal.setText("₹ "+total);
         String date = model.getDateTime().substring(0, model.getDateTime().indexOf("_"));
         holder.date.setText(date);
+        holder.partySharedQuoteType.setText(model.getType());
 
     }
 
@@ -48,7 +49,7 @@ public class SharedQuoteAdapter extends FirebaseRecyclerAdapter<QuotationModel,S
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView customeraName,customerTotal,date;
+        TextView customeraName,customerTotal,date,partySharedQuoteType;
         LinearLayout sharedQuoteViewLayout;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -56,6 +57,7 @@ public class SharedQuoteAdapter extends FirebaseRecyclerAdapter<QuotationModel,S
             customerTotal = itemView.findViewById(R.id.quoteCustomerNo);
             date = itemView.findViewById(R.id.quoteDate);
             sharedQuoteViewLayout = itemView.findViewById(R.id.sharedQuoteViewLayout);
+            partySharedQuoteType = itemView.findViewById(R.id.partySharedQuoteType);
 
             sharedQuoteViewLayout.setOnClickListener(new View.OnClickListener() {
                 @Override

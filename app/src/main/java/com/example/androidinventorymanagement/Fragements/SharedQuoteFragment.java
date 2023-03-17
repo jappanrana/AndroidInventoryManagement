@@ -1,5 +1,7 @@
 package com.example.androidinventorymanagement.Fragements;
 
+import static com.example.androidinventorymanagement.Utils.SharedPreferenceMethods.getSharedPrefSearchParty;
+
 import android.content.Context;
 import android.os.Bundle;
 
@@ -59,7 +61,7 @@ public class SharedQuoteFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
 
         FirebaseRecyclerOptions<QuotationModel> options = new FirebaseRecyclerOptions.Builder<QuotationModel>()
-                .setQuery(databaseReferenceQuotations,QuotationModel.class).build();
+                .setQuery(databaseReferenceQuotations.orderByChild("customerName").startAt(getSharedPrefSearchParty(mContext)).endAt(getSharedPrefSearchParty(mContext)+ "\uf8ff"),QuotationModel.class).build();
 
         sharedQuoteAdapter = new SharedQuoteAdapter(options,mContext);
         recyclerView.setAdapter(sharedQuoteAdapter);
