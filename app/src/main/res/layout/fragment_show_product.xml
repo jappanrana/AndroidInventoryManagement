@@ -35,7 +35,7 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="1dp"
                 android:fontFamily="@font/inter_bold"
-                android:text="Product"
+                android:text="Edit Product"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_13sdp" />
 
@@ -280,6 +280,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_3sdp"
                         android:focusable="true"
+                        android:visibility="gone"
                         android:focusableInTouchMode="true"
                         android:hint="Unit Measurement"
                         android:inputType="number"

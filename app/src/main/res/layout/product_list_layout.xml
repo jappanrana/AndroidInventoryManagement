@@ -7,7 +7,7 @@
     android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/productViewLayout1"
+        android:id="@+id/scanProductHost"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_10sdp"
@@ -45,7 +45,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/listProductName"
+            android:id="@+id/scanProductNameViewHolder"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_2sdp"
@@ -57,12 +57,12 @@
             android:text="@string/dummy_text"
             android:textColor="@color/black"
             android:textSize="@dimen/_14sdp"
-            app:layout_constraintEnd_toStartOf="@+id/rupees"
+            app:layout_constraintEnd_toStartOf="@+id/scanProductQtyViewHolder"
             app:layout_constraintStart_toEndOf="@+id/listProductCode"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/rupees"
+            android:id="@+id/scanProductQtyViewHolder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -100,6 +100,6 @@
         android:background="@color/MediumGrey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/productViewLayout1" />
+        app:layout_constraintTop_toBottomOf="@+id/scanProductHost" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

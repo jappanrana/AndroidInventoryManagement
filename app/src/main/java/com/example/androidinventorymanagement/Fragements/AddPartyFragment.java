@@ -173,8 +173,6 @@ public class AddPartyFragment extends Fragment implements EasyPermissions.Permis
                     Toast.makeText(getContext(), "No Name Found", Toast.LENGTH_SHORT).show();
                 }else if(addPartyNumber.getText().toString().length() != 10){
                     Toast.makeText(getContext(), "Wrong Number", Toast.LENGTH_SHORT).show();
-                }else if(!addPartyGST.getText().toString().matches(regex)){
-                    Toast.makeText(getContext(), "Wrong Gst", Toast.LENGTH_SHORT).show();
                 }else {
                     party newParty = new party(addPartyName.getText().toString().toLowerCase(Locale.ROOT), addPartyNumber.getText().toString(), addPartyGST.getText().toString(), addPartyAddress.getText().toString(), Key);
                     databaseReferenceParty.child(Key).setValue(newParty);

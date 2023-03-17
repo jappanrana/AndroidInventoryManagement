@@ -41,11 +41,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/inter_bold"
                     android:text="Please enter Login Details"
+                    android:fontFamily="@font/inter_bold"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_15sdp"
-                    android:textStyle="bold" />
+                    android:textSize="@dimen/_15sdp" />
 
                 <EditText
                     android:id="@+id/loginMobileNO"

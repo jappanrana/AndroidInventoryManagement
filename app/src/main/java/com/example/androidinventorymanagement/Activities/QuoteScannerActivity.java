@@ -113,7 +113,7 @@ public class QuoteScannerActivity extends AppCompatActivity {
                                     popup.setContentView(view);
                                     popup.setFocusable(true);
                                     popup.setWidth(WindowManager.LayoutParams.MATCH_PARENT);
-                                    popup.setHeight(WindowManager.LayoutParams.MATCH_PARENT);
+//                                    popup.setHeight(WindowManager.LayoutParams.MATCH_PARENT);
 
                                     // find the EditText and Button views in the layout
                                     TextView nameText = view.findViewById(R.id.scannedItemName);

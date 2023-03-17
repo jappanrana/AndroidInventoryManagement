@@ -121,7 +121,7 @@
                 android:layout_height="@dimen/_45sdp"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
-                android:hint="Search Bill by Name / phone number"
+                android:hint="Search Product Code / Name"
                 android:textColorHint="@color/MediumGrey"
                 app:boxCornerRadiusBottomEnd="@dimen/_5sdp"
                 app:boxCornerRadiusBottomStart="@dimen/_5sdp"

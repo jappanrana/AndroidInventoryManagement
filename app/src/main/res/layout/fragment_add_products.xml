@@ -239,7 +239,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_3sdp"
-
+                        android:visibility="gone"
                         android:hint="Unit Measurement"
                         android:inputType="number"
                         android:textColorHint="@color/MediumGrey"
