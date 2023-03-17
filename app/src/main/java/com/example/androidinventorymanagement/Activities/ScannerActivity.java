@@ -33,7 +33,6 @@ public class ScannerActivity extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     String sourceString, userRole;
     Context mContext;
-    ImageView scannerBackButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,17 +41,6 @@ public class ScannerActivity extends AppCompatActivity {
 
         mContext = ScannerActivity.this;
         userRole = SharedPreferenceMethods.getSharedPrefUserRole(mContext);
-        scannerBackButton = findViewById(R.id.scannerBackButton);
-
-        scannerBackButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ScannerActivity.this, HomeActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-                finish();
-            }
-        });
 
         IntentIntegrator intentIntegrator = new IntentIntegrator(this);
         intentIntegrator.setPrompt("For Flash Use Volume Key up");
