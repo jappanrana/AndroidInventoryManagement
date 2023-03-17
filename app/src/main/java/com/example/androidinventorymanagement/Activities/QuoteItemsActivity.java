@@ -171,6 +171,10 @@ public class QuoteItemsActivity extends AppCompatActivity
                 addDiscountRupeesTextView = dialog.findViewById(R.id.adddiscountRuppes);
                 addDiscountPercentTextView = dialog.findViewById(R.id.adddiscountPercent);
 
+                dialog.findViewById(R.id.adddiscountPercentHost).setVisibility(View.GONE);
+                dialog.findViewById(R.id.adddiscountRuppesHost1).setVisibility(View.GONE);
+                dialog.findViewById(R.id.adddiscountRuppesHost).setVisibility(View.GONE);
+                dialog.findViewById(R.id.addManuallyHost2).setVisibility(View.GONE);
 
                 scanToAddTextView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -355,6 +359,10 @@ public class QuoteItemsActivity extends AppCompatActivity
                 addDiscountRupeesTextView = dialog.findViewById(R.id.adddiscountRuppes);
                 addDiscountPercentTextView = dialog.findViewById(R.id.adddiscountPercent);
 
+                dialog.findViewById(R.id.scanToAddHost).setVisibility(View.GONE);
+                dialog.findViewById(R.id.scanToAddHost2).setVisibility(View.GONE);
+                dialog.findViewById(R.id.addManuallyHost).setVisibility(View.GONE);
+                dialog.findViewById(R.id.addManuallyHost2).setVisibility(View.GONE);
 
                 scanToAddTextView.setOnClickListener(new View.OnClickListener() {
                     @Override

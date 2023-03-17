@@ -16,6 +16,7 @@
         android:paddingBottom="@dimen/_5sdp">
 
         <LinearLayout
+            android:id="@+id/scanToAddHost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -38,11 +39,13 @@
         </LinearLayout>
 
         <View
+            android:id="@+id/scanToAddHost2"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
             android:background="@color/LightGrey" />
 
         <LinearLayout
+            android:id="@+id/addManuallyHost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -65,11 +68,13 @@
         </LinearLayout>
 
         <View
+            android:id="@+id/addManuallyHost2"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
             android:background="@color/LightGrey" />
 
         <LinearLayout
+            android:id="@+id/adddiscountRuppesHost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -92,11 +97,13 @@
         </LinearLayout>
 
         <View
+            android:id="@+id/adddiscountRuppesHost1"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"
             android:background="@color/LightGrey" />
 
         <LinearLayout
+            android:id="@+id/adddiscountPercentHost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
