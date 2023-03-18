@@ -13,14 +13,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -52,12 +48,9 @@
                         android:maxLines="1"
                         android:text="₹250000"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_14sdp"
-                        />
-
+                        android:textSize="@dimen/_14sdp" />
 
                 </LinearLayout>
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -82,14 +75,9 @@
 
                 </LinearLayout>
 
-
-
             </LinearLayout>
 
-
-
         </LinearLayout>
-
 
         <View
             android:layout_width="match_parent"
@@ -98,6 +86,6 @@
             android:layout_marginBottom="@dimen/_9sdp"
             android:background="@color/MediumGrey" />
 
-
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
