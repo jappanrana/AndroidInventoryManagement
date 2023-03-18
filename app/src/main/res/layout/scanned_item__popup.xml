@@ -132,7 +132,7 @@
                 android:backgroundTint="@color/Blue"
                 android:fontFamily="@font/inter_medium"
                 android:letterSpacing="0"
-                android:text="Submit"
+                android:text="Add"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_16sdp"

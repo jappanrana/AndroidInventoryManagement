@@ -155,7 +155,7 @@ public class QuoteScannerActivity extends AppCompatActivity {
                                             String userInput = Qty.getText().toString();
                                             processInsert(dataSnapshot.child("name").getValue().toString(), dataSnapshot.child("code").getValue().toString(),
                                                     dataSnapshot.child("mrp").getValue().toString(), dataSnapshot.child("gstAmt").getValue().toString(),userInput);
-                                            proceedBtn.setBackgroundColor(Color.parseColor("#04B8E2"));
+                                            proceedBtn.setBackgroundColor(Color.parseColor("#0477E2"));
                                             proceedBtn.setEnabled(true);
                                             recyclerView.setAdapter(scanItemAdapter);
                                             youNameArray.add(data);
@@ -237,7 +237,7 @@ public class QuoteScannerActivity extends AppCompatActivity {
                         String userInput = Qty.getText().toString();
                         processInsert(item.getName(), item.getCode(),
                                 item.getMrp(), item.getGstAmt(), String.valueOf(Float.valueOf(userInput)+originalQty));
-                        proceedBtn.setBackgroundColor(Color.parseColor("#04B8E2"));
+                        proceedBtn.setBackgroundColor(Color.parseColor("#0477E2"));
                         proceedBtn.setEnabled(true);
                         recyclerView.setAdapter(scanItemAdapter);
 //                        youNameArray.add(item);

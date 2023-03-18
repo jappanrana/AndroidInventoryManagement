@@ -90,7 +90,7 @@
         android:orientation="vertical"
         android:overScrollMode="always"
         android:paddingTop="@dimen/_10sdp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
+        app:layout_constraintBottom_toTopOf="@+id/buttonLayoutFinalQuote"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout11">
@@ -259,10 +259,10 @@
                     android:focusableInTouchMode="true"
                     android:fontFamily="@font/inter_regular"
                     android:inputType="number"
-                    android:text="0"
                     android:maxLength="9"
                     android:nextFocusDown="@id/agentQuoteMrpAddProduct"
                     android:singleLine="true"
+                    android:text="0"
                     android:textColor="@color/black"
                     android:textColorHint="@color/MediumGrey"
                     android:textCursorDrawable="@color/black"
@@ -283,29 +283,29 @@
                     android:id="@+id/calculateQtyQuoteAddProduct"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"/>
+                    android:text="0" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="X"/>
+                    android:text="X" />
 
                 <TextView
                     android:id="@+id/calculatePriceQuoteAddProduct"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"/>
+                    android:text="0" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="="/>
+                    android:text="=" />
 
                 <TextView
                     android:id="@+id/calculateTotalQuoteAddProduct"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"/>
+                    android:text="0" />
 
             </LinearLayout>
 
@@ -337,9 +337,9 @@
                     android:fontFamily="@font/inter_regular"
                     android:inputType="number"
                     android:maxLength="3"
-                    android:text="0"
                     android:nextFocusDown="@id/discountQuoteAddProduct"
                     android:singleLine="true"
+                    android:text="0"
                     android:textColor="@color/black"
                     android:textColorHint="@color/MediumGrey"
                     android:textCursorDrawable="@color/black"
@@ -377,8 +377,8 @@
                     android:fontFamily="@font/inter_regular"
                     android:inputType="number"
                     android:maxLength="3"
-                    android:text="0"
                     android:singleLine="true"
+                    android:text="0"
                     android:textColor="@color/black"
                     android:textColorHint="@color/MediumGrey"
                     android:textCursorDrawable="@color/black"
@@ -389,58 +389,86 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
-
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
 
-    <LinearLayout
-        android:id="@+id/linearLayout6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:paddingStart="@dimen/_10sdp"
-        android:paddingEnd="@dimen/_10sdp"
-        android:weightSum="2"
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/buttonLayoutFinalQuote"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/view3"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/addQuoteMoreBtn"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_40sdp"
+                app:cardBackgroundColor="@color/LightGrey"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="Add More"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13sdp" />
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="0.1dp"
+        android:layout_height="0.1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/submitQuoteBtn"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
-            android:layout_height="@dimen/_50sdp"
-            android:layout_marginEnd="@dimen/_5sdp"
-            android:layout_weight="1.2"
-            android:backgroundTint="@color/Blue"
-            android:fontFamily="@font/inter_regular"
-            android:letterSpacing="0"
-            android:text="Submit"
-            android:textAllCaps="false"
-            android:textSize="@dimen/_14sdp"
-            app:cornerRadius="@dimen/_5sdp"
-            app:elevation="0dp">
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/view3"
+            app:layout_constraintEnd_toEndOf="parent">
 
-        </com.google.android.material.button.MaterialButton>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/submitQuoteBtn"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_40sdp"
+                app:cardBackgroundColor="#0477E2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/addQuoteMoreBtn"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_50sdp"
-            android:layout_marginStart="@dimen/_5sdp"
-            android:layout_weight="0.8"
-            android:backgroundTint="@color/black"
-            android:fontFamily="@font/inter_regular"
-            android:letterSpacing="0"
-            android:text="Add More"
-            android:textAllCaps="false"
-            android:textSize="@dimen/_13sdp"
-            app:cornerRadius="@dimen/_5sdp"
-            app:elevation="0dp">
 
-        </com.google.android.material.button.MaterialButton>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/inter_bold"
+                    android:text="Add"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_13sdp" />
 
-    </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
 
 
 

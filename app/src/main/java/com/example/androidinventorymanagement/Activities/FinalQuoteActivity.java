@@ -3,8 +3,10 @@ package com.example.androidinventorymanagement.Activities;
 import static com.example.androidinventorymanagement.Utils.SharedPreferenceMethods.getSharedPrefGenerateType;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.ContentProviderOperation;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.OperationApplicationException;
 import android.content.pm.PackageManager;
@@ -23,6 +25,7 @@ import android.print.PrintManager;
 import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -37,11 +40,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidinventorymanagement.Adapters.PdfDocumentAdapter;
 import com.example.androidinventorymanagement.Adapters.SqlQuoteAdapter;
+import com.example.androidinventorymanagement.HomeActivity;
 import com.example.androidinventorymanagement.Models.QuotationModel;
 import com.example.androidinventorymanagement.Models.QuoteModel;
 import com.example.androidinventorymanagement.R;
 import com.example.androidinventorymanagement.SqlDB.DbManager;
 import com.example.androidinventorymanagement.Utils.CommonMethods;
+import com.example.androidinventorymanagement.Utils.Constances;
 import com.example.androidinventorymanagement.Utils.SharedPreferenceMethods;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.database.DatabaseReference;
@@ -74,7 +79,8 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
     TextView subTotalAmt,totalGstAmt,grandTotal,discountAmt,delete,editedTextView,quoteSaleTextView;
     ImageView finalQuoteBackBtn;
     MaterialButton DownloadPDF;
-    CardView sharedPDF, printPDF;
+    CardView sharedPDF;
+    LinearLayout printPDF, deleteQuote;
     LinearLayout quoteLayout;
     TextView customerName,customerNo,date;
     String discount = "no";
@@ -113,6 +119,7 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
         DownloadPDF = findViewById(R.id.finalQuoteDownloadPDF);
         discountLayout = findViewById(R.id.finalQuotediscountQuoteLayout);
         printPDF = findViewById(R.id.finalQuotePrintPDF);
+        deleteQuote = findViewById(R.id.finalQuoteDeletePDF);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         discount = SharedPreferenceMethods.getSharedPrefDisAvailable(mContext);
@@ -127,6 +134,38 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
         key = SharedPreferenceMethods.getSharedPrefCustomerKey(mContext);
 
         quotationDatabase = FirebaseDatabase.getInstance().getReference("quotations");
+
+        deleteQuote.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(FinalQuoteActivity.this, R.style.AlertDialogTheme);
+                builder.setTitle("Delete Transaction")
+                        .setMessage("Are you sure you want to delete this transaction?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(mContext, "Deleted Successfully", Toast.LENGTH_SHORT).show();
+                            }
+
+                        })
+                        .setNegativeButton("No", null);
+
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
+                alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+                alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+
+                Button btnPositive = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                Button btnNegative = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+
+                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) btnPositive.getLayoutParams();
+                layoutParams.weight = 10;
+                btnPositive.setLayoutParams(layoutParams);
+                btnNegative.setLayoutParams(layoutParams);
+            }
+        });
 
         //save contact permission
 
@@ -306,9 +345,36 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
     public void onBackPressed() {
         super.onBackPressed();
 
-        SharedPreferenceMethods.setSharedPrefDisAvailable(mContext,"0");
-        SharedPreferenceMethods.setSharedPrefEditable(mContext,true);
-        finish();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogTheme);
+        builder.setTitle("Save Transaction")
+                .setMessage("Do you want to save this transaction?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(mContext, "Saved!", Toast.LENGTH_SHORT).show();
+                    }
+
+                })
+                .setNegativeButton("No", null);
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.BLACK);
+
+        Button btnPositive = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+        Button btnNegative = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) btnPositive.getLayoutParams();
+        layoutParams.weight = 10;
+        btnPositive.setLayoutParams(layoutParams);
+        btnNegative.setLayoutParams(layoutParams);
+
+//        SharedPreferenceMethods.setSharedPrefDisAvailable(mContext,"0");
+//        SharedPreferenceMethods.setSharedPrefEditable(mContext,true);
+//        finish();
     }
 
     public void sharePDF(String folderName, String fileName){

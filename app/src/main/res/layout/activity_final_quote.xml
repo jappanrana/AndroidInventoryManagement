@@ -37,6 +37,42 @@
             android:textColor="@color/black"
             android:textSize="@dimen/_13sdp" />
 
+        <LinearLayout
+            android:id="@+id/finalQuoteDeletePDF"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:padding="@dimen/_3sdp"
+                android:src="@drawable/delete" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/finalQuotePrintPDF"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:padding="@dimen/_3sdp"
+                android:src="@drawable/print" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/finalEditQuotePDF"
@@ -53,7 +89,9 @@
                 android:layout_marginEnd="@dimen/_5sdp"
                 android:padding="@dimen/_3sdp"
                 android:src="@drawable/edit" />
+
         </LinearLayout>
+
     </LinearLayout>
 
 
@@ -446,7 +484,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/finalQuotePrintPDF"
+            android:id="@+id/finalQuoteSavePDF"
             android:layout_width="0dp"
             android:layout_height="@dimen/_40sdp"
             app:cardBackgroundColor="@color/LightGrey"
@@ -461,7 +499,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/inter_bold"
-                android:text="Print Bill"
+                android:text="Save Bill"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_13sdp" />
 

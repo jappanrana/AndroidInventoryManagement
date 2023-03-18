@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.example.androidinventorymanagement.R;
 import com.example.androidinventorymanagement.SqlDB.DbManager;
@@ -25,7 +26,7 @@ import com.google.android.material.button.MaterialButton;
 
 public class ManuallyAddQuoteActivity extends AppCompatActivity {
     EditText prodName,prodCode,prodMrp,prodAgtMrp,discount,quantityQuoteAddProduct;
-    MaterialButton submitBtn,addMoreBtn;
+    CardView submitBtn,addMoreBtn;
     ImageView backBtn;
     Context mContext;
 

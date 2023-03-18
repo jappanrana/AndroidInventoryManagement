@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_delete"
+        android:title="Delete Transaction" />
+
+    <item
+        android:id="@+id/menu_c2s"
+        android:title="Convert to Sale"
+        />
+
+    <item
+        android:id="@+id/menu_c2q"
+        android:title="Convert to Quotation"
+        />
+
+
+</menu>
