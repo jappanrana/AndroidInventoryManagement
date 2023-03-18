@@ -69,8 +69,8 @@ public class ManuallyAddQuoteActivity extends AppCompatActivity {
                     String price = s.toString();
                     int priceI = Integer.parseInt(price);
                     String Qty = quantityQuoteAddProduct.getText().toString();
-                    int QtyI = Integer.parseInt(Qty);
-                    int TotalI = priceI * QtyI;
+                    double QtyI = Double.parseDouble(Qty);
+                    double TotalI = priceI * QtyI;
                     String total = String.valueOf(TotalI);
                     calculatePriceQuoteAddProduct.setText(price);
                     calculateQtyQuoteAddProduct.setText(Qty);
@@ -84,8 +84,8 @@ public class ManuallyAddQuoteActivity extends AppCompatActivity {
                     String price = s.toString();
                     int priceI = Integer.parseInt(price);
                     String Qty = quantityQuoteAddProduct.getText().toString();
-                    int QtyI = Integer.parseInt(Qty);
-                    int TotalI = priceI * QtyI;
+                    double QtyI = Double.parseDouble(Qty);
+                    double TotalI = priceI * QtyI;
                     String total = String.valueOf(TotalI);
                     calculatePriceQuoteAddProduct.setText(price);
                     calculateQtyQuoteAddProduct.setText(Qty);
@@ -106,8 +106,8 @@ public class ManuallyAddQuoteActivity extends AppCompatActivity {
                     String price = prodMrp.getText().toString();
                     int priceI = Integer.parseInt(price);
                     String Qty = s.toString();
-                    int QtyI = Integer.parseInt(Qty);
-                    int TotalI = priceI * QtyI;
+                    double QtyI = Double.parseDouble(Qty);
+                    double TotalI = priceI * QtyI;
                     String total = String.valueOf(TotalI);
                     calculatePriceQuoteAddProduct.setText(price);
                     calculateQtyQuoteAddProduct.setText(Qty);
@@ -121,8 +121,8 @@ public class ManuallyAddQuoteActivity extends AppCompatActivity {
                     String price = prodMrp.getText().toString();
                     int priceI = Integer.parseInt(price);
                     String Qty = s.toString();
-                    int QtyI = Integer.parseInt(Qty);
-                    int TotalI = priceI * QtyI;
+                    double QtyI = Double.parseDouble(Qty);
+                    double TotalI = priceI * QtyI;
                     String total = String.valueOf(TotalI);
                     calculatePriceQuoteAddProduct.setText(price);
                     calculateQtyQuoteAddProduct.setText(Qty);

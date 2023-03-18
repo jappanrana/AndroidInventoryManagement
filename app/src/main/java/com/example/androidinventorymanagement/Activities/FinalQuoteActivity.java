@@ -29,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -72,7 +73,8 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
     RecyclerView recyclerView;
     TextView subTotalAmt,totalGstAmt,grandTotal,discountAmt,delete,editedTextView,quoteSaleTextView;
     ImageView finalQuoteBackBtn;
-    MaterialButton sharedPDF, printPDF, DownloadPDF;
+    MaterialButton DownloadPDF;
+    CardView sharedPDF, printPDF;
     LinearLayout quoteLayout;
     TextView customerName,customerNo,date;
     String discount = "no";
