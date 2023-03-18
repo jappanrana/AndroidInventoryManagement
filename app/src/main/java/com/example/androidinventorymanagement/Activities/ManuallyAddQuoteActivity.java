@@ -151,7 +151,7 @@ public class ManuallyAddQuoteActivity extends AppCompatActivity {
                 String mDiscountPrice = discount.getText().toString();
                 String qty = quantityQuoteAddProduct.getText().toString();
 
-                if (!mProdName.equals("") && !MProdMrp.equals("") && !MProdAgtMrp.equals("") || !mDiscountPrice.equals("") && !(Integer.parseInt(mDiscountPrice) >100))
+                if (!mProdName.equals("") && !MProdMrp.equals("") || !mDiscountPrice.equals("") && !(Integer.parseInt(mDiscountPrice) >100))
                 {
                     int discountPrice = 0;
                     int finalDiscountPrice = 0;
@@ -192,7 +192,7 @@ public class ManuallyAddQuoteActivity extends AppCompatActivity {
                 String mDiscountPrice = discount.getText().toString();
                 String qty = quantityQuoteAddProduct.getText().toString();
 
-                if (!mProdName.equals("") && !MProdMrp.equals("") && !MProdAgtMrp.equals("") || !mDiscountPrice.equals("") && !(Integer.parseInt(mDiscountPrice) >100))
+                if (!mProdName.equals("") && !MProdMrp.equals("")  || !mDiscountPrice.equals("") && !(Integer.parseInt(mDiscountPrice) >100))
                 {
                     int discountPrice = 0;
                     int finalDiscountPrice = 0;
