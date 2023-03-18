@@ -153,12 +153,14 @@ public class QuoteScannerActivity extends AppCompatActivity {
                                         public void onClick(View v) {
                                             // do something with the user's input
                                             String userInput = Qty.getText().toString();
-                                            processInsert(dataSnapshot.child("name").getValue().toString(), dataSnapshot.child("code").getValue().toString(),
-                                                    dataSnapshot.child("mrp").getValue().toString(), dataSnapshot.child("gstAmt").getValue().toString(),userInput);
-                                            proceedBtn.setBackgroundColor(Color.parseColor("#0477E2"));
-                                            proceedBtn.setEnabled(true);
-                                            recyclerView.setAdapter(scanItemAdapter);
-                                            youNameArray.add(data);
+                                            if(!userInput.equals("")) {
+                                                processInsert(dataSnapshot.child("name").getValue().toString(), dataSnapshot.child("code").getValue().toString(),
+                                                        dataSnapshot.child("mrp").getValue().toString(), dataSnapshot.child("gstAmt").getValue().toString(), userInput);
+                                                proceedBtn.setBackgroundColor(Color.parseColor("#0477E2"));
+                                                proceedBtn.setEnabled(true);
+                                                recyclerView.setAdapter(scanItemAdapter);
+                                                youNameArray.add(data);
+                                            }
                                             // dismiss the popup window
                                             popup.dismiss();
                                         }
@@ -220,7 +222,30 @@ public class QuoteScannerActivity extends AppCompatActivity {
 
                 // find the EditText and Button views in the layout
                 TextView nameText = view.findViewById(R.id.scannedItemName);
+                TextView unitText = view.findViewById(R.id.unitTextPopup);
                 EditText Qty = view.findViewById(R.id.scannedItemQty);
+
+                Qty.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        // Check if the entered text is a decimal or a whole number
+                        if (s.toString().contains(".")) {
+                            unitText.setText("KG");
+                        } else {
+                            unitText.setText("Units");
+                        }
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
                 Qty.setFilters(new InputFilter[]{new CustomRangeInputFilter(0f,999f)});
                 Button submitButton = view.findViewById(R.id.scannedItemSubmit);
 
@@ -235,11 +260,13 @@ public class QuoteScannerActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         // do something with the user's input
                         String userInput = Qty.getText().toString();
-                        processInsert(item.getName(), item.getCode(),
-                                item.getMrp(), item.getGstAmt(), String.valueOf(Float.valueOf(userInput)+originalQty));
-                        proceedBtn.setBackgroundColor(Color.parseColor("#0477E2"));
-                        proceedBtn.setEnabled(true);
-                        recyclerView.setAdapter(scanItemAdapter);
+                        if(!userInput.equals("")) {
+                            processInsert(item.getName(), item.getCode(),
+                                    item.getMrp(), item.getGstAmt(), String.valueOf(Float.valueOf(userInput) + originalQty));
+                            proceedBtn.setBackgroundColor(Color.parseColor("#0477E2"));
+                            proceedBtn.setEnabled(true);
+                            recyclerView.setAdapter(scanItemAdapter);
+                        }
 //                        youNameArray.add(item);
                         // dismiss the popup window
                         popup.dismiss();
