@@ -79,7 +79,7 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
     TextView subTotalAmt,totalGstAmt,grandTotal,discountAmt,delete,editedTextView,quoteSaleTextView;
     ImageView finalQuoteBackBtn;
     MaterialButton DownloadPDF;
-    CardView sharedPDF;
+    CardView sharedPDF,finalQuoteSavePDF;
     LinearLayout printPDF, deleteQuote;
     LinearLayout quoteLayout;
     TextView customerName,customerNo,date;
@@ -117,6 +117,7 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
         date = findViewById(R.id.finalQuotedateOnQuote);
         editedTextView = findViewById(R.id.editTextViewFinal);
         DownloadPDF = findViewById(R.id.finalQuoteDownloadPDF);
+        finalQuoteSavePDF = findViewById(R.id.finalQuoteSavePDF);
         discountLayout = findViewById(R.id.finalQuotediscountQuoteLayout);
         printPDF = findViewById(R.id.finalQuotePrintPDF);
         deleteQuote = findViewById(R.id.finalQuoteDeletePDF);
@@ -174,7 +175,7 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
                 PackageManager.PERMISSION_GRANTED);
 
         Date c = Calendar.getInstance().getTime();
-        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault());
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MMM-dd", Locale.getDefault());
         String textViewDate = df.format(c);
 
         date.setText(textViewDate);
@@ -235,15 +236,15 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
         final String[] formattedDate = new String[1];
         final String[] fileName = new String[1];
 
-        DownloadPDF.post(new Runnable() {
+        finalQuoteSavePDF.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run() {
+            public void onClick(View v) {
                 try {
                     Date dt = Calendar.getInstance().getTime();
                     String hours = String.valueOf(dt.getHours());
                     String minutes = String.valueOf(dt.getMinutes());
                     String seconds = String.valueOf(dt.getSeconds());
-                    SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+                    SimpleDateFormat df = new SimpleDateFormat("yyyy-MMM-dd", Locale.getDefault());
                     formattedDate[0] = df.format(dt);
 
                     fileName[0] = hours+"-"+minutes+"-"+seconds;
@@ -255,12 +256,6 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
                     e.printStackTrace();
                     Toast.makeText(FinalQuoteActivity.this, "some error occurs", Toast.LENGTH_SHORT).show();
                 }
-            }
-        });
-        DownloadPDF.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
             }
         });
 
