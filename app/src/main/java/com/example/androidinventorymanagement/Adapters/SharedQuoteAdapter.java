@@ -64,6 +64,7 @@ public class SharedQuoteAdapter extends FirebaseRecyclerAdapter<QuotationModel,S
                 public void onClick(View v) {
                     String userInpNumber = getSnapshots().getSnapshot(getAbsoluteAdapterPosition()).child("customerNumber").getValue().toString();
                     SharedPreferenceMethods.setSharedPrefSharedQuote(itemView.getContext(),true);
+                    SharedPreferenceMethods.setSharedPrefGenerateType(itemView.getContext(), getSnapshots().getSnapshot(getPosition()).child("type").getValue().toString());
                     Intent intent = new Intent(itemView.getContext(), QuoteItemsActivity.class);
                     SharedPreferenceMethods.setSharedPrefCustomerName(context,customeraName.getText().toString());
                     SharedPreferenceMethods.setSharedPrefCustomerNumber(context,userInpNumber);
