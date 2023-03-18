@@ -4,18 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center_horizontal|center_vertical"
-    app:layout_anchorGravity="center_horizontal|center_vertical"
-    tools:context=".ExportScreens.PDFExportActivity">
+    tools:context=".ExportScreens.PDFExportAllActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ExpeachBarcodeCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:foregroundGravity="center_vertical|clip_horizontal"
         android:paddingTop="@dimen/_10sdp"
         android:paddingBottom="@dimen/_10sdp"
-        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,13 +32,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_2sdp"
-            android:fontFamily="@font/bebas_regular"
-            android:letterSpacing="0.03"
+            android:fontFamily="@font/bebas_bold"
+            android:letterSpacing="0.05"
             android:text="manufacturer / distributor / wholesaler"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@color/black"
-            android:textSize="@dimen/_12sdp"
+            android:textSize="@dimen/_13sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/logoImage" />
@@ -53,6 +49,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/bebas_regular"
             android:lines="1"
+            android:letterSpacing="0.05"
             android:text="123456789123456"
             android:paddingStart="@dimen/_2sdp"
             android:paddingEnd="@dimen/_2sdp"
@@ -70,7 +67,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/bebas_regular"
             android:lines="1"
-            android:maxLength="35"
+            android:letterSpacing="0.03"
+            android:maxLength="34"
             android:text="@string/dummy_text"
             android:textAlignment="center"
             android:textAllCaps="true"
@@ -95,12 +93,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_2sdp"
-            android:fontFamily="@font/bebas_regular"
+            android:layout_marginBottom="@dimen/_2sdp"
+            android:fontFamily="@font/bebas_bold"
             android:letterSpacing="0.05"
             android:text="(Taxes Transportation Extra As Per Applicable)"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="@dimen/_12sdp"
+            android:textSize="@dimen/_13sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ExpeachexportBarcodeImg" />
@@ -118,17 +117,14 @@
             android:id="@+id/staticText4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
-            android:fontFamily="@font/bebas_regular"
-            android:letterSpacing="0.03"
             android:padding="@dimen/_5sdp"
+            android:fontFamily="@font/bebas_bold"
+            android:letterSpacing="0.05"
             android:text="Shop No. 6/7, Ankita Chs, Near Dcb Bank,Ambadi Road, Vasai (W)"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textSize="@dimen/_12sdp"
-            app:layout_constraintBottom_toTopOf="@+id/staticText5"
+            android:textSize="@dimen/_13sdp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/staticText3" />
 
@@ -147,7 +143,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_2sdp"
             android:fontFamily="@font/bebas_regular"
-            android:letterSpacing="0.03"
+            android:letterSpacing="0.05"
             android:text="MOB. 9028669433 / 9011869610"
             android:textAlignment="center"
             android:textColor="@color/black"
@@ -156,12 +152,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/staticText4" />
 
+
         <TextView
             android:id="@+id/ExpeachexportProductRate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="-30dp"
-            android:fontFamily="@font/bebas_regular"
+            android:fontFamily="@font/bebas_bold"
             android:gravity="center"
             android:letterSpacing="0.08"
             android:lines="1"
@@ -176,6 +173,8 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/ExpeachexportProductCode"
             app:layout_constraintTop_toTopOf="parent" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
