@@ -61,8 +61,8 @@
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView4"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/finalQuotePDF"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
@@ -434,43 +434,78 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/addItemsBtn"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_50sdp"
-        android:layout_margin="@dimen/_10sdp"
-        android:layout_marginStart="13dp"
-        android:layout_marginEnd="13dp"
-        android:backgroundTint="@color/Blue"
-        android:fontFamily="@font/inter_regular"
-        android:letterSpacing="0"
-        android:text="Add Item"
-        android:textAllCaps="false"
-        android:textSize="@dimen/_14sdp"
-        app:cornerRadius="@dimen/_10sdp"
-        app:elevation="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/nestedScrollView4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/finalQuotePDF"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_50sdp"
-        android:layout_margin="@dimen/_10sdp"
-        android:layout_marginStart="13dp"
-        android:layout_marginEnd="13dp"
-        android:backgroundTint="@color/Blue"
-        android:fontFamily="@font/inter_regular"
-        android:letterSpacing="0"
-        android:text="Finalize"
-        android:textAllCaps="false"
-        android:textSize="@dimen/_14sdp"
-        app:cornerRadius="@dimen/_10sdp"
-        app:elevation="0dp"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/view3"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/addItemsBtn"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40sdp"
+            app:cardBackgroundColor="@color/LightGrey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/inter_bold"
+                android:text="Add Item"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13sdp" />
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="0.1dp"
+        android:layout_height="0.1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/view3"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/finalQuotePDF"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40sdp"
+            app:cardBackgroundColor="#0477E2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/inter_bold"
+                android:text="Finalize"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_13sdp" />
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 

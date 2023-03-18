@@ -13,7 +13,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:orientation="vertical">
 
         <LinearLayout
@@ -30,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/_3sdp"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:scaleType="fitStart"
                 android:src="@drawable/minus_quote_item" />
 
@@ -39,9 +38,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:layout_weight="1.9"
+                android:layout_weight="1.65"
                 android:fontFamily="@font/inter_medium"
-                android:text=" Bisleri 100 ML"
+                android:text=" Bisleri 100 ML Bisleri 100 ML Bisleri 100 ML"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_10sdp" />
 
@@ -69,12 +68,12 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.65"
+                android:layout_weight="0.75"
                 android:gravity="center">
 
                 <LinearLayout
                     android:id="@+id/afterAddLayout"
-                    android:layout_width="@dimen/_40sdp"
+                    android:layout_width="@dimen/_45sdp"
                     android:layout_height="30dp"
                     android:gravity="center"
                     android:visibility="visible"
@@ -86,28 +85,29 @@
                         android:layout_height="match_parent"
                         android:background="@color/white"
                         android:fontFamily="@font/inter_medium"
-                        android:gravity="center"
+                        android:gravity="center|end"
                         android:imeOptions="actionDone"
                         android:inputType="numberDecimal"
-
                         android:paddingTop="1dp"
                         android:paddingBottom="1dp"
-                        android:text="20"
+                        android:layout_marginStart="@dimen/_4sdp"
+                        android:text="2000"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_10sdp"
                         tools:ignore="TouchTargetSizeCheck" />
 
                     <TextView
                         android:id="@+id/CartQuantityUnitText"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/_25sdp"
                         android:layout_height="match_parent"
                         android:background="@color/white"
                         android:fontFamily="@font/inter_medium"
-                        android:gravity="center"
+                        android:gravity="center|left"
+                        android:layout_marginStart="@dimen/_2sdp"
                         android:minWidth="50dp"
                         android:paddingTop="1dp"
                         android:paddingBottom="1dp"
-                        android:text="Pcs"
+                        android:text="PCS"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_10sdp"
                         tools:ignore="TouchTargetSizeCheck" />
@@ -145,7 +145,7 @@
                 android:layout_weight="0.6"
                 android:fontFamily="@font/inter_medium"
                 android:gravity="end"
-                android:text="1"
+                android:text="1000000000000"
                 android:digits="2"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_10sdp" />

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardViewQuoteItems"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/minusQuoteItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="9dp"
+        android:scaleType="fitStart"
+        android:src="@drawable/minus_quote_item"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/cartItemName"
+        app:layout_constraintEnd_toStartOf="@+id/cartItemName"
+        app:layout_constraintHorizontal_bias="0.13"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/cartItemName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:fontFamily="@font/inter_semibold"
+        android:text=" Scanned Item"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_13sdp"
+        app:layout_constraintEnd_toStartOf="@+id/cartItemTotal"
+        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/cartItemTotal"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_weight="1.9"
+        android:fontFamily="@font/inter_medium"
+        android:text="10,000"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_11sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/itemSubtotalTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="31dp"
+        android:text="Item Subtotal"
+        android:fontFamily="@font/inter_semibold"
+        android:textColor="@color/MediumGrey"
+        android:textSize="@dimen/_13sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cartItemName" />
+
+    <TextView
+        android:id="@+id/cartItemInnerTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_semibold"
+        android:text="10,000"
+        android:textColor="@color/MediumGrey"
+        android:textSize="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/itemSubtotalTV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.97"
+        app:layout_constraintStart_toEndOf="@+id/itemSubtotalTV"
+        app:layout_constraintTop_toBottomOf="@+id/cartItemName" />
+
+    <TextView
+        android:id="@+id/itemSubtotalSymbols"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_semibold"
+        android:text="= $"
+        android:textColor="@color/MediumGrey"
+        android:textSize="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/itemSubtotalTV"
+        app:layout_constraintEnd_toStartOf="@+id/cartItemInnerTotal"
+        app:layout_constraintHorizontal_bias="0.63"
+        app:layout_constraintStart_toEndOf="@+id/cartItemRate"
+        app:layout_constraintTop_toBottomOf="@+id/cartItemName" />
+
+    <TextView
+        android:id="@+id/cartItemRate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_semibold"
+        android:text="250"
+        android:textColor="@color/MediumGrey"
+        android:textSize="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/itemSubtotalTV"
+        app:layout_constraintEnd_toStartOf="@+id/cartItemInnerTotal"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toEndOf="@+id/itemSubtotalMultiplySign"
+        app:layout_constraintTop_toBottomOf="@+id/cartItemName" />
+
+    <TextView
+        android:id="@+id/itemSubtotalMultiplySign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_semibold"
+        android:text="x"
+        android:textColor="@color/MediumGrey"
+        android:textSize="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/itemSubtotalTV"
+        app:layout_constraintEnd_toStartOf="@+id/cartItemInnerTotal"
+        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintStart_toEndOf="@+id/CartQuantityUnitText"
+        app:layout_constraintTop_toBottomOf="@+id/cartItemName" />
+
+    <TextView
+        android:id="@+id/CartQuantityUnitText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_semibold"
+        android:text="Pcs"
+        android:textColor="@color/MediumGrey"
+        android:textSize="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/itemSubtotalTV"
+        app:layout_constraintEnd_toStartOf="@+id/cartItemInnerTotal"
+        app:layout_constraintHorizontal_bias="0.07"
+        app:layout_constraintStart_toEndOf="@+id/CartQuantityText"
+        app:layout_constraintTop_toBottomOf="@+id/cartItemName" />
+
+    <TextView
+        android:id="@+id/CartQuantityText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_semibold"
+        android:text="250"
+        android:textColor="@color/MediumGrey"
+        android:textSize="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/itemSubtotalTV"
+        app:layout_constraintEnd_toStartOf="@+id/cartItemInnerTotal"
+        app:layout_constraintHorizontal_bias="0.45"
+        app:layout_constraintStart_toEndOf="@+id/itemSubtotalTV"
+        app:layout_constraintTop_toBottomOf="@+id/cartItemName" />
+
+    <TextView
+        android:id="@+id/itemDiscount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/inter_semibold"
+        android:text="Item Discount"
+        android:textColor="@color/MediumGrey"
+        android:textSize="@dimen/_13sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemSubtotalTV" />
+
+    <TextView
+        android:id="@+id/itemDiscountTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_semibold"
+        android:text="2500"
+        android:textColor="@color/MediumGrey"
+        android:textSize="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/itemDiscount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.92"
+        app:layout_constraintStart_toEndOf="@+id/itemDiscount"
+        app:layout_constraintTop_toTopOf="@+id/itemDiscount" />
+
+    <TextView
+        android:id="@+id/itemGST"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/inter_semibold"
+        android:text="Item Tax"
+        android:textColor="@color/MediumGrey"
+        android:textSize="@dimen/_13sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemDiscount" />
+
+    <TextView
+        android:id="@+id/cartItemGst"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/inter_semibold"
+        android:text="18%"
+        android:textColor="@color/MediumGrey"
+        android:textSize="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/itemGST"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.92"
+        app:layout_constraintStart_toEndOf="@+id/itemGST"
+        app:layout_constraintTop_toTopOf="@+id/itemGST" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemGST"
+        app:layout_constraintVertical_bias="0.00999999" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

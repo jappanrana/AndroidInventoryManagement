@@ -192,7 +192,7 @@
                     android:focusable="true"
                     android:focusableInTouchMode="true"
                     android:hint="Qty"
-                    android:inputType="number"
+                    android:inputType="numberDecimal"
                     android:textColorHint="@color/MediumGrey"
                     app:boxCornerRadiusBottomEnd="@dimen/_8sdp"
                     app:boxCornerRadiusBottomStart="@dimen/_8sdp"

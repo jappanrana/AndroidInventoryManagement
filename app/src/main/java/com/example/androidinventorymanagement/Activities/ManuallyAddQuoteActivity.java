@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -48,6 +49,8 @@ public class ManuallyAddQuoteActivity extends AppCompatActivity {
         calculatePriceQuoteAddProduct = findViewById(R.id.calculatePriceQuoteAddProduct);
         calculateQtyQuoteAddProduct = findViewById(R.id.calculateQtyQuoteAddProduct);
         calculateTotalQuoteAddProduct = findViewById(R.id.calculateTotalQuoteAddProduct);
+
+//        quantityQuoteAddProduct.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 
 
         prodAgtMrp.setFilters(new InputFilter[]{new CustomRangeInputFilter(0f,28f)});
