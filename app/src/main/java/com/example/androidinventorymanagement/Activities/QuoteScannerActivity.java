@@ -16,6 +16,7 @@ import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -66,6 +67,9 @@ public class QuoteScannerActivity extends AppCompatActivity {
     String UserRole;
     MediaPlayer music;
     ArrayList<QuoteModel> dataholder = new ArrayList<>();
+    ArrayList<QuoteModel> oldList = new ArrayList<>();
+
+    float oldQty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +83,21 @@ public class QuoteScannerActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         music = MediaPlayer.create(QuoteScannerActivity.this, R.raw.beep_beep);
+
+        Cursor cursor = new DbManager(this).readalldata();
+
+        while (cursor.moveToNext())
+        {
+            QuoteModel model = new QuoteModel(cursor.getString(2),cursor.getFloat(4),cursor.getString(3),
+                    cursor.getString(5),cursor.getString(3),cursor.getString(6));
+            oldList.add(model);
+            Set<QuoteModel> set = new HashSet<>(oldList);
+            oldList.clear();
+            oldList.addAll(set);
+        }
+
+        Set<QuoteModel> set=new HashSet<>(oldList);
+        oldList.addAll(set);
 
         CodeScannerView scannerView = findViewById(R.id.scanner_view);
         mCodeScanner = new CodeScanner(this, scannerView);
@@ -154,6 +173,14 @@ public class QuoteScannerActivity extends AppCompatActivity {
                                             // do something with the user's input
                                             String userInput = Qty.getText().toString();
                                             if(!userInput.equals("")) {
+                                                int i = 0;
+                                                oldQty = 0;
+                                                while(i<oldList.size()){
+                                                    if(oldList.get(i).getName().equals(dataSnapshot.child("name").getValue().toString())){
+                                                        oldQty = oldList.get(i).getQty();
+                                                    }
+                                                    i++;
+                                                }
                                                 processInsert(dataSnapshot.child("name").getValue().toString(), dataSnapshot.child("code").getValue().toString(),
                                                         dataSnapshot.child("mrp").getValue().toString(), dataSnapshot.child("gstAmt").getValue().toString(), userInput);
                                                 proceedBtn.setBackgroundColor(Color.parseColor("#0477E2"));
@@ -294,7 +321,7 @@ public class QuoteScannerActivity extends AppCompatActivity {
         if (!res.equals("0"))
         {
             Toast.makeText(QuoteScannerActivity.this, res, Toast.LENGTH_SHORT).show();
-            dataholder.add(new QuoteModel(name,Float.parseFloat(String.valueOf(qtyReceived)),code,mrp,agtMrp,"scan"));
+            dataholder.add(new QuoteModel(name,Float.parseFloat(String.valueOf(qtyReceived))+oldQty,code,mrp,agtMrp,"scan"));
         }
         else {
             Cursor cursor = new DbManager(QuoteScannerActivity.this).getQty(name);
@@ -302,13 +329,13 @@ public class QuoteScannerActivity extends AppCompatActivity {
 //                Float qty = Float.valueOf(cursor.getString(4));
 //                qty = qty + 1;
                 DbManager dbManager = new DbManager(QuoteScannerActivity.this);
-                dbManager.UpdateQty(String.valueOf(qtyReceived),name);
+                dbManager.UpdateQty(String.valueOf(Float.parseFloat(String.valueOf(qtyReceived))+oldQty),name);
             }
             int i = 0;
             while (i<dataholder.size()){
                 QuoteModel temp = dataholder.get(i);
                 if(Objects.equals(temp.getName(), name)){
-                    temp.setQty(Float.valueOf(qtyReceived));
+                    temp.setQty(Float.valueOf(qtyReceived)+oldQty);
                     dataholder.remove(i);
                     dataholder.add(i,temp);
                     scanItemAdapter.updateList(dataholder);
