@@ -236,9 +236,10 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
         final String[] formattedDate = new String[1];
         final String[] fileName = new String[1];
 
-        finalQuoteSavePDF.setOnClickListener(new View.OnClickListener() {
+
+        quoteLayout.post(new Runnable() {
             @Override
-            public void onClick(View v) {
+            public void run() {
                 try {
                     Date dt = Calendar.getInstance().getTime();
                     String hours = String.valueOf(dt.getHours());
@@ -246,18 +247,34 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
                     String seconds = String.valueOf(dt.getSeconds());
                     SimpleDateFormat df = new SimpleDateFormat("yyyy-MMM-dd", Locale.getDefault());
                     formattedDate[0] = df.format(dt);
-
                     fileName[0] = hours+"-"+minutes+"-"+seconds;
-                    savedPath[0] = createNPrintPDF(quoteLayout, formattedDate[0], fileName[0],quoteLayout.getHeight(),quoteLayout.getWidth());
-                    DownloadPDF.setVisibility(View.GONE);
-                    sharedPDF.setVisibility(View.VISIBLE);
-                    printPDF.setVisibility(View.VISIBLE);
+                    savedPath[0] = createPDF(quoteLayout, formattedDate[0], fileName[0],quoteLayout.getHeight(),quoteLayout.getWidth());
+                } catch (FileNotFoundException e) {
+
+                }
+
+            }
+        });
+
+
+        finalQuoteSavePDF.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+
+//                    savedPath[0] =
+                    createNPrintPDF(quoteLayout, formattedDate[0], fileName[0],quoteLayout.getHeight(),quoteLayout.getWidth());
+//                    DownloadPDF.setVisibility(View.GONE);
+//                    sharedPDF.setVisibility(View.VISIBLE);
+//                    printPDF.setVisibility(View.VISIBLE);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                     Toast.makeText(FinalQuoteActivity.this, "some error occurs", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
+
 
         sharedPDF.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -419,8 +436,7 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
 
     }
 
-
-    private String createNPrintPDF (View v, String folderName, String fileName, int height, int width) throws FileNotFoundException {
+    private String createPDF (View v, String folderName, String fileName, int height, int width) throws FileNotFoundException {
         File dir = new File(Environment.getExternalStorageDirectory() + "/Download/PankajNX/Quote/"+folderName+"/");
         dir.mkdirs();
         File file = new File(dir,customerName.getText().toString()+"_"+customerNo.getText().toString()+"_"+fileName+".pdf");
@@ -451,6 +467,57 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
             uniqueKey = quotationDatabase.push().getKey();
         }
 
+//        QuotationModel quotation = new QuotationModel(
+//                getCustomerName,
+//                getCustomerNo,
+//                folderName+"_"+fileName,
+//                uniqueKey,
+//                customerName.getText().toString().toLowerCase(Locale.ROOT)+"_"+customerNo.getText().toString()+"_"+folderName,
+//                getSharedPrefGenerateType(mContext),
+//                Integer.parseInt(discountAmt.getText().toString()),
+//                Integer.parseInt(totalGstAmt.getText().toString()),
+//                Integer.parseInt(subTotalAmt.getText().toString()),
+//                Integer.parseInt(grandTotal.getText().toString()),
+//                dataholder
+//        );
+//
+//        quotationDatabase.child(uniqueKey).setValue(quotation);
+        Toast.makeText(this, "Quotation Generated Successfully!", Toast.LENGTH_SHORT).show();
+        return dir.getPath()+"/"+customerName.getText().toString()+"_"+customerNo.getText().toString()+"_"+fileName+".pdf";
+    }
+
+
+    private void createNPrintPDF (View v, String folderName, String fileName, int height, int width) throws FileNotFoundException {
+//        File dir = new File(Environment.getExternalStorageDirectory() + "/Download/PankajNX/Quote/"+folderName+"/");
+//        dir.mkdirs();
+//        File file = new File(dir,customerName.getText().toString()+"_"+customerNo.getText().toString()+"_"+fileName+".pdf");
+
+//        PdfWriter writer = new PdfWriter(file);
+//        PdfDocument pdfDocument = new PdfDocument(writer);
+//        int newHeight = (int) ((int) height/1.8);
+//        PageSize pageSize = new PageSize(590, newHeight);
+//        Document document = new Document(pdfDocument,pageSize);
+//        document.setMargins(0,0,0,0);
+//
+//        Bitmap bitmap = CommonMethods.getBitmapFromView(v,height,width);
+//        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+//        bitmap.compress(Bitmap.CompressFormat.PNG,100,stream);
+//        byte[] bitmapData = stream.toByteArray();
+//
+//        ImageData imageData = ImageDataFactory.create(bitmapData);
+//        Image image = new Image(imageData);
+//
+//        document.add(image);
+//        document.close();
+        if (edited)
+        {
+            uniqueKey = key;
+        }
+        else
+        {
+            uniqueKey = quotationDatabase.push().getKey();
+        }
+
         QuotationModel quotation = new QuotationModel(
                 getCustomerName,
                 getCustomerNo,
@@ -467,7 +534,7 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
 
         quotationDatabase.child(uniqueKey).setValue(quotation);
         Toast.makeText(this, "Quotation Generated Successfully!", Toast.LENGTH_SHORT).show();
-        return dir.getPath()+"/"+customerName.getText().toString()+"_"+customerNo.getText().toString()+"_"+fileName+".pdf";
+//        return dir.getPath()+"/"+customerName.getText().toString()+"_"+customerNo.getText().toString()+"_"+fileName+".pdf";
     }
 
     public boolean contactExists(Context context, String number) {
