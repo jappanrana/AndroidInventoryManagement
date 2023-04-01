@@ -76,13 +76,13 @@ public class SharedQuoteFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-                processesSearch(s.toString().toLowerCase(Locale.ROOT));
+                processesSearch(s.toString());
             }
 
             @Override
             public void afterTextChanged(Editable s) {
 
-                processesSearch(s.toString().toLowerCase(Locale.ROOT));
+                processesSearch(s.toString());
             }
         });
 
@@ -102,7 +102,7 @@ public class SharedQuoteFragment extends Fragment {
     private void processesSearch(String query) {
 
         FirebaseRecyclerOptions<QuotationModel> options = new FirebaseRecyclerOptions.Builder<QuotationModel>()
-                .setQuery(databaseReferenceQuotations.orderByChild("name").startAt(query).endAt(query+ "\uf8ff"),QuotationModel.class).build();
+                .setQuery(databaseReferenceQuotations.orderByChild("dateTime").startAt(query).endAt(query+ "\uf8ff"),QuotationModel.class).build();
 
         sharedQuoteAdapter = new SharedQuoteAdapter(options,mContext);
         recyclerView.setAdapter(sharedQuoteAdapter);
