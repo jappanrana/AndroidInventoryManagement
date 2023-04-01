@@ -146,6 +146,11 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
                         {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                SharedPreferenceMethods.setSharedPrefNavigation(mContext, Constances.NAVIGATION_PROFILE);
+                                SharedPreferenceMethods.setSharedPrefSharedQuote(mContext,false);
+                                Intent intent = new Intent(FinalQuoteActivity.this, HomeActivity.class);
+                                startActivity(intent);
+                                finish();
                                 Toast.makeText(mContext, "Deleted Successfully", Toast.LENGTH_SHORT).show();
                             }
 
@@ -364,7 +369,11 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
                 {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(mContext, "Saved!", Toast.LENGTH_SHORT).show();
+                        SharedPreferenceMethods.setSharedPrefNavigation(mContext, Constances.NAVIGATION_PROFILE);
+                        SharedPreferenceMethods.setSharedPrefSharedQuote(mContext,false);
+                        Intent intent = new Intent(FinalQuoteActivity.this, HomeActivity.class);
+                        startActivity(intent);
+                        finish();
                     }
 
                 })
@@ -423,6 +432,12 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
                 } catch (Exception exception){
                     Toast.makeText(this, "Install Whatsapp", Toast.LENGTH_SHORT).show();
                 }
+            }finally {
+                SharedPreferenceMethods.setSharedPrefNavigation(mContext, Constances.NAVIGATION_PROFILE);
+                SharedPreferenceMethods.setSharedPrefSharedQuote(mContext,false);
+                Intent intent = new Intent(FinalQuoteActivity.this, HomeActivity.class);
+                startActivity(intent);
+                finish();
             }
 
 //            startActivity(Intent.createChooser(shareIntent,"Share Via"));
@@ -482,7 +497,7 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
 //        );
 //
 //        quotationDatabase.child(uniqueKey).setValue(quotation);
-        Toast.makeText(this, "Quotation Generated Successfully!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Quotation Downloaded Successfully!", Toast.LENGTH_SHORT).show();
         return dir.getPath()+"/"+customerName.getText().toString()+"_"+customerNo.getText().toString()+"_"+fileName+".pdf";
     }
 
@@ -533,7 +548,11 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
         );
 
         quotationDatabase.child(uniqueKey).setValue(quotation);
-        Toast.makeText(this, "Quotation Generated Successfully!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Quotation Saved Successfully!", Toast.LENGTH_SHORT).show();SharedPreferenceMethods.setSharedPrefNavigation(mContext, Constances.NAVIGATION_PROFILE);
+        SharedPreferenceMethods.setSharedPrefSharedQuote(mContext,false);
+        Intent intent = new Intent(FinalQuoteActivity.this, HomeActivity.class);
+        startActivity(intent);
+        finish();
 //        return dir.getPath()+"/"+customerName.getText().toString()+"_"+customerNo.getText().toString()+"_"+fileName+".pdf";
     }
 
