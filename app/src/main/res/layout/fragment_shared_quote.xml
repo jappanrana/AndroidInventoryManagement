@@ -40,7 +40,7 @@
             app:layout_constraintTop_toTopOf="@+id/viewPartyTransactionsBack" />
 
         <ImageView
-            android:id="@+id/viewPartyTransactionsEdit"
+            android:id="@+id/viewPartyTransactionsDateFilter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_10sdp"
@@ -50,6 +50,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/textView12"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/textView12" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
