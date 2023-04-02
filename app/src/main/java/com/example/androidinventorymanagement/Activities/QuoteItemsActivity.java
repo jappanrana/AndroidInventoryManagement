@@ -100,7 +100,7 @@ public class QuoteItemsActivity extends AppCompatActivity
         String key = SharedPreferenceMethods.getSharedPrefCustomerKey(mContext);
         sharedQuote = SharedPreferenceMethods.getSharedPrefSharedQuote(mContext);
         edited = SharedPreferenceMethods.getSharedPrefEditable(mContext);
-        SharedPreferenceMethods.setSharedPrefSharedQuote(mContext,false);
+//        SharedPreferenceMethods.setSharedPrefSharedQuote(mContext,false);
 
         customerName.setText(getCustomerName);
         customerNo.setText(getCustomerNo);
@@ -605,7 +605,7 @@ public class QuoteItemsActivity extends AppCompatActivity
             public void onClick(View view) {
 
                 Intent intent = new Intent(QuoteItemsActivity.this,FinalQuoteActivity.class);
-                SharedPreferenceMethods.setSharedPrefEditable(mContext,false);
+//                SharedPreferenceMethods.setSharedPrefEditable(mContext,false);
                 startActivity(intent);
             }
         });
@@ -635,7 +635,7 @@ public class QuoteItemsActivity extends AppCompatActivity
                         else
                         {
                             SharedPreferenceMethods.setSharedPrefNavigation(mContext, Constances.NAVIGATION_PROFILE);
-                            SharedPreferenceMethods.setSharedPrefSharedQuote(mContext,false);
+//                            SharedPreferenceMethods.setSharedPrefSharedQuote(mContext,false);
                             Intent intent = new Intent(QuoteItemsActivity.this, HomeActivity.class);
                             startActivity(intent);
                             finish();

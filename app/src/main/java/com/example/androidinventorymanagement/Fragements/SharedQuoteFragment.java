@@ -64,6 +64,9 @@ public class SharedQuoteFragment extends Fragment {
         searchView = sharedQuote.findViewById(R.id.quotationsSearchView);
         filterIcon = sharedQuote.findViewById(R.id.viewPartyTransactionsDateFilter);
 
+        BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.getMenu().findItem(R.id.home).setChecked(true);
+
         mContext = getContext();
 
         databaseReferenceQuotations = FirebaseDatabase.getInstance().getReference("quotations");
@@ -130,8 +133,6 @@ public class SharedQuoteFragment extends Fragment {
             public void onClick(View v) {
                 HomeFragment homeFragment = new HomeFragment();
                 getParentFragmentManager().beginTransaction().replace(R.id.frame, homeFragment).commit();
-                BottomNavigationView bottomNavigationView = getActivity().findViewById(R.id.bottomNavigationView);
-                bottomNavigationView.getMenu().findItem(R.id.home).setChecked(true);
             }
         });
 

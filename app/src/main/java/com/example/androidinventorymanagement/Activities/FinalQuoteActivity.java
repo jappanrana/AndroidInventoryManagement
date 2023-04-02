@@ -146,11 +146,20 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
                         {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                SharedPreferenceMethods.setSharedPrefNavigation(mContext, Constances.NAVIGATION_PROFILE);
-                                SharedPreferenceMethods.setSharedPrefSharedQuote(mContext,false);
-                                Intent intent = new Intent(FinalQuoteActivity.this, HomeActivity.class);
-                                startActivity(intent);
-                                finish();
+                                if(edited){
+                                    SharedPreferenceMethods.setSharedPrefNavigation(mContext, Constances.NAVIGATION_SHARED_QUOTE);
+                                    SharedPreferenceMethods.setSharedPrefSharedQuote(mContext,false);
+                                    Intent intent = new Intent(FinalQuoteActivity.this, HomeActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }else{
+                                    SharedPreferenceMethods.setSharedPrefNavigation(mContext, Constances.NAVIGATION_PROFILE);
+                                    SharedPreferenceMethods.setSharedPrefSharedQuote(mContext,false);
+                                    Intent intent = new Intent(FinalQuoteActivity.this, HomeActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+
                                 Toast.makeText(mContext, "Deleted Successfully", Toast.LENGTH_SHORT).show();
                             }
 
@@ -187,12 +196,12 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
         Date dt = new Date();
 
 
-        edited = SharedPreferenceMethods.getSharedPrefEditable(mContext);
+        edited = SharedPreferenceMethods.getSharedPrefSharedQuote(mContext);
 
-        if (edited)
-        {
-            editedTextView.setVisibility(View.VISIBLE);
-        }
+//        if (edited)
+//        {
+//            editedTextView.setVisibility(View.VISIBLE);
+//        }
         if (!discount.equals("no"))
         {
             discountLayout.setVisibility(View.VISIBLE);
@@ -265,6 +274,7 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
         finalQuoteSavePDF.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(mContext, "Quotation Saved Successfully", Toast.LENGTH_SHORT).show();
                 try {
 
 //                    savedPath[0] =
@@ -360,20 +370,27 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogTheme);
-        builder.setTitle("Save Transaction")
-                .setMessage("Do you want to save this transaction?")
+        builder.setTitle("Cancel Transaction")
+                .setMessage("Do you want to cancel this transaction?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener()
                 {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        SharedPreferenceMethods.setSharedPrefNavigation(mContext, Constances.NAVIGATION_PROFILE);
-                        SharedPreferenceMethods.setSharedPrefSharedQuote(mContext,false);
-                        Intent intent = new Intent(FinalQuoteActivity.this, HomeActivity.class);
-                        startActivity(intent);
-                        finish();
+                        if(edited){
+                            SharedPreferenceMethods.setSharedPrefNavigation(mContext, Constances.NAVIGATION_SHARED_QUOTE);
+                            SharedPreferenceMethods.setSharedPrefSharedQuote(mContext,false);
+                            Intent intent = new Intent(FinalQuoteActivity.this, HomeActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }else{
+                            SharedPreferenceMethods.setSharedPrefNavigation(mContext, Constances.NAVIGATION_PROFILE);
+                            SharedPreferenceMethods.setSharedPrefSharedQuote(mContext,false);
+                            Intent intent = new Intent(FinalQuoteActivity.this, HomeActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
                     }
 
                 })
@@ -432,12 +449,6 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
                 } catch (Exception exception){
                     Toast.makeText(this, "Install Whatsapp", Toast.LENGTH_SHORT).show();
                 }
-            }finally {
-                SharedPreferenceMethods.setSharedPrefNavigation(mContext, Constances.NAVIGATION_PROFILE);
-                SharedPreferenceMethods.setSharedPrefSharedQuote(mContext,false);
-                Intent intent = new Intent(FinalQuoteActivity.this, HomeActivity.class);
-                startActivity(intent);
-                finish();
             }
 
 //            startActivity(Intent.createChooser(shareIntent,"Share Via"));
@@ -497,7 +508,7 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
 //        );
 //
 //        quotationDatabase.child(uniqueKey).setValue(quotation);
-        Toast.makeText(this, "Quotation Downloaded Successfully!", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "Quotation Downloaded Successfully!", Toast.LENGTH_SHORT).show();
         return dir.getPath()+"/"+customerName.getText().toString()+"_"+customerNo.getText().toString()+"_"+fileName+".pdf";
     }
 
@@ -549,10 +560,19 @@ public class FinalQuoteActivity extends AppCompatActivity implements ActivityCom
 
         quotationDatabase.child(uniqueKey).setValue(quotation);
         Toast.makeText(this, "Quotation Saved Successfully!", Toast.LENGTH_SHORT).show();SharedPreferenceMethods.setSharedPrefNavigation(mContext, Constances.NAVIGATION_PROFILE);
-        SharedPreferenceMethods.setSharedPrefSharedQuote(mContext,false);
-        Intent intent = new Intent(FinalQuoteActivity.this, HomeActivity.class);
-        startActivity(intent);
-        finish();
+        if(edited){
+            SharedPreferenceMethods.setSharedPrefNavigation(mContext, Constances.NAVIGATION_SHARED_QUOTE);
+            SharedPreferenceMethods.setSharedPrefSharedQuote(mContext,false);
+            Intent intent = new Intent(FinalQuoteActivity.this, HomeActivity.class);
+            startActivity(intent);
+            finish();
+        }else{
+            SharedPreferenceMethods.setSharedPrefNavigation(mContext, Constances.NAVIGATION_PROFILE);
+            SharedPreferenceMethods.setSharedPrefSharedQuote(mContext,false);
+            Intent intent = new Intent(FinalQuoteActivity.this, HomeActivity.class);
+            startActivity(intent);
+            finish();
+        }
 //        return dir.getPath()+"/"+customerName.getText().toString()+"_"+customerNo.getText().toString()+"_"+fileName+".pdf";
     }
 
