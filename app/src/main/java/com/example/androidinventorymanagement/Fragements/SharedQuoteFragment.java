@@ -4,6 +4,7 @@ import static com.example.androidinventorymanagement.Utils.SharedPreferenceMetho
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -19,14 +20,15 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.androidinventorymanagement.Adapters.SharedQuoteAdapter;
 import com.example.androidinventorymanagement.Models.QuotationModel;
 import com.example.androidinventorymanagement.Navigation.HomeFragment;
 import com.example.androidinventorymanagement.Navigation.ProfileFragment;
 import com.example.androidinventorymanagement.R;
-import com.example.androidinventorymanagement.Utils.DatePicker;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.textfield.TextInputEditText;
@@ -34,6 +36,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Locale;
 
 public class SharedQuoteFragment extends Fragment {
@@ -95,31 +99,29 @@ public class SharedQuoteFragment extends Fragment {
         filterIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePicker dialog = new DatePicker(getContext(), R.style.AlertDialogTheme);
-                dialog.setTitle("Select Custom Date");
-                dialog.showDatePicker(new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(android.widget.DatePicker datePicker, int year, int month, int day) {
-                        String smonth,sday,eday;
-                        if(month < 10){
-                            smonth = "0"+String.valueOf(month);
-                        }else{
-                            smonth = String.valueOf(month);
-                        }
-                        if(day < 10){
-                            sday = "0"+String.valueOf(day-1);
-                        }else{
-                            sday = String.valueOf(day-1);
-                        }
-                        if(day < 10){
-                            eday = "0"+String.valueOf(day);
-                        }else{
-                            eday = String.valueOf(day);
-                        }
-                        String sdate = String.valueOf(year)+smonth+sday;
-                        String edate = String.valueOf(year)+smonth+eday;
-                    }
-                });
+
+                Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+                // Create a DatePickerDialog with the current date as default value
+                DatePickerDialog datePickerDialog = new DatePickerDialog(mContext,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int month, int day) {
+                                // Show a Toast message with the selected date
+                                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MMM-dd", Locale.getDefault());
+                                Calendar calendar = Calendar.getInstance();
+                                calendar.set(year, month, day);
+                                String selectedDate = sdf.format(calendar.getTime());
+
+                                // Show a Toast message with the formatted date
+                                processesSearch(selectedDate);
+                            }
+                        }, year, month, day);
+
+                datePickerDialog.show();
             }
         });
 
